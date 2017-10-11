@@ -1,0 +1,17 @@
+<div class="call-item-state" ng-class="{
+  'call-item-state__info': $ctrl.call.isInfo,
+  'call-item-state__valide': $ctrl.call.isResolve,
+  'call-item-state__error': $ctrl.call.isWaiting
+}">
+  <i class="call-item-state-icon icon-zenpdv" ng-class="{
+    'icon-zenpdv-notification': $ctrl.call.isInfo,
+    'icon-zenpdv-checkmark': $ctrl.call.isResolve,
+    'icon-zenpdv-close': $ctrl.call.isWaiting
+  }"></i>
+  <p class="call-item-state-label">{{$ctrl.call.state}}</p>
+</div>
+
+<div class="call-item-detail">
+  <p class="call-item-detail-datetime">{{$ctrl.call.creationDate}}</p>
+  <p class="call-item-detail-title">{{$ctrl.call.title}}</p>
+</div>

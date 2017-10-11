@@ -1,0 +1,45 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+contact-us-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-us-detail-phone,
+.contact-us-detail-closed {
+  display: flex;
+  align-items: center;
+}
+.contact-us-detail-closed,
+.contact-us-detail-phone,
+.contact-us-detail-contacts,
+.contact-us-detail-schedule {
+  margin-top: 10px;
+}
+.contact-us-detail-phone-icon {
+  margin-right: 10px;
+}
+/***************************************/
+
+
+/***************************************/
+/* Styling : background, border, font, color */
+.contact-us-detail-phone-label {
+  font: 400 1em / 1em 'OpenSans';
+  color: #5ab271;
+}
+.contact-us-detail-closed {
+  font: 700 1em / 1em 'OpenSans';
+}
+.contact-us-detail-phone-icon {
+  background-color: #5ab271;
+  border-radius: 50%;
+  padding: 5px;
+  color: #fff;
+  font-size: 1.4em;
+}
+.contact-us-detail-schedule {
+  font: 400 1em / 1em 'OpenSans';
+  color: #000;
+}
+/***************************************/

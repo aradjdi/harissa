@@ -1,0 +1,41 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+.primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+.primary-button-icon {
+  margin-left: 10px;
+}
+/***************************************/
+
+/***************************************/
+/* Spacing : padding */
+.primary-button {
+  padding: 10px 10px 10px 20px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+.primary-button {
+  background-color: #787975;
+  border-radius: 1.2em;
+  color: #fff;
+  text-transform: uppercase;
+  &.primary-button__valide {
+    background-color: #5ab271;
+  }
+  &.primary-button__error {
+    background-color: #c33f44;
+  }
+}
+.primary-button-label {
+  font: 400 0.6em / 1em 'OpenSans';
+}
+.primary-button-icon {
+  font-size: 1em;
+}
+/***************************************/

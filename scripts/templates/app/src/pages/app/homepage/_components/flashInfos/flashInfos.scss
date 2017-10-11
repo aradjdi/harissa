@@ -1,0 +1,37 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+.flash-infos-list {
+  display: flex;
+  .flash-infos-list-item {
+    flex: 1;
+  }
+}
+/***************************************/
+
+/***************************************/
+/* Spacing : padding */
+.flash-infos-list-item {
+  padding: 5px 10px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+flash-infos {
+  font: 400 0.8em / 1em 'OpenSans';
+  color: #fff;
+  background-color: #c33f44;
+}
+/***************************************/
+
+/***************************************/
+/* Specific : ellipsis */
+.flash-infos-list-item {
+  overflow: hidden;
+  .flash-infos-list-item-detail {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+/***************************************/

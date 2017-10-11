@@ -1,0 +1,16 @@
+<p class="affluence-stats-subtitle">
+  <i class="affluence-stats-subtitle-calls icon-zenpdv icon-zenpdv-calls"></i>
+  <i class="affluence-stats-subtitle-clock icon-zenpdv icon-zenpdv-clock"></i>
+  <span class="affluence-stats-subtitle-label">Quand appeler ?</span>
+</p>
+
+<radio-field class="affluence-stats-field"
+  name="'affluence-stats-field'"
+  value="$ctrl.value"
+  options="$ctrl.options"
+  on-change="$ctrl.onValueChange(value)"
+></radio-field>
+
+<bar-chart class="affluence-stats-chart"
+  data="$ctrl.barChartData"
+></bar-chart>

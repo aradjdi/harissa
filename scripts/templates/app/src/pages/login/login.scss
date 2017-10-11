@@ -1,0 +1,60 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+login {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  .login-content {
+    flex: 1;
+  }
+}
+.login-header {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.login-header-logo {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-header-detail {
+  margin: 40px 0 50px;
+}
+.login-content {
+  margin-bottom: 80px;
+}
+/***************************************/
+
+/***************************************/
+/* Spacing : padding */
+login {
+  padding: 50px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+login {
+  background-image: url('./_imgs/login_background.png');
+  background-size: cover;
+  background-color: rgba(18, 30, 46, 0.95);
+}
+.login-header {
+  font-size: 20px;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+}
+.login-header-logo {
+  text-transform: uppercase;
+  font-size: 40px;
+  letter-spacing: 0.1px;
+  color: #fff;
+}
+/***************************************/

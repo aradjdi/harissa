@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "window": true,
+    "document": true,
+    "require": true,
+    "angular": true,
+    "WebSocket": true,
+    "describe": true,
+    "it": true,
+    "expect": true
+  },
+  "rules": {
+    "no-param-reassign": 0,
+    "global-require": 0
+  }
+}

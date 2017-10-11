@@ -1,0 +1,13 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+contacts {
+  display: flex;
+  flex-direction: column;
+  .contacts-list {
+    flex: 1;
+  }
+}
+.contacts-list-item {
+  margin-bottom: 5px;
+}
+/***************************************/

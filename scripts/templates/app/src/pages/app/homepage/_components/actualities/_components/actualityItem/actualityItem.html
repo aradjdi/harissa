@@ -1,0 +1,18 @@
+<div class="actuality-item-state" ng-class="{
+  'actuality-item-state__info': $ctrl.actuality.isInfo,
+  'actuality-item-state__valide': $ctrl.actuality.isResolve,
+  'actuality-item-state__error': $ctrl.actuality.isWaiting
+}">
+  <i class="actuality-item-state-icon icon-zenpdv" ng-class="{
+    'icon-zenpdv-notification': $ctrl.actuality.isInfo,
+    'icon-zenpdv-checkmark': $ctrl.actuality.isResolve,
+    'icon-zenpdv-close': $ctrl.actuality.isWaiting
+  }"></i>
+  <p class="actuality-item-state-label">{{$ctrl.actuality.state}}</p>
+</div>
+
+<div class="actuality-item-detail">
+  <p class="actuality-item-detail-datetime">{{$ctrl.actuality.startDate}}</p>
+  <p class="actuality-item-detail-title">{{$ctrl.actuality.title}}</p>
+  <p class="actuality-item-detail-subtitle">{{$ctrl.actuality.summary}}</p>
+</div>

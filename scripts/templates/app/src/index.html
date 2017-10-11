@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>ZenPDV Mousquetaires</title>
+    <meta name="description" content="Espace Com Mousquetaires">
+
+    <!-- Chrome or Safari -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Disable data detection, prevent a call popup on tap to a number -->
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- Viewport fullscreen without zoom -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=medium-dpi">
+
+    <!-- Chrome or Safari -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' gap://ready; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'self' blob:; img-src 'self' http: https: blob: file: data: content: cdvfile:; connect-src 'self' http: https: blob: file: data: content: cdvfile: ws:"/>
+
+    <!--<base href="/">-->
+    <style>
+      .splashscreen {
+        display: none;
+      }
+    </style>
+  </head>
+  <body ng-strict-di class="animation-container">
+    <loader></loader>
+    <ui-view class="animation-pages-navigation">
+      <div class="splashscreen">
+        <div class="logo" alt="">
+        </div>
+      </div>
+    </ui-view>
+  </body>
+</html>

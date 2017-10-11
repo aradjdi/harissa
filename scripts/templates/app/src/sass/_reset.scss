@@ -1,0 +1,91 @@
+*, *:before, *:after {
+  /* makes border and padding grow inward from width & height
+       - mix-and-match units for various box model properties
+       - ex. width: 25%; padding: 15px;
+       - no workie in IE7
+    */
+  box-sizing: border-box;
+  /* prevent ugly selection of text and elements in UI; adjusts cursor appropriately
+       - enable on elements in a curated fashion with the value "text"
+       - enable on input elements, or else they may be disabled
+       - remember to change the cursor to "auto" or "text" for an element when you
+         enable selection on it
+       - does not work in IE<10
+    */
+  user-select: none;
+  cursor: default;
+  /* prevent UI elements from displaying a context menu on long-tap
+       - enable on elements in a curated fashion with the value "default"
+       - only works in iOS as of this writing
+    */
+  -webkit-touch-callout: none;
+  /* remove UA-default "touched" treatment for <a> and JS mouse events
+       - enable on elements in a curated fashion with any color value
+       - remember to add your own treatments if you use this
+       - you should be using touch events on supporting UAs anyway
+       - only works in iOS as of this writing
+    */
+  -webkit-tap-highlight-color: transparent;
+  /* Use PointerEvents
+       - IE>10 only
+    */
+  /* touch-action: manipulation; */
+  /* prevent webkit from resizing text to fit
+       - iOS only
+    */
+  text-size-adjust: none;
+}
+
+
+input,
+textarea {
+  /* to allow copy paste in field
+     to prevent, change to 'none'
+  */
+  -webkit-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+/*Prevent iOS bug for check a radio/checkbox input within a label*/
+label > * {
+  pointer-events: none;
+}
+
+/* Reset Layout */
+h1 {
+  margin: 0;
+}
+h2 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li {
+  list-style: none;
+}
+p {
+  margin: 0;
+}
+
+
+/* Reset Design */
+button {
+  border: none;
+}
+button:focus {
+  outline: none;
+}
+
+
+/* Reset Font */
+a {
+  color: inherit;
+  &:link, &:visited, &:hover, &:active {
+    text-decoration: none;
+    outline: 0;
+  }
+}

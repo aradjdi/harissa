@@ -1,0 +1,52 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+affluence-stats {
+  display: block;
+}
+.affluence-stats-subtitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.affluence-stats-chart {
+  margin: 10px;
+  height: 100px;
+}
+/***************************************/
+
+
+/***************************************/
+/* Spacing : padding */
+.affluence-stats-subtitle {
+  padding: 10px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+.affluence-stats-subtitle {
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+}
+.affluence-stats-subtitle-label {
+  font: 400 0.8em / 1em 'OpenSans';
+  color: #000;
+}
+/***************************************/
+
+.affluence-stats-subtitle {
+  padding: 12px 10px 10px;
+}
+.affluence-stats-subtitle-calls {
+  color: #5ab271;
+  font-size: 1.5em;
+}
+.affluence-stats-subtitle-clock {
+  color: #d0984f;
+  font-size: 0.8em;
+  margin-left: -12px;
+  margin-top: -12px;
+}
+.affluence-stats-subtitle-label {
+  margin-left: 20px;
+}

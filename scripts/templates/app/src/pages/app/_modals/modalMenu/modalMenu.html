@@ -1,0 +1,19 @@
+<div class="modal-menu-blockout" ng-click="$ctrl.cancel()"></div>
+
+<div class="modal-menu-content">
+  <div class="modal-menu-close icon-zenpdv icon-zenpdv-close" ng-click="$ctrl.cancel()"></div>
+  <ul class="modal-menu-list">
+    <li class="modal-menu-list-item"
+      ng-click="$ctrl.navigate('app.homepage')"
+    ><i class="modal-menu-list-item-icon icon-zenpdv icon-zenpdv-home"></i>Accueil</li>
+    <li class="modal-menu-list-item"
+      ng-click="$ctrl.navigate('app.contacts')"
+    ><i class="modal-menu-list-item-icon icon-zenpdv icon-zenpdv-home"></i>Mes Contacts</li>
+    <li class="modal-menu-list-item"
+      ng-click="$ctrl.navigate('app.calls')"
+    ><i class="modal-menu-list-item-icon icon-zenpdv icon-zenpdv-calls"></i>Mes Appels</li>
+    <li class="modal-menu-list-item"
+      ng-click="$ctrl.logout()"
+    ><i class="modal-menu-list-item-icon icon-zenpdv icon-zenpdv-user"></i>Déconnexion</li>
+  </ul>
+</div>

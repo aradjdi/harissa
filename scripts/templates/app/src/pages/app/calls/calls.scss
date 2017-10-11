@@ -1,0 +1,10 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+calls {
+  display: flex;
+  flex-direction: column;
+  .calls-list {
+    flex: 1;
+  }
+}
+/***************************************/

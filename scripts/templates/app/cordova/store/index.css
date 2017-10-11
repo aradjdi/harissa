@@ -1,0 +1,55 @@
+body {
+  background: #fff url("./img_maintenance/background_full.jpg") no-repeat center 106px;
+  margin: 0;
+  padding: 0;
+}
+
+#page {
+  font-family: Arial;
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+#content {
+  background: #fff;
+  height: 700px;
+  margin-left: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+#content article {
+  border: none;
+  padding: 150px 50px 0 50px;
+  width: 70%;
+}
+
+#block-menu-menu-menu-mousquetaires li a {
+  display: inline-block;
+}
+
+#main article h2 {
+  color: #e61c29;
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 17px;
+  text-transform: uppercase;
+}
+
+#main article p {
+  font-size: 12px;
+}
+
+#topbar {
+  background: #fff;
+  height: 103px;
+  padding: 3px 70px 0 70px;
+  position: relative;
+}
+
+#logo {
+  left: 70px;
+  position: absolute;
+  top: 34px;
+  z-index: 300;
+}

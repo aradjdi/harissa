@@ -1,0 +1,52 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+contact-item {
+  display: block;
+}
+.contact-item-detail {
+  margin-bottom: 10px;
+  display: flex;
+  .contact-item-detail-title {
+    flex: 1;
+    margin-right: 10px;
+  }
+}
+.contact-item-schedule {
+  display: flex;
+  align-items: center;
+  .contact-item-schedule-icon {
+    margin-right: 5px;
+  }
+}
+.contact-item-schedule-content {
+  display: flex;
+  align-items: baseline;
+}
+/***************************************/
+
+/***************************************/
+/* Spacing : padding */
+contact-item {
+  padding: 10px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+contact-item {
+  border-bottom: 1px solid #000;
+  font: 400 0.7em / 1em 'OpenSans';
+}
+.contact-item-detail-phone {
+  font-weight: 700;
+}
+.contact-item-schedule-content {
+  font: 400 0.7em / 1em 'OpenSans';
+  .contact-item-schedule__accentuate {
+    color: green;
+  }
+}
+.contact-item-schedule-icon {
+  color: #5ab271;
+}
+/***************************************/

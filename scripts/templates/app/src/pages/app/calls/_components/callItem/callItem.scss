@@ -1,0 +1,74 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+call-item {
+  display: flex;
+  .call-item-detail {
+    flex: 1;
+  }
+  .call-item-state {
+    width: 20px;
+    margin-right: 10px;
+  }
+}
+.call-item-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .call-item-state-icon {
+    margin-bottom: 5px;
+  }
+}
+.call-item-detail-datetime {
+  margin-bottom: 5px;
+}
+/***************************************/
+
+/***************************************/
+/* Spacing : padding */
+call-item {
+  padding: 5px 10px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+call-item {
+  border-bottom: 1px solid #000;
+}
+.call-item-state {
+  &.call-item-state__info {color: #d25733;}
+  &.call-item-state__valide {color: #5ab271;}
+  &.call-item-state__error {color: #c33f44;}
+}
+.call-item-state-label {
+  white-space: nowrap;
+  font: 600 0.4em / 1em 'OpenSans';
+}
+.call-item-detail-datetime {
+  font: 400 0.7em / 1em 'OpenSans';
+  color: #ccc;
+}
+.call-item-detail-title {
+  font: 400 0.7em / 1em 'OpenSans';
+  color: #000;
+}
+.call-item-detail-subtitle {
+  font: 400 0.6em / 1em 'OpenSans';
+  color: #000;
+}
+/***************************************/
+
+/***************************************/
+/* Specific : ellipsis */
+.actuality-item-detail {
+  overflow: hidden;
+  .actuality-item-detail-title,
+  .actuality-item-detail-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+/***************************************/

@@ -1,0 +1,32 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+welcome-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-header-title {
+  margin-bottom: 10px;
+}
+.welcome-header-title-logo {
+  height: 0.8em;
+}
+.welcome-header-subtitle {
+  height: 1em;
+}
+/***************************************/
+
+/***************************************/
+/* Spacing : padding */
+welcome-header {
+  padding: 10px;
+}
+/***************************************/
+
+/***************************************/
+/* Styling : background, border, font, color */
+.welcome-header-title {
+  font: 700 1em / 1em 'OpenSans';
+  color: #000;
+}
+/***************************************/

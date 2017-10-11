@@ -1,0 +1,18 @@
+<div class="radio-field-action-left icon-zenpdv icon-zenpdv-arrow-left"></div>
+<ul class="radio-field-list">
+  <li class="radio-field-list-item" ng-repeat="option in $ctrl.options">
+    <input
+      class="radio-field-input"
+      type="radio" 
+      name="$ctrl.name"
+      value="{{option.value}}"
+      id="{{$ctrl.name + $index}}"
+      ng-click="$ctrl.notifyChange(option.value)"
+      ng-checked="$ctrl.select(option.value)"
+    >
+    <label class="radio-field-label"
+      for="{{$ctrl.name + $index}}"
+    >{{option.label}}</label>
+  </li>
+</ul>
+<div class="radio-field-action-right icon-zenpdv icon-zenpdv-arrow-right"></div>

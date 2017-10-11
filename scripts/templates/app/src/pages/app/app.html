@@ -1,0 +1,33 @@
+<div class="app-header">
+  <div class="app-header-menu icon-zenpdv icon-zenpdv-menu" ng-click="$ctrl.openModalMenu()"></div>
+  <img class="app-header-title" src="./_imgs/logo.svg" alt="">
+  <div class="app-header-profil icon-zenpdv icon-zenpdv-user" ng-click="$ctrl.openModalLogout()"></div>
+</div>
+
+<div class="app-content animation-container">
+  <div class="animation-pages-navigation" ng-animate-children="true"
+    ng-class="{active: $ctrl.$state.includes('app.homepage')}"
+    ui-view="appHomepage" autoscroll
+  ></div>
+  <div class="animation-pages-navigation" ng-animate-children="true"
+    ng-class="{active: $ctrl.$state.includes('app.contacts')}"
+    ui-view="appContacts" autoscroll
+  ></div>
+  <div class="animation-pages-navigation" ng-animate-children="true"
+    ng-class="{active: $ctrl.$state.includes('app.calls')}"
+    ui-view="appCalls" autoscroll
+  ></div>
+</div>
+
+<modal-menu class="modal-menu modal-menu__animation"
+  ng-if="$ctrl.showModalMenu"
+  on-logout="$ctrl.confirmLogout()"
+  on-navigate="$ctrl.navigateToState(state)"
+  on-cancel="$ctrl.cancelNavigation()"
+></modal-menu>
+
+<modal-logout class="modal-logout modal-logout__animation"
+  ng-if="$ctrl.showModalLogout"
+  on-confirm="$ctrl.confirmLogout()"
+  on-cancel="$ctrl.cancelLogout()"
+></modal-logout>

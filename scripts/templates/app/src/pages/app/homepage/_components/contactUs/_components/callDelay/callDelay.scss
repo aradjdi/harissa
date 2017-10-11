@@ -1,0 +1,24 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+call-delay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.call-delay-subtitle{
+  margin-top: 10px;
+}
+.call-delay-chart {
+  height: 120px;
+  margin: 10px;
+}
+/***************************************/
+
+
+/***************************************/
+/* Styling : background, border, font, color */
+.call-delay-subtitle {
+  font: 400 0.8em / 1em 'OpenSans';
+  color: #000;
+}
+/***************************************/

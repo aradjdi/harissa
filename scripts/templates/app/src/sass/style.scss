@@ -1,0 +1,36 @@
+@import './_reset.scss';
+@import './_icon.scss';
+@import './_title.scss';
+@import './_button.scss';
+@import './_field.scss';
+@import './_font.scss';
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'OpenSans';
+}
+
+ui-view {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  app, login {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+
+/* for Debug */
+/*
+* { background-color: rgba(255,0,0,0.1); }
+* * { background-color: rgba(0,255,0,0.1); }
+* * * { background-color: rgba(0,0,255,0.1); }
+* * * * { background-color: rgba(255,0,255,0.1); }
+* * * * * { background-color: rgba(0,255,255,0.1); }
+* * * * * * { background-color: rgba(255,255,0,0.1); }
+*/

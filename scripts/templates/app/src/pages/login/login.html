@@ -1,0 +1,18 @@
+<div class="login-header">
+  <img class="login-header-logo" src="./_imgs/logo.svg" alt="">
+  <p class="login-header-detail">Entrez votre identifiant et votre mot de passe</p>
+</div>
+<div class="login-content">
+  <input class="primary-field" type="text" placeholder="Identifiant"
+    autocorrect="off" autocapitalize="none"
+    ng-model="$ctrl.username"/>
+  <input class="primary-field" type="password" placeholder="Mot de passe"
+    ng-model="$ctrl.password"
+    ng-keyup="$event.keyCode == 13 && $ctrl.login()"/>
+</div>
+
+  <div class="login-footer primary-button primary-button__error" ng-click="$ctrl.login()">
+    <span class="primary-button-label">S'identifier</span>
+    <i class="primary-button-icon"></i>
+  </div>
+

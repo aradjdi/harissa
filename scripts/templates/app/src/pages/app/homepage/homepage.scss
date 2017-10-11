@@ -1,0 +1,17 @@
+/***************************************/
+/* Templating, Alignment : display, margin, height, width */
+homepage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .homepage-content {
+    flex: 1;
+    overflow-y: scroll;
+  }
+}
+.homepage-welcome-header,
+.homepage-contact-us,
+.homepage-actualities {
+  margin-bottom: 5px;
+}
+/***************************************/
