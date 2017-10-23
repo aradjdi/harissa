@@ -1,3 +1,11 @@
+Write Appaloosa client in node
+
+Integrate Appaloosa ruby client in delivery process
+
+Add Appaloosa SDK in template
+
+Test applications update
+
 Pusher et taguer sur GIT
 
 Penser au versionning avec le back
@@ -20,7 +28,6 @@ Faire plusieurs package.json
   - un pour cordova smarphone
   - un pour cordova tablet
   - un pour cordova store
-
 
 Avoir une meilleur stack d'erreur, éviter ce genre de stack
   - Error: ENOENT: no such file or directory, mkdir '/Users/ahmedradjdi/Development/GitRepos/HarissaTest1/app/cordova/smartphone'

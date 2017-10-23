@@ -9,11 +9,6 @@ const createCompiler = config => {
 
 const compileProject = compiler => {
   const deferred = Q.defer();
-  console.log('*******************************************')
-  console.log('*******************************************')
-  console.log('*******************************************')
-  console.log('*******************************************')
-  console.log('*******************************************')
   compiler.run((err, stats) => {
     if (err) deferred.reject(err);
     else     deferred.resolve(stats);

@@ -23,7 +23,7 @@ const getServeConfig = () => mergeUtils.mergeConfig(
   serveConfig
 );
 const getTestConfig = () => mergeUtils.mergeConfig(
-  babelConfig,
+  getBuildConfig(),
   sourcemapConfig
 );
 const getCoverageConfig = () => mergeUtils.mergeConfig(

@@ -13,5 +13,5 @@ module.exports = {
     alias: {
       '@': pathUtils.srcDir
     }
-  },
+  }
 }

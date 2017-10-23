@@ -26,15 +26,9 @@ const initializeProject = (appId, appName) => {
   //   .then(tabletPromise);
 };
 
-const releaseProject = () => {
-  // const smartphonePromise = cordovaCommandUtils.buildProject(pathUtils.smartphoneDir);
-  // const tabletPromise = cordovaCommandUtils.buildProject(pathUtils.tabletDir);
-
-  // return Q.all([smartphonePromise, tabletPromise]);
-  return Q()
-    .then(() => cordovaCommandUtils.buildProject(pathUtils.smartphoneDir))
-    .then(() => cordovaCommandUtils.buildProject(pathUtils.tabletDir));
-};
+const releaseProject = () => Q()
+  .then(() => cordovaCommandUtils.buildProject(pathUtils.smartphoneDir))
+  .then(() => cordovaCommandUtils.buildProject(pathUtils.tabletDir));
 
 const buildProject = srcDir => cordovaCommandUtils.buildProject(srcDir);
 

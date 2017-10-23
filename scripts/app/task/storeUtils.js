@@ -2,13 +2,11 @@ const Q = require('q');
 const fs = require('fs-extra');
 const pathUtils = require('../pathUtils');
 const uploadUtils = require('../others/uploadUtils');
+const storeCommandUtils = require('../command/storeCommandUtils');
 const remoteDestDir = '/stor/ed2xx1/apa/2/ed2xx1_mobilys_wbs_01/www/html/';
 
 const copySmartphonePackages = () => {
-  const package = require(pathUtils.smartphoneDir + '/package.json');
-  console.log(package);
-  const appName = package.displayName;
-  console.log(appName);
+  const appName = require(pathUtils.smartphoneDir + '/package.json').displayName;
   const packagePaths = [
     {
       srcDir: `${pathUtils.smartphoneDir}/platforms/android/build/outputs/apk/android-release.apk`,
@@ -49,7 +47,12 @@ const releaseProject = () => Q.all([
   //   uploadUtils.uploadDir(pathUtils.storeDir, remoteDestDir)
   // );
 
+const deployToAppaloosa = () => {
+  return storeCommandUtils.deployRelease();
+}
+
 
 module.exports = {
-  releaseProject: releaseProject
+  releaseProject: releaseProject,
+  deployToAppaloosa: deployToAppaloosa
 }

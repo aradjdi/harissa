@@ -1,3 +1,4 @@
+const Q = require('q');
 const moment = require('moment');
 const execUtils = require('../others/execUtils');
 const pathUtils = require('../pathUtils');
@@ -18,11 +19,17 @@ const createMajor = () => changeVersion('major');
 const createMinor = () => changeVersion('minor');
 const createPatch = () => changeVersion('patch');
 
+const releaseProject = () => Q.all([
+  upgradeVersion('patch', pathUtils.smartphoneDir),
+  upgradeVersion('patch', pathUtils.tabletDir)
+]);
+
 module.exports = {
   getVersion: getVersion,
   getBuildVersion: getBuildVersion,
   createMajor: createMajor,
   createMinor: createMinor,
   createPatch: createPatch,
-  upgradeVersion: upgradeVersion
+  upgradeVersion: upgradeVersion,
+  releaseProject: releaseProject
 }
