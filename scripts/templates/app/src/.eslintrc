@@ -3,7 +3,9 @@
   "globals": {
     "window": true,
     "document": true,
+    "navigator": true,
     "require": true,
+    "cordova": true,
     "angular": true,
     "WebSocket": true,
     "describe": true,

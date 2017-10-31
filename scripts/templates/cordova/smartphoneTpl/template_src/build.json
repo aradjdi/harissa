@@ -1,12 +1,5 @@
 {
     "android": {
-        "debug": {
-            "keystore": "../resources/certificates/mousquetaires.keystore",
-            "storePassword": "Mousquetaires2017",
-            "alias": "Mousquetaires",
-            "password" : "Mousquetaires2017",
-            "keystoreType": ""
-        },
         "release": {
             "keystore": "../resources/certificates/mousquetaires.keystore",
             "storePassword": "Mousquetaires2017",
@@ -16,12 +9,6 @@
         }
     },
     "ios": {
-        "debug": {
-            "codeSignIdentity": "iPhone Development",
-            "provisioningProfile": "6388e66c-05f9-497b-b7f1-fcb4e04b00fe",
-            "developmentTeam": "N7U5MA84U3",
-            "packageType": "development"
-        },
         "release": {
             "codeSignIdentity": "iPhone Distribution: SOC TRAIT INFORMATIQUES MOYENNES ENTRE",
             "provisioningProfile": "2556c1c6-8b45-4551-bdde-96fb44e83e7f",

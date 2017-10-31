@@ -1,33 +1,79 @@
-Write Appaloosa client in node
+Databurst
+- En recette
+  - changer l'url pour la GetAway (Hassene Belgacem, Nicolas Bret)
+  - builder
+  - tester
+  - mettre sur appaloosa REC
 
-Integrate Appaloosa ruby client in delivery process
+- En Prod
+  - changer l'url pour la GetAway (Hassene Belgacem, Nicolas Bret)
+  - builder
+  - tester
+  - mettre sur appaloosa PROD
 
-Add Appaloosa SDK in template
+SAV
+- Fixer les problèmes de royaume local et externe (Marc Rabahi)
+- Mapper les urls manquantes à la GetAway (Marc Rabahi, Nicolas Bret)
+- Livrer sur Appaloosa REC
+- Préparer la mise en prod (Amandine JOAO)
 
-Test applications update
 
-Pusher et taguer sur GIT
+ROADMAP
+- Variabiliser les templates de templates/app/src
+  - Proposer un choix de templates lors de `harissa init`
+  - Utiliser des repos GIT
+- Réécrire le client appaloosa-client.rb en node pour supprimer la dépendance à Ruby
+- Ajouter le tag et le push sur GIT lors d'une release
 
-Penser au versionning avec le back
+- Afficher la progression des commandes
 
-Mettre plusieur templates dans des repos git
+- Gérer les variables de conf avec DefinePlugin
 
-Tester avec Angular, React et Vue
+- Simplifier l'app de templates/app/src
 
-Ajouter un run android
+- Implementer le run des tests et du coverage
 
-Ajouter un prompt pour 
-  - le dossier de livraison du store
-  - le username sftp du store
-  - le password sftp du store
-  - l'url sftp du store
 
-Faire plusieurs package.json
-  - un pour le build
-  - un pour le src
-  - un pour cordova smarphone
-  - un pour cordova tablet
-  - un pour cordova store
+MISC
+
+- bug les applis Android sont compatibles mobile et tablet et il faut que mobile ou que tablet
+
+- bug lors du `cordova build ios --release --device` avec xCode9 et la platform ios en version 4.5.2
+  - fixer avec la platform ios du repo master d'apache
+
+- bug de ChildProcessError: stdout maxBuffer exceeded avec le module child-process-promise
+  - fixer en augmantant le maxBuffer
+
+- bug lors de l'appel à Appaloosa.autoUpdate() sur Android, l'appli crashes avec un NullPointerException
+
+- bug lors de l'appel à Appaloosa.authorization() sur Android. Une SecurityException est levée
+  - fixer avec le plugin cordova-plugin-android-permissions
+
+
+PENSE BETE
+
+- les command pour builder SAV
+  comme mercalys
+
+- les command pour builder Databurst
+  gulp build
+
+- en prod penser à changer le storeToken et le storeId dans le wrapper js appaloosa
+
+- https://store.mousquetaires.com/8267-rec-store/
+
+
+
+TODO
+
+Test Appaloosa update on iOS
+
+Find a solution for Appalooa update on Android
+
+Fix misunderstands provisioning profile
+
+webpackCommandUtils.compileProject(compiler)
+  - accept a config or a compiler to simplify code for webpack build
 
 Avoir une meilleur stack d'erreur, éviter ce genre de stack
   - Error: ENOENT: no such file or directory, mkdir '/Users/ahmedradjdi/Development/GitRepos/HarissaTest1/app/cordova/smartphone'

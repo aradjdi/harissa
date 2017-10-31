@@ -1,10 +1,10 @@
 const Q = require('q');
 const argv = require('yargs').argv;
-const karmaTaskUtils = require('./app/task/karmaTaskUtils');
+const karmaCommand = require('./_karma');
 
 Q()
-  .then(() => argv.run ? karmaTaskUtils.testProject() : Q())
-  .then(() => argv.serve ? karmaTaskUtils.serveProject() : Q())
-  .then(() => argv.coverage ? karmaTaskUtils.coverageProject() : Q())
+  .then(() => argv.run ? karmaCommand.testProject() : Q())
+  .then(() => argv.serve ? karmaCommand.serveProject() : Q())
+  .then(() => argv.coverage ? karmaCommand.coverageProject() : Q())
   .then(() => console.log('***************************************finish'))
   .catch(err => console.error(err));

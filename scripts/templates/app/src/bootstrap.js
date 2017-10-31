@@ -6,21 +6,8 @@ import Pages from './pages/pages';
 import Services from './services/services';
 import Storages from './storages/storages';
 
-/** @ngInject */
-const startupToState = (pdvStorage, $state) => {
-  // app state
-  const appState = 'app';
-
-  // login state
-  const loginState = 'login';
-
-  pdvStorage.hasCredentials()
-    .then(() => $state.go(appState, {}, { reload: appState }))
-    .fail(() => $state.go(loginState, {}, { reload: loginState }));
-};
-
-/** @ngInject */
-const enableAnimation = $animate => $animate.enabled(true);
+import runAnimation from './runs/runAnimation';
+import runStartState from './runs/runStartState';
 
 angular.module('main', [
   Animations,
@@ -29,18 +16,7 @@ angular.module('main', [
   Services,
   Storages,
 ])
-  .run(enableAnimation)
-  .run(startupToState);
+  .run(runAnimation)
+  .run(runStartState);
 
-
-function bootstrapApp() {
-  angular.bootstrap(document, ['main']);
-}
-
-if (window.CONTEXT === 'cordova') {
-  document.addEventListener('deviceready', () => {
-    bootstrapApp();
-  }, false);
-} else {
-  bootstrapApp();
-}
+angular.bootstrap(document, ['main']);

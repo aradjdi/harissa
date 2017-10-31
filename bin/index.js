@@ -4,35 +4,34 @@ const program = require('commander');
 
 program
   .command('init')
-  .description('init Harissa project')
-  .action(options => require('../scripts/init'))
-  .on('--help', () => {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ harissa init ');
-    console.log();
-  });
+  .action(options => require('../scripts/init'));
+
+program
+  .command('release-prod')
+  .action(options => require('../scripts/release-prod'));
+
+program
+  .command('release-recette')
+  .action(options => require('../scripts/release-recette'));
+
+program
+  .command('run-smartphone-android')
+  .action(options => require('../scripts/run-smartphone-android'));
+
+program
+  .command('run-smartphone-ios')
+  .action(options => require('../scripts/run-smartphone-ios'));
+
+program
+  .command('run-tablet-android')
+  .action(options => require('../scripts/run-tablet-android'));
+
+program
+  .command('run-tablet-ios')
+  .action(options => require('../scripts/run-tablet-ios'));
 
 program
   .command('serve')
-  .description('serve Harissa project')
-  .action(options => require('../scripts/serve'))
-  .on('--help', () => {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ harissa serve ');
-    console.log();
-  });
-
-program
-  .command('release')
-  .description('release Harissa project')
-  .action(options => require('../scripts/release'))
-  .on('--help', () => {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ harissa release ');
-    console.log();
-  });
+  .action(options => require('../scripts/serve'));
 
 program.parse(process.argv);
