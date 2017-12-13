@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-
 module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
@@ -11,15 +10,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin([paths.distDir], {
-      root: paths.destDir
+      root: paths.appDir
     }),
     new HtmlWebpackPlugin({
       title: 'Output Management',
-      template: `${paths.destDir}/src/index.html`
-    }),
-    new webpack.DefinePlugin({
-      PLATFORM: 'web',
-      CONTEXT: 'web'
+      template: `${paths.appDir}/src/index.html`
     })
   ],
 }

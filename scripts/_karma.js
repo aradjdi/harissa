@@ -2,18 +2,19 @@ const Q = require('q');
 const karma = require('karma');
 const merge = require('./_merge');
 
-const karmaDefault = require('./configs/karma.conf');
-const karmaServe = require('./configs/karma.serve.conf');
-const karmaCoverage = require('./configs/karma.coverage.conf');
-const karmaTest = require('./configs/karma.test.conf');
+const karmaDefault = require('./configKarmas/karma.conf');
+const karmaServe = require('./configKarmas/karma.serve.conf');
+const karmaCoverage = require('./configKarmas/karma.coverage.conf');
+const karmaTest = require('./configKarmas/karma.test.conf');
 
-const defaultConfig = require('./configs/webpack.config');
-const assetsConfig = require('./configs/webpack.assets.config');
-const babelConfig = require('./configs/webpack.babel.config');
-const eslintConfig = require('./configs/webpack.eslint.config');
-const sourcemapConfig = require('./configs/webpack.sourcemap.config');
-const coverageConfig = require('./configs/webpack.coverage.config');
-const webConfig = require('./configs/webpack.web.config');
+const defaultConfig = require('./configWebpacks/webpack.config');
+const assetsConfig = require('./configWebpacks/webpack.assets.config');
+const babelConfig = require('./configWebpacks/webpack.babel.config');
+const eslintConfig = require('./configWebpacks/webpack.eslint.config');
+const sourcemapConfig = require('./configWebpacks/webpack.sourcemap.config');
+const coverageConfig = require('./configWebpacks/webpack.coverage.config');
+
+const webConfig = require('./configWebpacks/webpack.web.config');
 const getTestConf = () => merge.mergeSimpleConfig(
   karmaDefault,
   karmaTest,

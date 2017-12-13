@@ -3,22 +3,20 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const outputPath = `${paths.cordovaDir}/${process.env.NODE_ENV}/tablet/merges/ios`;
+
 module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
-    path: paths.smartphoneDir + '/merges/android'
+    path: outputPath
   },
   plugins: [
-    new CleanWebpackPlugin([paths.smartphoneDir + '/merges/android'], {
-      root: paths.destDir
+    new CleanWebpackPlugin([outputPath], {
+      root: paths.appDir
     }),
     new HtmlWebpackPlugin({
       title: 'Output Management',
-      template: `${paths.destDir}/src/index.html`
-    }),
-    new webpack.DefinePlugin({
-      PLATFORM: 'android',
-      CONTEXT: 'smartphone'
+      template: `${paths.appDir}/src/index.html`
     })
   ]
 }

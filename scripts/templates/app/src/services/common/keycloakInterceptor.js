@@ -22,7 +22,7 @@ export default function keycloakInterceptor(pdvStorage, $state, $injector) {
         return refreshToken()
           .then(() => authorize(rejection.config))
           .then(config => $injector.get('$http')(config))
-          .catch((err) => {
+          .catch(() => {
             $state.go('login');
             return rejection;
           });

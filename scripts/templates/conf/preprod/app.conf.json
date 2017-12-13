@@ -1,0 +1,6 @@
+{
+  "END_POINT": "https://api-vip-pp-dmz.mousquetaires.com/mobilys-bff-pp/rest/v1/", // PRE PROD
+  // "END_POINT": "http://mobilys-bff-pp.mousquetaires.com/rest/v1/", // PRE PROD INTERNAL NETWORK NO GATEWAY
+  "IS_JSON": false,
+  "LANG": "fr"
+}

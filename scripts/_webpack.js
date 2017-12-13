@@ -2,14 +2,11 @@ const Q = require('q');
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
 
-const devServerConfig = require('./configs/webpack.devserver.config');
+const devServerConfig = require('./configWebpacks/webpack.devserver.config');
 
-const createCompiler = config => {
-  return webpack(config);
-}
-
-const compileProject = compiler => {
+const compile = config => {
   const deferred = Q.defer();
+  const compiler = webpack(config);
   compiler.run((err, stats) => {
     if (err) deferred.reject(err);
     else     deferred.resolve(stats);
@@ -17,16 +14,15 @@ const compileProject = compiler => {
   return deferred.promise;
 };
 
-const launchDevServer = compiler => {
+const serve = config => {
   const deferred = Q.defer();
-  const config = devServerConfig;
-  const server = new webpackDevServer(compiler, config);
+  const compiler = webpack(config);
+  const server = new webpackDevServer(compiler, devServerConfig);
   server.listen(8080, 'localhost', deferred.resolve);
   return deferred.promise;
-};
+}
 
 module.exports = {
-  createCompiler: createCompiler,
-  compileProject: compileProject,
-  launchDevServer: launchDevServer
+  compile,
+  serve
 }

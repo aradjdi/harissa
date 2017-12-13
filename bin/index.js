@@ -7,12 +7,8 @@ program
   .action(options => require('../scripts/init'));
 
 program
-  .command('release-prod')
-  .action(options => require('../scripts/release-prod'));
-
-program
-  .command('release-recette')
-  .action(options => require('../scripts/release-recette'));
+  .command('release')
+  .action(options => require('../scripts/release'));
 
 program
   .command('run-smartphone-android')
@@ -33,5 +29,9 @@ program
 program
   .command('serve')
   .action(options => require('../scripts/serve'));
+
+program
+  .command('serve-vue')
+  .action(options => require('../scripts/serve-vue'));
 
 program.parse(process.argv);

@@ -1,14 +1,8 @@
-import Q from 'q';
-
 /* @ngInject */
 export default function authSrv(keycloakAuthSrv) {
-  this.login = () => keycloakAuthSrv.login().catch(() => {
-    debugger;
-  });
+  this.login = () => keycloakAuthSrv.login();
 
-  this.logout = () => keycloakAuthSrv.logout().catch(() => {
-    debugger;
-  });
+  this.logout = () => keycloakAuthSrv.logout();
 
   return this;
 }

@@ -1,3 +1,5 @@
+Ajouter un step de création de provisionning profile dans pendant 'harissa init'
+
 Databurst
 - En recette
   - changer l'url pour la GetAway (Hassene Belgacem, Nicolas Bret)

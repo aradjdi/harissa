@@ -1,6 +1,6 @@
 import Q from 'q';
-import appaloosa from '../cordovaWrappers/appaloosa';
-import permissions from '../cordovaWrappers/permissions';
+import appaloosa from './cordovaAppaloosa';
+import permissions from './cordovaPermissions';
 
 const onAuthorizationFail = (error) => {
   const statusEnums = appaloosa.getStatus();
@@ -13,7 +13,12 @@ const onAuthorizationFail = (error) => {
     case statusEnums.NO_NETWORK:
     case statusEnums.REQUEST_ERROR:
     case statusEnums.UNKNOWN:
-      navigator.app.exitApp();
+      if (__CONFIG__.PLATFORM === 'ios') {
+        window.alert(error);
+        throw error;
+      } else {
+        navigator.app.exitApp();
+      }
       break;
     default:
       break;
@@ -39,17 +44,14 @@ const onAutoUpdateSuccess = (result) => {
 export default function setupAppaloosa() {
   const initApp = () => appaloosa.initialisation()
     .then(() => permissions.requestPermission(permissions.getPermissions().READ_PHONE_STATE))
-    .then(() => appaloosa.authorization().catch(onAuthorizationFail))
-    .then(() => appaloosa.startAnalytics());
+    .then(() => appaloosa.authorization().catch(onAuthorizationFail));
 
   const updateApp = () => {
-    if (window.PLATFORM === 'ios') {
+    if (__CONFIG__.PLATFORM === 'ios') {
       return appaloosa.autoUpdate().then(onAutoUpdateSuccess);
     }
     return Q();
   };
 
-  return initApp()
-    .then(() => updateApp())
-    .catch((error) => {debugger;});
+  return initApp().then(() => updateApp());
 }

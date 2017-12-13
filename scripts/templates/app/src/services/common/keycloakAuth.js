@@ -1,5 +1,5 @@
 import Q from 'q';
-import StKeycloak from 'stime-keycloak';
+import StKeycloak from '@stime/keycloak';
 
 /* @ngInject */
 export default function keycloakAuthSrv(pdvStorage) {
@@ -9,14 +9,12 @@ export default function keycloakAuthSrv(pdvStorage) {
 
   this.login = () => getToken().then(accessToken =>
     StKeycloak.profile().then((profile) => {
-      debugger;
       const pdv = profile.username.replace('pdv', '');
       return Q.all([
         pdvStorage.setPdv(pdv),
         pdvStorage.setAccessToken(accessToken),
       ]);
-    })
-  );
+    }));
 
   this.logout = () => pdvStorage.clean().then(() => StKeycloak.logout());
 

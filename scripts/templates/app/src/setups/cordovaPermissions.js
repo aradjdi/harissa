@@ -1,7 +1,5 @@
 import Q from 'q';
 
-// const { plugins: { permissions } } = cordova;
-
 const checkPermission = (permission) => {
   const deferred = Q.defer();
   window.cordova.plugins.permissions.checkPermission(permission, (status) => {
@@ -38,9 +36,7 @@ const requestPermissions = (permissions) => {
   return deferred.promise;
 };
 
-const getPermissions = () => {
-  return window.cordova.plugins.permissions;
-};
+const getPermissions = () => window.cordova.plugins.permissions;
 
 export default {
   checkPermission,

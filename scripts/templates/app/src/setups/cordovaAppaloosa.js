@@ -1,13 +1,14 @@
 import Q from 'q';
-
-const STORE_ID = '8267';
-const STORE_TOKEN = 'g58kzdxrvdtlhnumiv3wd93z95hq6khm';
-
-// const { Appaloosa } = window;
+import configCst from '../constants/configCst';
 
 const initialisation = () => {
   const deferred = Q.defer();
-  window.Appaloosa.initialisation(STORE_ID, STORE_TOKEN, deferred.resolve, deferred.reject);
+  window.Appaloosa.initialisation(
+    configCst.appaloosa.storeId,
+    configCst.appaloosa.storeToken,
+    deferred.resolve,
+    deferred.reject,
+  );
   return deferred.promise;
 };
 
@@ -37,7 +38,12 @@ const downloadNewVersion = () => {
 
 const autoUpdateWithMessage = (title, message) => {
   const deferred = Q.defer();
-  window.Appaloosa.downloadNewVersion(title, message, deferred.resolve, deferred.reject);
+  window.Appaloosa.downloadNewVersion(
+    title,
+    message,
+    deferred.resolve,
+    deferred.reject,
+  );
   return deferred.promise;
 };
 
@@ -48,13 +54,9 @@ const closeApplication = () => {
   return deferred.promise;
 };
 
-const getStatus = () => {
-  return window.Appaloosa.status;
-};
+const getStatus = () => window.Appaloosa.status;
 
-const getUpdateStatus = () => {
-  return window.Appaloosa.updateStatus;
-};
+const getUpdateStatus = () => window.Appaloosa.updateStatus;
 
 export default {
   initialisation,

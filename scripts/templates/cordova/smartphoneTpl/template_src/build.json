@@ -1,7 +1,7 @@
 {
     "android": {
         "release": {
-            "keystore": "../resources/certificates/mousquetaires.keystore",
+            "keystore": "../../resources/certificates/mousquetaires.keystore",
             "storePassword": "Mousquetaires2017",
             "alias": "Mousquetaires",
             "password" : "Mousquetaires2017",
@@ -9,11 +9,27 @@
         }
     },
     "ios": {
-        "release": {
-            "codeSignIdentity": "iPhone Distribution: SOC TRAIT INFORMATIQUES MOYENNES ENTRE",
-            "provisioningProfile": "2556c1c6-8b45-4551-bdde-96fb44e83e7f",
+        "debug": {
+            "codeSignIdentity": "iPhone Developer",
             "developmentTeam": "8674RATCDK",
-            "packageType": "enterprise"
+            "packageType": "development",
+            "automaticProvisioning": "true",
+            "buildFlag": [
+                "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+                "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+                "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+            ]
+        },
+        "release": {
+            "codeSignIdentity": "iPhone Developer",
+            "developmentTeam": "8674RATCDK",
+            "packageType": "ad-hoc",
+            "automaticProvisioning": "true",
+            "buildFlag": [
+                "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+                "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+                "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+            ]
         }
     }
 }

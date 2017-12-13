@@ -1,0 +1,7 @@
+{
+  "KEYCLOAK_REALM": "mousquetaires",
+  "KEYCLOAK_RESOURCE": "mobilys",
+  "KEYCLOAK_AUTH_SERVER_URL": "https://ppr-itmconnect.mousquetaires.com/auth",
+  "KEYCLOAK_SSL_REQUIRED": "external",
+  "KEYCLOAK_ENABLE_PKCE": true
+}
