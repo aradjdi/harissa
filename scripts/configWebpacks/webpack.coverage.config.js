@@ -4,8 +4,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['istanbul-instrumenter-loader']
-      }
-    ]
-  }
-}
+        use: ['istanbul-instrumenter-loader'],
+      },
+    ],
+  },
+};

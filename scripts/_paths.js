@@ -15,17 +15,17 @@ const cordovaDir = path.join(appDir, 'cordova');
 const storeDir = path.join(cordovaDir, 'store');
 
 module.exports = {
-  rootDir: rootDir,
-  templatesDir: templatesDir,
-  
-  currentDir: currentDir,
-  confDir: confDir,
-  appDir: appDir,
+  rootDir,
+  templatesDir,
 
-  distDir: distDir,
-  releaseDir: releaseDir,
-  srcDir: srcDir,
-  testDir: testDir,
-  cordovaDir: cordovaDir,
-  storeDir: storeDir,
-}
+  currentDir,
+  confDir,
+  appDir,
+
+  distDir,
+  releaseDir,
+  srcDir,
+  testDir,
+  cordovaDir,
+  storeDir,
+};

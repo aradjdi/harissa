@@ -4,12 +4,12 @@ module.exports = {
   frameworks: ['jasmine'],
   browsers: ['PhantomJS'],
 
-  phantomjsLauncher: {exitOnResourceError: true},
+  phantomjsLauncher: { exitOnResourceError: true },
 
   files: [
-    paths.testDir + '/test.js'
+    `${paths.testDir}/test.js`,
   ],
   preprocessors: {
-    '**/*test.js': ['webpack', 'sourcemap']
-  }
+    '**/*test.js': ['webpack', 'sourcemap'],
+  },
 };

@@ -1,4 +1,6 @@
-const exec = require('child-process-promise').exec;
+const childProcess = require('child-process-promise');
+
+const { exec } = childProcess;
 
 const onExecFinish = (result, cmd) => {
   if (result.stderr) {
@@ -11,15 +13,11 @@ const onExecFinish = (result, cmd) => {
 };
 
 const executeCommand = (cmd, srcDir) => {
-  const options = {maxBuffer: 1024 * 5000};
-  
+  const options = { maxBuffer: 1024 * 5000 };
+
   if (srcDir) options.cwd = srcDir;
 
-  return exec(cmd, options).then(
-    result => onExecFinish(result, cmd)
-  );
-}
+  return exec(cmd, options).then(result => onExecFinish(result, cmd));
+};
 
-module.exports = {
-  executeCommand: executeCommand
-}
+module.exports = { executeCommand };

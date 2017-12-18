@@ -1,5 +1,5 @@
 const Q = require('q');
-const argv = require('yargs').argv;
+const { argv } = require('yargs');
 const karmaCommand = require('./_karma');
 
 Q()

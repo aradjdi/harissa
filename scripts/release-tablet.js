@@ -9,19 +9,12 @@ const cordova = require('./_cordova');
 const errors = require('./_errors');
 
 const releaseDists = () => Q()
-  .then(() => builds.releaseDist())
-  .then(() => builds.releaseDistSmartphoneIOS())
-  .then(() => builds.releaseDistSmartphoneAndroid())
   .then(() => builds.releaseDistTabletIOS())
   .then(() => builds.releaseDistTabletAndroid());
 
-const packageProjects = () => Q()
-  .then(() => cordova.packageSmartphoneProjects())
-  .then(() => cordova.packageTabletProjects());
+const packageProjects = () => cordova.packageTabletProjects();
 
-const uploadPackages = () => Q()
-  .then(() => deploy.uploadSmartphonePackages())
-  .then(() => deploy.uploadTabletPackages());
+const uploadPackages = () => deploy.uploadTabletPackages();
 
 Q()
   .then(() => env.initNodeEnv())

@@ -15,37 +15,44 @@ const sourcemapConfig = require('./configWebpacks/webpack.sourcemap.config');
 const coverageConfig = require('./configWebpacks/webpack.coverage.config');
 
 const webConfig = require('./configWebpacks/webpack.web.config');
+
 const getTestConf = () => merge.mergeSimpleConfig(
   karmaDefault,
   karmaTest,
-  {webpack: merge.mergeConfig(
-    defaultConfig, webConfig, assetsConfig,
-    babelConfig, eslintConfig, sourcemapConfig
-  )}
+  {
+    webpack: merge.mergeConfig(
+      defaultConfig, webConfig, assetsConfig,
+      babelConfig, eslintConfig, sourcemapConfig,
+    ),
+  },
 );
 const getServeConf = () => merge.mergeSimpleConfig(
   karmaDefault,
   karmaServe,
-  {webpack: merge.mergeConfig(
-    defaultConfig, webConfig, assetsConfig,
-    babelConfig, eslintConfig, sourcemapConfig
-  )}
+  {
+    webpack: merge.mergeConfig(
+      defaultConfig, webConfig, assetsConfig,
+      babelConfig, eslintConfig, sourcemapConfig,
+    ),
+  },
 );
 const getCoverageConf = () => merge.mergeSimpleConfig(
   karmaDefault,
   karmaCoverage,
-  {webpack: merge.mergeConfig(
-    coverageConfig,
-    defaultConfig, webConfig, assetsConfig,
-    babelConfig, eslintConfig, sourcemapConfig
-  )}
+  {
+    webpack: merge.mergeConfig(
+      coverageConfig,
+      defaultConfig, webConfig, assetsConfig,
+      babelConfig, eslintConfig, sourcemapConfig,
+    ),
+  },
 );
 
-const startKarma = conf => {
+const startKarma = (conf) => {
   const deferred = Q.defer();
-  const server = new karma.Server(conf, exitCode => {
+  const server = new karma.Server(conf, (exitCode) => {
     if (exitCode !== 0) deferred.reject(exitCode);
-    else                deferred.resolve();
+    else deferred.resolve();
   });
   server.start();
   return deferred.promise;
@@ -65,7 +72,7 @@ const coverageProject = () => Q()
 
 
 module.exports = {
-  testProject: testProject,
-  serveProject: serveProject,
-  coverageProject: coverageProject
-}
+  testProject,
+  serveProject,
+  coverageProject,
+};
