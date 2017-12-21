@@ -2,8 +2,8 @@ import template from './welcomeHeader.html';
 import './welcomeHeader.scss';
 
 const welcomeHeaderComponent = {
-  bindings: {},
-  template,
+    bindings: {},
+    template,
 };
 
 export default welcomeHeaderComponent;

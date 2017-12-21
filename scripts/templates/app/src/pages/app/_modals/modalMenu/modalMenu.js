@@ -6,9 +6,9 @@ import modalMenuAnimation from './modalMenu.animation';
 import modalMenuComponent from './modalMenu.component';
 
 const modalMenuModule = angular
-  .module('modalMenu', [ngAnimate])
-  .component('modalMenu', modalMenuComponent)
-  .animation('.modal-menu__animation', modalMenuAnimation)
-  .name;
+    .module('modalMenu', [ngAnimate])
+    .component('modalMenu', modalMenuComponent)
+    .animation('.modal-menu__animation', modalMenuAnimation)
+    .name;
 
 export default modalMenuModule;

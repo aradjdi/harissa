@@ -6,11 +6,11 @@ import specialContactItemModule from './_components/specialContactItem/specialCo
 import contactsComponent from './contacts.component';
 
 const contactsModule = angular
-  .module('main.pages.app.contacts', [
-    contactItemModule,
-    specialContactItemModule,
-  ])
-  .component('contacts', contactsComponent)
-  .name;
+    .module('main.pages.app.contacts', [
+        contactItemModule,
+        specialContactItemModule,
+    ])
+    .component('contacts', contactsComponent)
+    .name;
 
 export default contactsModule;

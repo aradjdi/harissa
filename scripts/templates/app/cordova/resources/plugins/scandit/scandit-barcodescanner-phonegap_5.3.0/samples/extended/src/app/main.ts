@@ -1,8 +1,10 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app.module';
+import {AppModule} from './app.module';
 
-const bootstrap = () => { platformBrowserDynamic().bootstrapModule(AppModule); };
+const bootstrap = () => {
+    platformBrowserDynamic().bootstrapModule(AppModule);
+};
 
 /**
  * Need to wait for the deviceready event to fire before bootstrapping, otherwise the Cordova plugins are not properly
@@ -10,13 +12,13 @@ const bootstrap = () => { platformBrowserDynamic().bootstrapModule(AppModule); }
  * See https://github.com/driftyco/ionic2-app-base/issues/114 for more info.
  */
 if ((window as any).cordova) {
-  console.info('Waiting with bootstrapping...');
-  console.time('Device was ready in');
-  document.addEventListener('deviceready', () => {
-    console.timeEnd('Device was ready in');
-    console.info('Bootstrapping now...');
-    bootstrap();
-  });
+    console.info('Waiting with bootstrapping...');
+    console.time('Device was ready in');
+    document.addEventListener('deviceready', () => {
+        console.timeEnd('Device was ready in');
+        console.info('Bootstrapping now...');
+        bootstrap();
+    });
 } else {
-  bootstrap();
+    bootstrap();
 }

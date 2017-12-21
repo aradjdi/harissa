@@ -9,19 +9,19 @@ import flashInfosSrv from './flashInfos';
 import hoursSrv from './hours';
 
 const servicesModule = angular
-  .module('main.services', [])
-  .service('actualitiesSrv', actualitiesSrv)
-  .service('callsSrv', callsSrv)
-  .service('contactsSrv', contactsSrv)
-  .service('flashInfosSrv', flashInfosSrv)
-  .service('hoursSrv', hoursSrv)
-  .service('fetchSrv', fetchSrv)
-  .service('authSrv', authSrv)
-  .service('keycloakAuthSrv', keycloakAuthSrv)
-  .factory('keycloakInterceptor', keycloakInterceptor)
-  .config(($httpProvider) => {
-    $httpProvider.interceptors.push('keycloakInterceptor');
-  })
-  .name;
+    .module('main.services', [])
+    .service('actualitiesSrv', actualitiesSrv)
+    .service('callsSrv', callsSrv)
+    .service('contactsSrv', contactsSrv)
+    .service('flashInfosSrv', flashInfosSrv)
+    .service('hoursSrv', hoursSrv)
+    .service('fetchSrv', fetchSrv)
+    .service('authSrv', authSrv)
+    .service('keycloakAuthSrv', keycloakAuthSrv)
+    .factory('keycloakInterceptor', keycloakInterceptor)
+    .config(($httpProvider) => {
+        $httpProvider.interceptors.push('keycloakInterceptor');
+    })
+    .name;
 
 export default servicesModule;

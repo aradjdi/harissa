@@ -5,9 +5,9 @@ import storageSrv from './_storage/storage';
 import pdvStorage from './pdv';
 
 const storagesModule = angular
-  .module('main.storages', [])
-  .service('storageSrv', storageSrv)
-  .service('pdvStorage', pdvStorage)
-  .name;
+    .module('main.storages', [])
+    .service('storageSrv', storageSrv)
+    .service('pdvStorage', pdvStorage)
+    .name;
 
 export default storagesModule;

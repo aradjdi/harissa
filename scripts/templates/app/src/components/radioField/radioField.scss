@@ -15,23 +15,28 @@ radio-field {
     overflow-x: scroll;
   }
 }
+
 radio-field {
   padding: 10px;
 }
+
 .radio-field-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .radio-field-list-item {
   margin-left: 15px;
   &:first-child {
     margin-left: 0;
   }
 }
+
 .radio-field-input {
   display: none;
 }
+
 .radio-field-label {
   display: block;
   padding: 0.8em;
@@ -40,6 +45,7 @@ radio-field {
   color: #fff;
   font: 400 0.8em / 1em 'OpenSans';
 }
+
 .radio-field-input:checked + .radio-field-label {
   background-color: #469053;
 }

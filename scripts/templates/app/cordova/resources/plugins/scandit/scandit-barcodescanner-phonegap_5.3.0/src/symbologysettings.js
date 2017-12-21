@@ -1,4 +1,3 @@
-
 SymbologySettings.Checksum = {
     MOD_10: "mod10",
     MOD_11: "mod11",
@@ -16,10 +15,10 @@ SymbologySettings.Extension = {
 }
 
 function SymbologySettings() {
-	this.enabled = false;
-	this.colorInvertedEnabled = false;
-	this.checksums = [];
-	this.extensions = [];
+    this.enabled = false;
+    this.colorInvertedEnabled = false;
+    this.checksums = [];
+    this.extensions = [];
 }
 
 module.exports = SymbologySettings;

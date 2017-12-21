@@ -1,6 +1,6 @@
 .primary-field {
   -webkit-appearance: none;
-  
+
   background-color: transparent;
   outline: none;
   padding: 10px 0;
@@ -16,18 +16,18 @@
   color: #fff;
 
   &::-webkit-input-placeholder {
-      color: #fff;
-      font-style:italic;
+    color: #fff;
+    font-style: italic;
   }
   &::-moz-placeholder {
-      color: #fff;
-      font-style:italic;
+    color: #fff;
+    font-style: italic;
   }
   &:-ms-input-placeholder {
-      color: #fff;
-      font-style:italic;
+    color: #fff;
+    font-style: italic;
   }
   &:-webkit-autofill {
-      background-color: transparent;
+    background-color: transparent;
   }
 }

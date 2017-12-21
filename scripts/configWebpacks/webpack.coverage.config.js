@@ -1,11 +1,11 @@
 module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['istanbul-instrumenter-loader'],
-      },
-    ],
-  },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['istanbul-instrumenter-loader'],
+            },
+        ],
+    },
 };

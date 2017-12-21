@@ -5,8 +5,8 @@ const cordova = require('./_cordova');
 const errors = require('./_errors');
 
 Q()
-  .then(() => template.getProjectInfos())
-  .then(() => template.duplicateProjectTemplates())
-  .then(() => cordova.createApplications())
-  .then(() => template.installDependencies())
-  .catch(errors.onError);
+    .then(() => template.getProjectInfos())
+    .then(() => template.duplicateProjectTemplates())
+    .then(() => cordova.createApplications())
+    .then(() => template.installDependencies())
+    .catch(errors.onError);

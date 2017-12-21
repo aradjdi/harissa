@@ -23,9 +23,9 @@ import java.lang.ref.WeakReference;
 class PickerStateMachine {
 
     // must match values of JS wrapper
-    public final static int STOPPED =  2;
-    public final static int PAUSED =   1;
-    public final static int ACTIVE =   3;
+    public final static int STOPPED = 2;
+    public final static int PAUSED = 1;
+    public final static int ACTIVE = 3;
 
     public void applyScanSettings(ScanSettings scanSettings) {
         mPicker.applyScanSettings(scanSettings);
@@ -38,7 +38,8 @@ class PickerStateMachine {
     interface Callback {
         /**
          * Invoked whenever the state of the barcode picker changes to a new state.
-         * @param picker The picker
+         *
+         * @param picker   The picker
          * @param newState the new state of the picker
          */
         void pickerEnteredState(BarcodePickerWithSearchBar picker, int newState);
@@ -54,7 +55,8 @@ class PickerStateMachine {
 
     /**
      * Create a new picker state machine.
-     * @param picker The picker for which to control the states. Must not be null.
+     *
+     * @param picker   The picker for which to control the states. Must not be null.
      * @param callback The state change callback gets invoked whenever the state of the picker
      *                 changes. The callback is stored as a weak reference, so make sure to keep a
      *                 reference to the object around.
@@ -136,9 +138,10 @@ class PickerStateMachine {
 
     /**
      * Implements the logic of handling picker state changes sent from the didScan callback.
+     *
      * @param nextState The next state.
-     * @param session The implementation calls stopScanning/pauseScanning if the provided session
-     *                is non-null.
+     * @param session   The implementation calls stopScanning/pauseScanning if the provided session
+     *                  is non-null.
      */
     public void switchToNextScanState(int nextState, ScanSession session) {
         if (nextState == STOPPED) {

@@ -3,6 +3,7 @@
 contact-item {
   display: block;
 }
+
 .contact-item-detail {
   margin-bottom: 10px;
   display: flex;
@@ -11,6 +12,7 @@ contact-item {
     margin-right: 10px;
   }
 }
+
 .contact-item-schedule {
   display: flex;
   align-items: center;
@@ -18,10 +20,12 @@ contact-item {
     margin-right: 5px;
   }
 }
+
 .contact-item-schedule-content {
   display: flex;
   align-items: baseline;
 }
+
 /***************************************/
 
 /***************************************/
@@ -29,6 +33,7 @@ contact-item {
 contact-item {
   padding: 10px;
 }
+
 /***************************************/
 
 /***************************************/
@@ -37,16 +42,20 @@ contact-item {
   border-bottom: 1px solid #000;
   font: 400 0.7em / 1em 'OpenSans';
 }
+
 .contact-item-detail-phone {
   font-weight: 700;
 }
+
 .contact-item-schedule-content {
   font: 400 0.7em / 1em 'OpenSans';
   .contact-item-schedule__accentuate {
     color: green;
   }
 }
+
 .contact-item-schedule-icon {
   color: #5ab271;
 }
+
 /***************************************/

@@ -4,12 +4,12 @@ import radioFieldModule from './radioField/radioField';
 import loaderModule from './loader/loader';
 
 const componentsModule = angular
-  .module('main.components', [
-    barChartModule,
-    gaugeChartModule,
-    radioFieldModule,
-    loaderModule,
-  ])
-  .name;
+    .module('main.components', [
+        barChartModule,
+        gaugeChartModule,
+        radioFieldModule,
+        loaderModule,
+    ])
+    .name;
 
 export default componentsModule;

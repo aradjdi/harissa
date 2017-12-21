@@ -24,27 +24,27 @@ import android.widget.RelativeLayout;
 
 /**
  * Layout containing the search bar.
- * 
+ *
  * @author Moritz Hartmeier
  */
 @SuppressLint("ViewConstructor")
 public class SearchBar extends RelativeLayout {
 
-	private EditText mSearchEditText;
-	private OnClickListener mOnClickListener = null;
-	
-	
-	public SearchBar(Context context) {
-		this(context, null);
-	}
-	
-	public SearchBar(Context context, OnClickListener listener) {
-		super(context);
+    private EditText mSearchEditText;
+    private OnClickListener mOnClickListener = null;
 
-		mOnClickListener = listener;
-		
+
+    public SearchBar(Context context) {
+        this(context, null);
+    }
+
+    public SearchBar(Context context, OnClickListener listener) {
+        super(context);
+
+        mOnClickListener = listener;
+
         RelativeLayout.LayoutParams rParams;
-        
+
         mSearchEditText = new EditText(getContext());
         mSearchEditText.setLines(1);
         mSearchEditText.setEllipsize(TruncateAt.START);
@@ -58,38 +58,39 @@ public class SearchBar extends RelativeLayout {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                            && event.getAction() == KeyEvent.ACTION_UP) {
-                	onButtonClicked();
+                        && event.getAction() == KeyEvent.ACTION_UP) {
+                    onButtonClicked();
                     return true;
                 }
                 return false;
             }
         });
-	}
-	
-	private void onButtonClicked() {
-        InputMethodManager imm = 
-            (InputMethodManager) getContext().getSystemService(
-                    Context.INPUT_METHOD_SERVICE);
+    }
+
+    private void onButtonClicked() {
+        InputMethodManager imm =
+                (InputMethodManager) getContext().getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(
                 mSearchEditText.getApplicationWindowToken(), 0);
-        
+
         if (mOnClickListener != null) {
-        	mOnClickListener.onClick(null);
+            mOnClickListener.onClick(null);
         }
-	}
-	
-	public void setHint(String hint) {
+    }
+
+    public void setHint(String hint) {
         mSearchEditText.setHint(hint);
-	}
-	
-	public void setInputType(int inputType) {
+    }
+
+    public void setInputType(int inputType) {
         mSearchEditText.setInputType(inputType);
-	}
-	
-	public String getText() {
-		return mSearchEditText.getText().toString();
-	}
+    }
+
+    public String getText() {
+        return mSearchEditText.getText().toString();
+    }
+
     public void clear() {
         mSearchEditText.setText("");
     }

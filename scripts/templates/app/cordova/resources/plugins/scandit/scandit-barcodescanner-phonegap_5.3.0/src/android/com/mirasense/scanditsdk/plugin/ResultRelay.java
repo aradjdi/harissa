@@ -25,20 +25,20 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class ResultRelay {
-    
+
     private static Callback mCallback;
-    
+
     public static void setCallback(Callback callback) {
         mCallback = callback;
     }
-    
+
     public static int relayResult(Bundle bundle) {
         if (mCallback != null) {
             return mCallback.onRelayedResult(bundle);
         }
         return 0;
     }
-    
+
     public static JSONObject jsonForSession(ScanSession session) {
         JSONObject json = new JSONObject();
         try {
@@ -67,7 +67,7 @@ public class ResultRelay {
                     JSONArray bytes = new JSONArray();
                     byte[] rawData = code.getRawData();
                     for (byte theByte : rawData) {
-                        bytes.put((int)theByte);
+                        bytes.put((int) theByte);
                     }
                     object.put("rawData", bytes);
                 }
@@ -88,7 +88,7 @@ public class ResultRelay {
         }
         return json;
     }
-    
+
     public interface Callback {
         int onRelayedResult(Bundle bundle);
     }

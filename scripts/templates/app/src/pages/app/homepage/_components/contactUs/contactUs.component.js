@@ -3,9 +3,9 @@ import controller from './contactUs.controller';
 import './contactUs.scss';
 
 const contactUsComponent = {
-  bindings: {},
-  template,
-  controller,
+    bindings: {},
+    template,
+    controller,
 };
 
 export default contactUsComponent;

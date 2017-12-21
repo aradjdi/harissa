@@ -3,14 +3,14 @@ import controller from './radioField.controller';
 import './radioField.scss';
 
 const radioFieldComponent = {
-  bindings: {
-    value: '<',
-    name: '<',
-    options: '<',
-    onChange: '&',
-  },
-  template,
-  controller,
+    bindings: {
+        value: '<',
+        name: '<',
+        options: '<',
+        onChange: '&',
+    },
+    template,
+    controller,
 };
 
 export default radioFieldComponent;

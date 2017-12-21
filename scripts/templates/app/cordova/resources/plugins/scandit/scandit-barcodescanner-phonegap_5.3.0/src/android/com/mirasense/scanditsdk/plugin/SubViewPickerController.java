@@ -49,7 +49,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SubViewPickerController
         extends PickerControllerBase
         implements BarcodePickerWithSearchBar.SearchBarListener, OnScanListener,
-                   PickerStateMachine.Callback, TextRecognitionListener {
+        PickerStateMachine.Callback, TextRecognitionListener {
 
     private RelativeLayout mLayout;
 
@@ -89,11 +89,11 @@ public class SubViewPickerController
         mPendingClose.set(false);
         mContinuousMode = PhonegapParamParser.shouldRunInContinuousMode(options);
         mOrientationHandler = new SubViewPickerOrientationHandler(Looper.getMainLooper(), mPlugin,
-                                                                  null);
+                null);
         mCloseWhenDidScanCallbackFinishes = false;
         mOrientationHandler.start(true);
         final Activity pluginActivity = mPlugin.cordova.getActivity();
-        DisplayMetrics display =  pluginActivity.getApplicationContext().getResources().getDisplayMetrics();
+        DisplayMetrics display = pluginActivity.getApplicationContext().getResources().getDisplayMetrics();
         int width = (int) (display.widthPixels * 160.f / display.densityDpi);
         int height = (int) (display.heightPixels * 160.f / display.densityDpi);
         mScreenDimensions = new Point(Math.min(width, height), Math.max(width, height));
@@ -114,7 +114,7 @@ public class SubViewPickerController
                     scanSettings = ScanSettings.create();
                 }
                 BarcodePickerWithSearchBar picker = new BarcodePickerWithSearchBar(pluginActivity,
-                                                                                   scanSettings);
+                        scanSettings);
                 picker.setOnScanListener(SubViewPickerController.this);
                 picker.setTextRecognitionListener(SubViewPickerController.this);
                 mPickerStateMachine = new PickerStateMachine(picker, SubViewPickerController.this);
@@ -326,13 +326,13 @@ public class SubViewPickerController
     private ViewGroup getPickerParent() {
         CordovaWebView webView = mPlugin.webView;
         if (webView instanceof WebView) {
-            return (ViewGroup)webView;
+            return (ViewGroup) webView;
         } else {
             try {
                 java.lang.reflect.Method getViewMethod = webView.getClass().getMethod("getView");
                 Object viewObject = getViewMethod.invoke(webView);
                 if (viewObject instanceof View) {
-                    View view = (View)viewObject;
+                    View view = (View) viewObject;
                     ViewParent parentView = view.getParent();
                     if (parentView instanceof ViewGroup) {
                         return (ViewGroup) parentView;

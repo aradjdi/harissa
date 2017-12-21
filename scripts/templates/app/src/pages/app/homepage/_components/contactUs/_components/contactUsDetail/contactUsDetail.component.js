@@ -3,11 +3,11 @@ import controller from './contactUsDetail.controller';
 import './contactUsDetail.scss';
 
 const contactUsDetailComponent = {
-  bindings: {
-    savIsClosed: '<',
-  },
-  template,
-  controller,
+    bindings: {
+        savIsClosed: '<',
+    },
+    template,
+    controller,
 };
 
 export default contactUsDetailComponent;

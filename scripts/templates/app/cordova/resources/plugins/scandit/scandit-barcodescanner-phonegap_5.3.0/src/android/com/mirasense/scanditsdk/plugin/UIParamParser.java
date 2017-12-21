@@ -86,9 +86,9 @@ public class UIParamParser {
         }
 
         if (bundleContainsListKey(bundle, paramTorchButtonMarginsAndSize)) {
-            List<Object> marginsAndSize = (List<Object>)bundle.getSerializable(paramTorchButtonMarginsAndSize);
+            List<Object> marginsAndSize = (List<Object>) bundle.getSerializable(paramTorchButtonMarginsAndSize);
             if ((checkClassOfListObjects(marginsAndSize, Integer.class) || checkClassOfListObjects(marginsAndSize, String.class))
-                            && marginsAndSize.size() == 4) {
+                    && marginsAndSize.size() == 4) {
                 picker.getOverlayView().setTorchButtonMarginsAndSize(
                         getSize(marginsAndSize.get(0), 0),
                         getSize(marginsAndSize.get(1), 0),
@@ -117,9 +117,9 @@ public class UIParamParser {
         }
 
         if (bundleContainsListKey(bundle, paramCameraSwitchButtonMarginsAndSize)) {
-            List<Object> marginsAndSize = (List<Object>)bundle.getSerializable(paramCameraSwitchButtonMarginsAndSize);
+            List<Object> marginsAndSize = (List<Object>) bundle.getSerializable(paramCameraSwitchButtonMarginsAndSize);
             if ((checkClassOfListObjects(marginsAndSize, Integer.class) || checkClassOfListObjects(marginsAndSize, String.class))
-                            && marginsAndSize.size() == 4) {
+                    && marginsAndSize.size() == 4) {
                 picker.getOverlayView().setCameraSwitchButtonMarginsAndSize(
                         getSize(marginsAndSize.get(0), 0),
                         getSize(marginsAndSize.get(1), 0),
@@ -141,12 +141,12 @@ public class UIParamParser {
         }
 
         if (bundleContainsListKey(bundle, paramViewfinderDimension)) {
-            List<Object> viewfinderDimension = (List<Object>)bundle.getSerializable(paramViewfinderDimension);
+            List<Object> viewfinderDimension = (List<Object>) bundle.getSerializable(paramViewfinderDimension);
             if (checkClassOfListObjects(viewfinderDimension, Float.class)
                     && viewfinderDimension.size() == 4) {
                 picker.getOverlayView().setViewfinderDimension(
-                        (Float)viewfinderDimension.get(0), (Float)viewfinderDimension.get(1),
-                        (Float)viewfinderDimension.get(2), (Float)viewfinderDimension.get(3));
+                        (Float) viewfinderDimension.get(0), (Float) viewfinderDimension.get(1),
+                        (Float) viewfinderDimension.get(2), (Float) viewfinderDimension.get(3));
             } else {
                 Log.e("ScanditSDK", "Failed to parse viewfinder dimension - wrong type");
             }

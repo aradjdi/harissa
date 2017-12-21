@@ -1,56 +1,65 @@
 @font-face {
-  font-family: 'icons';
-  src:  url('fonts/icons.eot?210fj3');
-  src:  url('fonts/icons.eot?210fj3#iefix') format('embedded-opentype'),
+    font-family: 'icons';
+    src: url('fonts/icons.eot?210fj3');
+    src: url('fonts/icons.eot?210fj3#iefix') format('embedded-opentype'),
     url('fonts/icons.ttf?210fj3') format('truetype'),
     url('fonts/icons.woff?210fj3') format('woff'),
     url('fonts/icons.svg?210fj3#icons') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-weight: normal;
+    font-style: normal;
 }
 
 .icon {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icons' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-zenpdv-home:before {
-  content: "\e902";
+    content: "\e902";
 }
+
 .icon-zenpdv-calls:before {
-  content: "\e942";
+    content: "\e942";
 }
+
 .icon-zenpdv-clock:before {
-  content: "\e94e";
+    content: "\e94e";
 }
+
 .icon-zenpdv-user:before {
-  content: "\e971";
+    content: "\e971";
 }
+
 .icon-zenpdv-menu:before {
-  content: "\e9bd";
+    content: "\e9bd";
 }
+
 .icon-zenpdv-notification:before {
-  content: "\ea08";
+    content: "\ea08";
 }
+
 .icon-zenpdv-close:before {
-  content: "\ea0d";
+    content: "\ea0d";
 }
+
 .icon-zenpdv-checkmark:before {
-  content: "\ea10";
+    content: "\ea10";
 }
+
 .icon-zenpdv-arrow-right:before {
-  content: "\ea42";
+    content: "\ea42";
 }
+
 .icon-zenpdv-arrow-left:before {
-  content: "\ea44";
+    content: "\ea44";
 }

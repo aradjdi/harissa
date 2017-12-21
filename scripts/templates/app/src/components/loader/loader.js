@@ -8,13 +8,13 @@ import loaderInterceptor from './loader.interceptor';
 import loaderComponent from './loader.component';
 
 const loaderModule = angular
-  .module('loader', [])
-  .component('loader', loaderComponent)
-  .factory('loaderSrv', loaderSrv)
-  .factory('loaderInterceptor', loaderInterceptor)
-  .config(($httpProvider) => {
-    $httpProvider.interceptors.push('loaderInterceptor');
-  })
-  .name;
+    .module('loader', [])
+    .component('loader', loaderComponent)
+    .factory('loaderSrv', loaderSrv)
+    .factory('loaderInterceptor', loaderInterceptor)
+    .config(($httpProvider) => {
+        $httpProvider.interceptors.push('loaderInterceptor');
+    })
+    .name;
 
 export default loaderModule;

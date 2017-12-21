@@ -40,13 +40,13 @@ public class PermissionHelper {
      * alternative to cordovaInterface.requestPermission() that does not require the project to be
      * built with cordova-android 5.0.0+
      *
-     * @param plugin        The plugin the permission is being requested for
-     * @param requestCode   A requestCode to be passed to the plugin's onRequestPermissionResult()
-     *                      along with the result of the permission request
-     * @param permission    The permission to be requested
+     * @param plugin      The plugin the permission is being requested for
+     * @param requestCode A requestCode to be passed to the plugin's onRequestPermissionResult()
+     *                    along with the result of the permission request
+     * @param permission  The permission to be requested
      */
     public static void requestPermission(CordovaPlugin plugin, int requestCode, String permission) {
-        PermissionHelper.requestPermissions(plugin, requestCode, new String[] {permission});
+        PermissionHelper.requestPermissions(plugin, requestCode, new String[]{permission});
     }
 
     /**
@@ -54,10 +54,10 @@ public class PermissionHelper {
      * alternative to cordovaInterface.requestPermissions() that does not require the project to be
      * built with cordova-android 5.0.0+
      *
-     * @param plugin        The plugin the permissions are being requested for
-     * @param requestCode   A requestCode to be passed to the plugin's onRequestPermissionResult()
-     *                      along with the result of the permissions request
-     * @param permissions   The permissions to be requested
+     * @param plugin      The plugin the permissions are being requested for
+     * @param requestCode A requestCode to be passed to the plugin's onRequestPermissionResult()
+     *                    along with the result of the permissions request
+     * @param permissions The permissions to be requested
      */
     public static void requestPermissions(CordovaPlugin plugin, int requestCode, String[] permissions) {
         try {
@@ -75,8 +75,8 @@ public class PermissionHelper {
         } catch (IllegalAccessException illegalAccessException) {
             // Should never be caught; this is a public method
             LOG.e(LOG_TAG, "IllegalAccessException when requesting permissions " +
-                  Arrays.toString(permissions), illegalAccessException);
-        } catch(InvocationTargetException invocationTargetException) {
+                    Arrays.toString(permissions), illegalAccessException);
+        } catch (InvocationTargetException invocationTargetException) {
             // This method does not throw any exceptions, so this should never be caught
             LOG.e(LOG_TAG, "invocationTargetException when requesting permissions " +
                     Arrays.toString(permissions), invocationTargetException);
@@ -88,10 +88,9 @@ public class PermissionHelper {
      * method alternative to cordovaInterface.hasPermission() that does not require the project to
      * be built with cordova-android 5.0.0+
      *
-     * @param plugin        The plugin the permission is being checked against
-     * @param permission    The permission to be checked
-     *
-     * @return              True if the permission has already been granted and false otherwise
+     * @param plugin     The plugin the permission is being checked against
+     * @param permission The permission to be checked
+     * @return True if the permission has already been granted and false otherwise
      */
     public static boolean hasPermission(CordovaPlugin plugin, String permission) {
         try {
@@ -106,11 +105,11 @@ public class PermissionHelper {
         } catch (IllegalAccessException illegalAccessException) {
             // Should never be caught; this is a public method
             LOG.e(LOG_TAG, "IllegalAccessException when checking permission " + permission,
-                  illegalAccessException);
-        } catch(InvocationTargetException invocationTargetException) {
+                    illegalAccessException);
+        } catch (InvocationTargetException invocationTargetException) {
             // This method does not throw any exceptions, so this should never be caught
             LOG.e(LOG_TAG, "invocationTargetException when checking permission " + permission,
-                  invocationTargetException);
+                    invocationTargetException);
         }
         return false;
     }
@@ -130,17 +129,17 @@ public class PermissionHelper {
             // Should never be caught since the plugin must be written for cordova-android 5.0.0+
             // if it made it to this point
             LOG.e(LOG_TAG, "NoSuchMethodException when delivering permissions results",
-                  noSuchMethodException);
+                    noSuchMethodException);
         } catch (IllegalAccessException illegalAccessException) {
             // Should never be caught; this is a public method
             LOG.e(LOG_TAG, "IllegalAccessException when delivering permissions results",
-                  illegalAccessException);
-        } catch(InvocationTargetException invocationTargetException) {
+                    illegalAccessException);
+        } catch (InvocationTargetException invocationTargetException) {
             // This method may throw a JSONException. We are just duplicating cordova-android's
             // exception handling behavior here; all it does is log the exception in CordovaActivity,
             // print the stacktrace, and ignore it
             LOG.e(LOG_TAG, "InvocationTargetException when delivering permissions results",
-                  invocationTargetException);
+                    invocationTargetException);
         }
     }
 }

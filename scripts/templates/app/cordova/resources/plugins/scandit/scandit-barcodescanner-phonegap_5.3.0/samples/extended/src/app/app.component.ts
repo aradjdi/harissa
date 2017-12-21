@@ -1,19 +1,17 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Platform} from 'ionic-angular';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import {TabsPage} from '../pages/tabs/tabs';
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  public rootPage: any = TabsPage;
+    public rootPage: any = TabsPage;
 
-  constructor(
-    private platform: Platform,
-  ) {
-    this.platform.ready().then(() => {
-      // console.log('Platform is ready.');
-    });
-  }
+    constructor(private platform: Platform,) {
+        this.platform.ready().then(() => {
+            // console.log('Platform is ready.');
+        });
+    }
 }

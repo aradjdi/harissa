@@ -56,7 +56,7 @@ final class SubViewPickerOrientationHandler extends Handler {
                 }
                 break;
             case SET_PICKER:
-                mPicker = (BarcodePickerWithSearchBar)msg.obj;
+                mPicker = (BarcodePickerWithSearchBar) msg.obj;
         }
     }
 
@@ -133,7 +133,7 @@ final class SubViewPickerOrientationHandler extends Handler {
                 bundle.putBundle(PhonegapParamParser.paramLandscapeConstraints, constraints);
 
                 PhonegapParamParser.updateLayout(mPlugin.cordova.getActivity(),
-                                                 mPicker, bundle, mScreenDimensions);
+                        mPicker, bundle, mScreenDimensions);
             }
         });
         mLastRotation = displayRotation;

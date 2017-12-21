@@ -1,7 +1,7 @@
 module.exports = {
-  contentBase: './dist',
-  open: true,
-  stats: {
-    colors: true,
-  },
+    contentBase: './dist',
+    open: true,
+    stats: {
+        colors: true,
+    },
 };

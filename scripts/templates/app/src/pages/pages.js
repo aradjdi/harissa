@@ -18,20 +18,20 @@ import contactsRoute from './app/contacts/contacts.route';
 import homepageRoute from './app/homepage/homepage.route';
 
 const pagesModule = angular
-  .module('main.pages', [
-    uiRouter,
-    loginModule,
-    appModule,
-    callsModule,
-    contactsModule,
-    homepageModule,
-  ])
-  .config(loginRoute)
-  .config(appRoute)
-  .config(callsRoute)
-  .config(contactsRoute)
-  .config(homepageRoute)
-  .config($urlRouterProvider => $urlRouterProvider.otherwise('/login'))
-  .name;
+    .module('main.pages', [
+        uiRouter,
+        loginModule,
+        appModule,
+        callsModule,
+        contactsModule,
+        homepageModule,
+    ])
+    .config(loginRoute)
+    .config(appRoute)
+    .config(callsRoute)
+    .config(contactsRoute)
+    .config(homepageRoute)
+    .config($urlRouterProvider => $urlRouterProvider.otherwise('/login'))
+    .name;
 
 export default pagesModule;

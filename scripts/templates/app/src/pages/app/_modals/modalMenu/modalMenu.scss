@@ -8,6 +8,7 @@ modal-menu {
     z-index: 1;
   }
 }
+
 .modal-menu-content {
   position: relative;
   .modal-menu-close {
@@ -16,6 +17,7 @@ modal-menu {
     right: 10px;
   }
 }
+
 .modal-menu-blockout {
   position: absolute;
   top: 0;
@@ -23,19 +25,23 @@ modal-menu {
   width: 100%;
   height: 100%;
 }
+
 .modal-menu-list-item-icon {
   margin-right: 10px;
 }
+
 /***************************************/
 
 /***************************************/
 /* Spacing : padding */
 .modal-menu-content {
-  padding: 20px 5px 0 0 ;
+  padding: 20px 5px 0 0;
 }
+
 .modal-menu-list-item {
   padding: 10px;
 }
+
 /***************************************/
 
 /***************************************/
@@ -43,13 +49,16 @@ modal-menu {
 .modal-menu-blockout {
   background-color: rgba(18, 30, 46, 0.6);
 }
+
 .modal-menu-content {
   background: #fff;
   border-right: 1px solid #000;
   font: 400 0.8em / 1em 'OpenSans';
   color: #32424f;
 }
+
 .modal-menu-list-item {
   border-bottom: 1px solid #32424f;
 }
+
 /***************************************/

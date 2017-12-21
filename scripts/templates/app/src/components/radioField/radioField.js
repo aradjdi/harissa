@@ -2,8 +2,8 @@
 import radioFieldComponent from './radioField.component';
 
 const radioFieldModule = angular
-  .module('radioField', [])
-  .component('radioField', radioFieldComponent)
-  .name;
+    .module('radioField', [])
+    .component('radioField', radioFieldComponent)
+    .name;
 
 export default radioFieldModule;

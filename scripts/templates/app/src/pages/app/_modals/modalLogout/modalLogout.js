@@ -6,9 +6,9 @@ import modalLogoutAnimation from './modalLogout.animation';
 import modalLogoutComponent from './modalLogout.component';
 
 const modalLogoutModule = angular
-  .module('modalLogout', [ngAnimate])
-  .component('modalLogout', modalLogoutComponent)
-  .animation('.modal-logout__animation', modalLogoutAnimation)
-  .name;
+    .module('modalLogout', [ngAnimate])
+    .component('modalLogout', modalLogoutComponent)
+    .animation('.modal-logout__animation', modalLogoutAnimation)
+    .name;
 
 export default modalLogoutModule;

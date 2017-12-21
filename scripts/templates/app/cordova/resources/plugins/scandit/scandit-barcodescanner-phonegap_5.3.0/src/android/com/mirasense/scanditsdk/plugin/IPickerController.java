@@ -36,27 +36,24 @@ public interface IPickerController {
     void show(JSONObject settings, Bundle options, Bundle overlayOptions, boolean legacyMode);
 
     /**
-     * @brief Apply new scan settings to the picker
-     *
      * @param scanSettings
+     * @brief Apply new scan settings to the picker
      */
     void applyScanSettings(ScanSettings scanSettings);
 
     /**
-     * @brief Update the UI
-     *
      * @param overlayOptions The overlay options. Currently this is only supported when using the
      *                       subview picker. The paramters of the full-screen picker can not be
      *                       changed for the full-screen picker while the picker is running.
+     * @brief Update the UI
      */
     void updateUI(Bundle overlayOptions);
 
     /**
-     * @brief Update the Layout
-     *
      * @param layoutOptions The layout options. Currently this is only supported when using the
      *                      subview picker. The paramters of the full-screen picker can not be
      *                      changed for the full-screen picker while the picker is running.
+     * @brief Update the Layout
      */
     void updateLayout(Bundle layoutOptions);
 
@@ -87,8 +84,8 @@ public interface IPickerController {
      * picker controller.
      *
      * @param requestCode the request code
-     * @param resultCode the result code
-     * @param data data containing the result.
+     * @param resultCode  the result code
+     * @param data        data containing the result.
      */
     void onActivityResult(int requestCode, int resultCode, Intent data);
 

@@ -1,5 +1,6 @@
 {
-  "END_POINT": "https://api-vip-dmz.mousquetaires.com/mobilys-bff/rest/v1/", // PROD
+  "END_POINT": "https://api-vip-dmz.mousquetaires.com/mobilys-bff/rest/v1/",
+  // PROD
   // "END_POINT": "http://mobilys-bff.mousquetaires.com/rest/v1/", // PROD INTERNAL NETWORK NO GATEWAY
   "IS_JSON": false,
   "LANG": "fr"

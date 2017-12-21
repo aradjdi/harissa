@@ -1,4 +1,3 @@
-
 var ScanOverlay = cordova.require("com.mirasense.scanditsdk.plugin.ScanOverlay");
 var ScanSettings = cordova.require("com.mirasense.scanditsdk.plugin.ScanSettings");
 var ScanSession = cordova.require("com.mirasense.scanditsdk.plugin.ScanSession");
@@ -7,41 +6,41 @@ var RecognizedText = cordova.require("com.mirasense.scanditsdk.plugin.Recognized
 var Constraints = cordova.require("com.mirasense.scanditsdk.plugin.Constraints");
 
 function BarcodePicker(scanSettings) {
-	if (scanSettings instanceof ScanSettings) {
-		this.scanSettings = scanSettings;
-	} else {
-		this.scanSettings = new ScanSettings();
-	}
+    if (scanSettings instanceof ScanSettings) {
+        this.scanSettings = scanSettings;
+    } else {
+        this.scanSettings = new ScanSettings();
+    }
 
-	// Keep the overlay private.
-	var overlay = new ScanOverlay();
-	this.getOverlayView = function() {
-		return overlay;
-	}
+    // Keep the overlay private.
+    var overlay = new ScanOverlay();
+    this.getOverlayView = function () {
+        return overlay;
+    }
 
     this.isShown = false;
-    
+
     this.executingCallback = false;
     this.pausedDuringCallback = false;
     this.stoppedDuringCallback = false;
-    
-	this.continuousMode = false;
-	this.portraitMargins = null;
-	this.landscapeMargins = null;
-	this.orientations = [];
+
+    this.continuousMode = false;
+    this.portraitMargins = null;
+    this.landscapeMargins = null;
+    this.orientations = [];
 }
 
 BarcodePicker.Orientation = {
-	PORTRAIT: "portrait",
-	PORTRAIT_UPSIDE_DOWN: "portraitUpsideDown",
-	LANDSCAPE_RIGHT: "landscapeLeft",
-	LANDSCAPE_LEFT: "landscapeRight"
+    PORTRAIT: "portrait",
+    PORTRAIT_UPSIDE_DOWN: "portraitUpsideDown",
+    LANDSCAPE_RIGHT: "landscapeLeft",
+    LANDSCAPE_LEFT: "landscapeRight"
 }
 
 BarcodePicker.State = {
-    PAUSED : 1,
-    STOPPED : 2,
-    ACTIVE : 3
+    PAUSED: 1,
+    STOPPED: 2,
+    ACTIVE: 3
 };
 
 BarcodePicker.prototype.show = function () {
@@ -58,7 +57,7 @@ BarcodePicker.prototype.show = function () {
     }
     // copy to options object. Previously we were directly passing 'this' to cordova, 
     // but this caused the complete picker instance to be serialized.
-    var options = { continuousMode : this.continuousMode };
+    var options = {continuousMode: this.continuousMode};
 
     if (this.portraitConstraints != null) {
         options.portraitConstraints = this.portraitConstraints;
@@ -77,7 +76,7 @@ BarcodePicker.prototype.show = function () {
         var event = args[0];
         if (event === 'didManualSearch') {
             if (callbacks.didManualSearch) {
-              callbacks.didManualSearch(args[1]);
+                callbacks.didManualSearch(args[1]);
             }
             return;
         }
@@ -96,7 +95,7 @@ BarcodePicker.prototype.show = function () {
                 // synchronizing didScan in the picker. Otherwise we would keep the lock forever. 
                 try {
                     callbacks.didScan(properSession);
-                } catch(e) {
+                } catch (e) {
                     exceptionRaisedDuringDidScan = e;
                 }
             }
@@ -110,7 +109,7 @@ BarcodePicker.prototype.show = function () {
                 nextStep = 1;
             }
             cordova.exec(null, null, "ScanditSDK", "finishDidScanCallback",
-                         [nextStep, properSession.rejectedCodes]);
+                [nextStep, properSession.rejectedCodes]);
             picker.executingCallback = false;
             if (exceptionRaisedDuringDidScan) {
                 throw exceptionRaisedDuringDidScan;
@@ -124,9 +123,9 @@ BarcodePicker.prototype.show = function () {
             if (callbacks.didRecognizeText) {
                 var desiredState = null;
                 try {
-                   desiredState = callbacks.didRecognizeText(recognizedText) || BarcodePicker.State.ACTIVE;
-                } catch(e) {
-                   console.log('event ' + eventName + ' failed:' + e);
+                    desiredState = callbacks.didRecognizeText(recognizedText) || BarcodePicker.State.ACTIVE;
+                } catch (e) {
+                    console.log('event ' + eventName + ' failed:' + e);
                 }
             }
 
@@ -156,122 +155,124 @@ BarcodePicker.prototype.show = function () {
     this.getOverlayView().pickerIsShown = true;
 }
 
-BarcodePicker.codeArrayFromGenericArray = function(genericArray) {
-	var codeArray = [];
-	for (var i = 0; i < genericArray.length; i++) {
-		var src = genericArray[i];
-		var code = new Barcode(src, src);
-		code.symbology = src.symbology;
-		code.data = src.data;
-		code.rawData = src.rawData;
-		code.compositeFlag = src.compositeFlag;
-		code.uniqueId = src.uniqueId || 0;
-		codeArray.push(code);
-	}
-	return codeArray;
+BarcodePicker.codeArrayFromGenericArray = function (genericArray) {
+    var codeArray = [];
+    for (var i = 0; i < genericArray.length; i++) {
+        var src = genericArray[i];
+        var code = new Barcode(src, src);
+        code.symbology = src.symbology;
+        code.data = src.data;
+        code.rawData = src.rawData;
+        code.compositeFlag = src.compositeFlag;
+        code.uniqueId = src.uniqueId || 0;
+        codeArray.push(code);
+    }
+    return codeArray;
 }
 
-BarcodePicker.prototype.applyScanSettings = function(settings) {
-	if (this.isShown && settings instanceof ScanSettings) {
-		cordova.exec(null, null, "ScanditSDK", "applySettings", [settings]);
-	}
+BarcodePicker.prototype.applyScanSettings = function (settings) {
+    if (this.isShown && settings instanceof ScanSettings) {
+        cordova.exec(null, null, "ScanditSDK", "applySettings", [settings]);
+    }
 }
 
-BarcodePicker.prototype.cancel = function() {
+BarcodePicker.prototype.cancel = function () {
     this.isShown = false;
     this.getOverlayView().pickerIsShown = false;
     cordova.exec(null, null, "ScanditSDK", "cancel", []);
 }
 
-BarcodePicker.prototype.startScanning = function(paused) {
+BarcodePicker.prototype.startScanning = function (paused) {
     if (!this.isShown) {
         return;
     }
     var options = {
-        paused : paused !== undefined ? !!paused : false
+        paused: paused !== undefined ? !!paused : false
     };
     cordova.exec(null, null, "ScanditSDK", "start", [options]);
 }
 
-BarcodePicker.prototype.stopScanning = function() {
-	if (this.isShown) {
-	    if (this.executingCallback && (!cordova.platformId || cordova.platformId !== "windows")) {
-			this.stoppedDuringCallback = true;
-		} else {
-	    	cordova.exec(null, null, "ScanditSDK", "stop", []);
-	    }
+BarcodePicker.prototype.stopScanning = function () {
+    if (this.isShown) {
+        if (this.executingCallback && (!cordova.platformId || cordova.platformId !== "windows")) {
+            this.stoppedDuringCallback = true;
+        } else {
+            cordova.exec(null, null, "ScanditSDK", "stop", []);
+        }
     }
 }
 
-BarcodePicker.prototype.pauseScanning = function() {
-	if (this.isShown) {
-	    if (this.executingCallback && (!cordova.platformId || cordova.platformId !== "windows")) {
-			this.pausedDuringCallback = true;
-		} else {
-	    	cordova.exec(null, null, "ScanditSDK", "pause", []);
-	    }
-	}
-}
-
-BarcodePicker.prototype.resumeScanning = function() {
-	if (this.isShown) {
-    	cordova.exec(null, null, "ScanditSDK", "resume", []);
+BarcodePicker.prototype.pauseScanning = function () {
+    if (this.isShown) {
+        if (this.executingCallback && (!cordova.platformId || cordova.platformId !== "windows")) {
+            this.pausedDuringCallback = true;
+        } else {
+            cordova.exec(null, null, "ScanditSDK", "pause", []);
+        }
     }
 }
 
-BarcodePicker.prototype.switchTorchOn = function(enabled) {
-	if (this.isShown) {
-    	cordova.exec(null, null, "ScanditSDK", "torch", [enabled]);
+BarcodePicker.prototype.resumeScanning = function () {
+    if (this.isShown) {
+        cordova.exec(null, null, "ScanditSDK", "resume", []);
     }
 }
 
-BarcodePicker.prototype.setOrientations = function(orientations) {
-	this.orientations = orientations;
-	if (this.isShown) {
-    	cordova.exec(null, null, "ScanditSDK", "updateOverlay", [{"orientations": orientations}]);
-	}
+BarcodePicker.prototype.switchTorchOn = function (enabled) {
+    if (this.isShown) {
+        cordova.exec(null, null, "ScanditSDK", "torch", [enabled]);
+    }
 }
 
-BarcodePicker.prototype.setConstraints = function(portrait, landscape, animationDuration) {
-	if (portrait == null) {
-		this.portraitConstraints = new Constraints();
-	} else {
-		this.portraitConstraints = portrait
-	}
-	if (landscape == null) {
-		this.landscapeConstraints = new Constraints();
-	} else {
-		this.landscapeConstraints = landscape
-	}
-	if (this.isShown) {
-		var duration = 0;
-		if (typeof animationDuration !== "undefined") {
-			duration = parseFloat(animationDuration);
-		}
-    	cordova.exec(null, null, "ScanditSDK", "resize", [{"portraitConstraints": this.portraitConstraints,
-    													   "landscapeConstraints": this.landscapeConstraints,
-    													   "animationDuration": duration}]);
-	}
+BarcodePicker.prototype.setOrientations = function (orientations) {
+    this.orientations = orientations;
+    if (this.isShown) {
+        cordova.exec(null, null, "ScanditSDK", "updateOverlay", [{"orientations": orientations}]);
+    }
 }
 
-BarcodePicker.prototype.setMargins = function(portrait, landscape, animationDuration) {
+BarcodePicker.prototype.setConstraints = function (portrait, landscape, animationDuration) {
+    if (portrait == null) {
+        this.portraitConstraints = new Constraints();
+    } else {
+        this.portraitConstraints = portrait
+    }
+    if (landscape == null) {
+        this.landscapeConstraints = new Constraints();
+    } else {
+        this.landscapeConstraints = landscape
+    }
+    if (this.isShown) {
+        var duration = 0;
+        if (typeof animationDuration !== "undefined") {
+            duration = parseFloat(animationDuration);
+        }
+        cordova.exec(null, null, "ScanditSDK", "resize", [{
+            "portraitConstraints": this.portraitConstraints,
+            "landscapeConstraints": this.landscapeConstraints,
+            "animationDuration": duration
+        }]);
+    }
+}
+
+BarcodePicker.prototype.setMargins = function (portrait, landscape, animationDuration) {
     var portraitConstraints = null;
     var landscapeConstraints = null;
 
     if (portrait != null) {
-		portraitConstraints = new Constraints()
+        portraitConstraints = new Constraints()
         portraitConstraints.leftMargin = portrait.left;
         portraitConstraints.topMargin = portrait.top;
         portraitConstraints.rightMargin = portrait.right;
         portraitConstraints.bottomMargin = portrait.bottom;
-	}
-	if (landscape != null) {
+    }
+    if (landscape != null) {
         landscapeConstraints = new Constraints();
         landscapeConstraints.leftMargin = landscape.left;
         landscapeConstraints.topMargin = landscape.top;
         landscapeConstraints.rightMargin = landscape.right;
         landscapeConstraints.bottomMargin = landscape.bottom;
-	}
+    }
     this.setConstraints(portraitConstraints, landscapeConstraints, animationDuration);
 }
 

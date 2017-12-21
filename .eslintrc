@@ -18,12 +18,19 @@
     "Scandit": true
   },
   "rules": {
-    "no-use-before-define": ["error", "nofunc"],
+    "no-use-before-define": [
+      "error",
+      "nofunc"
+    ],
     "no-control-regex": 0,
     "no-useless-escape": 0,
     "no-alert": 0,
     "import/no-dynamic-require": 0,
     "no-param-reassign": 0,
-    "global-require": 0
+    "global-require": 0,
+    "comma-dangle": 0,
+    "indent": [2, 4, {"SwitchCase": 1}],
+    "no-trailing-spaces": 0,
+    "no-console": 0
   }
 }

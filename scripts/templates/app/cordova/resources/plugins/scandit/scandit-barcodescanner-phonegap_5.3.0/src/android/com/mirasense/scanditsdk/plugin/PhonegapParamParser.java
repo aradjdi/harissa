@@ -41,18 +41,18 @@ public class PhonegapParamParser {
     public static final String paramMarginBottom = "bottomMargin".toLowerCase();
     public static final String paramWidth = "width".toLowerCase();
     public static final String paramHeight = "height".toLowerCase();
-    
+
     public static final String paramContinuousMode = "continuousMode".toLowerCase();
     public static final String paramPaused = "paused".toLowerCase();
 
 
     public static void updatePicker(BarcodePickerWithSearchBar picker, Bundle bundle,
                                     BarcodePickerWithSearchBar.SearchBarListener listener) {
-        
+
         if (picker == null || bundle == null) {
             return;
         }
-        
+
         if (bundle.containsKey(paramSearchBar)) {
             picker.showSearchBar(bundle.getBoolean(paramSearchBar));
             picker.setOnSearchBarListener(listener);
@@ -76,7 +76,7 @@ public class PhonegapParamParser {
         if (picker == null || bundle == null) {
             return;
         }
-        
+
         double animationDuration = 0;
         if (bundle.containsKey(paramAnimationDuration)) {
             Object duration = bundle.get(paramAnimationDuration);
@@ -84,14 +84,14 @@ public class PhonegapParamParser {
                 animationDuration = ((Number) duration).doubleValue();
             }
         }
-        
+
         if (bundle.containsKey(paramPortraitMargins) ||
-            bundle.containsKey(paramLandscapeMargins)) {
+                bundle.containsKey(paramLandscapeMargins)) {
             adjustWithMargins(activity, picker, bundle, screenDimensions, animationDuration);
             return;
         }
         if (bundle.containsKey(paramPortraitConstraints) ||
-            bundle.containsKey(paramLandscapeConstraints)) {
+                bundle.containsKey(paramLandscapeConstraints)) {
             adjustWithConstraints(activity, picker, bundle, screenDimensions, animationDuration);
         }
     }
@@ -130,36 +130,36 @@ public class PhonegapParamParser {
         }
 
         BarcodePickerWithSearchBar.Constraints portraitConstraints =
-        new BarcodePickerWithSearchBar.Constraints(portraitMargins);
+                new BarcodePickerWithSearchBar.Constraints(portraitMargins);
         BarcodePickerWithSearchBar.Constraints landscapeConstraints =
-        new BarcodePickerWithSearchBar.Constraints(landscapeMargins);
+                new BarcodePickerWithSearchBar.Constraints(landscapeMargins);
         picker.adjustSize(activity, portraitConstraints, landscapeConstraints, animationDuration);
     }
 
     private static Rect extractMarginsRect(Bundle bundle, String key, int width, int height) {
         Rect result = null;
         if (bundle.getSerializable(key) != null
-            && bundle.getSerializable(key) instanceof List) {
+                && bundle.getSerializable(key) instanceof List) {
             List<Object> list = (List<Object>) bundle.getSerializable(key);
             if (list.size() == 4 &&
-                (UIParamParser.checkClassOfListObjects(list, Integer.class) ||
-                 UIParamParser.checkClassOfListObjects(list, String.class))) {
-                    result = new Rect(
-                                      UIParamParser.getSize(list.get(0), width),
-                                      UIParamParser.getSize(list.get(1), height),
-                                      UIParamParser.getSize(list.get(2), width),
-                                      UIParamParser.getSize(list.get(3), height));
-                }
+                    (UIParamParser.checkClassOfListObjects(list, Integer.class) ||
+                            UIParamParser.checkClassOfListObjects(list, String.class))) {
+                result = new Rect(
+                        UIParamParser.getSize(list.get(0), width),
+                        UIParamParser.getSize(list.get(1), height),
+                        UIParamParser.getSize(list.get(2), width),
+                        UIParamParser.getSize(list.get(3), height));
+            }
         } else if (bundle.getString(key) != null) {
             String portraitMarginsString = bundle.getString(key);
             String[] split = portraitMarginsString.split("[/]");
             if (split.length == 4) {
                 try {
                     result = new Rect(
-                                      UIParamParser.getSize(split[0], width),
-                                      UIParamParser.getSize(split[1], height),
-                                      UIParamParser.getSize(split[2], width),
-                                      UIParamParser.getSize(split[3], height));
+                            UIParamParser.getSize(split[0], width),
+                            UIParamParser.getSize(split[1], height),
+                            UIParamParser.getSize(split[2], width),
+                            UIParamParser.getSize(split[3], height));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -171,7 +171,7 @@ public class PhonegapParamParser {
     }
 
     private static BarcodePickerWithSearchBar.Constraints extractConstraints(Bundle bundle, String key,
-                                                                         int width, int height) {
+                                                                             int width, int height) {
         BarcodePickerWithSearchBar.Constraints result = new BarcodePickerWithSearchBar.Constraints();
         Bundle constraintsBundle = bundle.getBundle(key);
         if (constraintsBundle != null) {

@@ -6,9 +6,9 @@ import flashInfosAnimation from './flashInfos.animation';
 import flashInfosComponent from './flashInfos.component';
 
 const flashInfosModule = angular
-  .module('flashInfos', [ngAnimate])
-  .component('flashInfos', flashInfosComponent)
-  .animation('.flash-infos-list__animation', flashInfosAnimation)
-  .name;
+    .module('flashInfos', [ngAnimate])
+    .component('flashInfos', flashInfosComponent)
+    .animation('.flash-infos-list__animation', flashInfosAnimation)
+    .name;
 
 export default flashInfosModule;
