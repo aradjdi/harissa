@@ -100,7 +100,7 @@ abstract class PickerControllerBase implements IPickerController {
             mCallbackContext.sendPluginResult(result);
             synchronized (mSync) {
                 while (mInFlightDidScanCallbackId.get() == currentId &&
-                       mShouldBlockForDidScan.get()) {
+                        mShouldBlockForDidScan.get()) {
                     mSync.wait();
                 }
             }

@@ -3,24 +3,24 @@ import _ from 'lodash';
 const getUniqueId = () => (new Date()).getTime();
 
 export default class Messenger {
-  constructor() {
-    this.subscribers = [];
-  }
+    constructor() {
+        this.subscribers = [];
+    }
 
-  publish(event) {
-    const data = JSON.parse(event.data);
-    this.subscribers.forEach(subscriber => subscriber.callback(data));
-  }
+    publish(event) {
+        const data = JSON.parse(event.data);
+        this.subscribers.forEach(subscriber => subscriber.callback(data));
+    }
 
-  subscribe(callback) {
-    const id = getUniqueId();
+    subscribe(callback) {
+        const id = getUniqueId();
 
-    this.subscribers.push({ callback, id });
+        this.subscribers.push({callback, id});
 
-    return id;
-  }
+        return id;
+    }
 
-  unsubscribe(id) {
-    _.remove(this.subscribers, subscriber => subscriber.id === id);
-  }
+    unsubscribe(id) {
+        _.remove(this.subscribers, subscriber => subscriber.id === id);
+    }
 }

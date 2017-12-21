@@ -1,16 +1,17 @@
 <div class="contact-us-detail-closed" ng-if="$ctrl.savIsClosed">Fermé</div>
 <a class="contact-us-detail-phone" href="tel:{{$ctrl.openingTime.contactNumber}}"
-  ng-if="!$ctrl.savIsClosed">
-  <i class="contact-us-detail-phone-icon icon-zenpdv icon-zenpdv-calls"></i>
-  <span class="contact-us-detail-phone-label">{{$ctrl.openingTime.contactNumber}}</span>
+   ng-if="!$ctrl.savIsClosed">
+    <i class="contact-us-detail-phone-icon icon-zenpdv icon-zenpdv-calls"></i>
+    <span class="contact-us-detail-phone-label">{{$ctrl.openingTime.contactNumber}}</span>
 </a>
 
 <div class="contact-us-detail-contacts primary-button primary-button__valide"
-  ng-click="$ctrl.navigateToContacts()">
-  <span class="primary-button-label">Tous mes contacts</span>
-  <i class="primary-button-icon icon-zenpdv icon-zenpdv-arrow-right"></i>
+     ng-click="$ctrl.navigateToContacts()">
+    <span class="primary-button-label">Tous mes contacts</span>
+    <i class="primary-button-icon icon-zenpdv icon-zenpdv-arrow-right"></i>
 </div>
 
 <p class="contact-us-detail-schedule" ng-if="!$ctrl.savIsClosed">
-  Par téléphone <span>de {{$ctrl.openingTime.openingTimeHumanReadable}} à {{$ctrl.openingTime.closingTimeHumanReadable}}</span> - <span>6j/7</span>
+    Par téléphone <span>de {{$ctrl.openingTime.openingTimeHumanReadable}} à {{$ctrl.openingTime.closingTimeHumanReadable}}</span>
+    - <span>6j/7</span>
 </p>

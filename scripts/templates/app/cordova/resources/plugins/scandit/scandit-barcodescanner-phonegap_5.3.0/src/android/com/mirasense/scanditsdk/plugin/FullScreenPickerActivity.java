@@ -42,13 +42,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Activity implementing the full-screen picker support. This activity is launched by the
  * FullScreenPickerController
- *
  */
 public class FullScreenPickerActivity
         extends Activity
         implements OnScanListener, BarcodePickerWithSearchBar.SearchBarListener,
-                   TextRecognitionListener, PickerStateMachine.Callback {
-    
+        TextRecognitionListener, PickerStateMachine.Callback {
+
     public static final int CANCEL = 0;
     public static final int SCAN = 1;
     public static final int MANUAL = 2;
@@ -98,7 +97,7 @@ public class FullScreenPickerActivity
 
         initializeAndStartBarcodeRecognition(settings, options, overlayOptions);
     }
-    
+
     @SuppressWarnings("deprecation")
     private void initializeAndStartBarcodeRecognition(
             JSONObject settings, Bundle options, Bundle overlayOptions) {
@@ -144,7 +143,7 @@ public class FullScreenPickerActivity
                 ? PickerStateMachine.PAUSED
                 : PickerStateMachine.ACTIVE;
     }
-    
+
     @Override
     protected void onPause() {
         sActiveActivity = null;
@@ -155,7 +154,7 @@ public class FullScreenPickerActivity
         mPickerStateMachine.setState(PickerStateMachine.STOPPED);
         super.onPause();
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -223,7 +222,7 @@ public class FullScreenPickerActivity
         bundle.putBoolean("waitForResult", false);
         return bundle;
     }
-    
+
     @Override
     public void didEnter(String entry) {
         if (!mContinuousMode) {
@@ -279,13 +278,13 @@ public class FullScreenPickerActivity
             return TextRecognitionListener.PICKER_STATE_ACTIVE;
         }
     }
-    
+
     @Override
     public void onBackPressed() {
         didCancel();
     }
 
-    
+
     public static void close() {
         if (sActiveActivity != null) {
             sActiveActivity.didCancel();

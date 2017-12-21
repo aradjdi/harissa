@@ -1,12 +1,12 @@
 /** @ngInject */
 export default function flashInfosController($timeout, flashInfosSrv) {
-  this.flashInfos = [];
+    this.flashInfos = [];
 
-  const setFlashInfos = (flashInfos) => {
-    this.flashInfos = flashInfos;
-  };
+    const setFlashInfos = (flashInfos) => {
+        this.flashInfos = flashInfos;
+    };
 
-  this.$onInit = () => flashInfosSrv.getFlashInfos().then(setFlashInfos);
+    this.$onInit = () => flashInfosSrv.getFlashInfos().then(setFlashInfos);
 
-  return this;
+    return this;
 }

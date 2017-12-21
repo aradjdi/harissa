@@ -36,7 +36,6 @@
   text-size-adjust: none;
 }
 
-
 input,
 textarea {
   /* to allow copy paste in field
@@ -47,6 +46,7 @@ textarea {
   -ms-user-select: initial;
   user-select: initial;
 }
+
 /*Prevent iOS bug for check a radio/checkbox input within a label*/
 label > * {
   pointer-events: none;
@@ -56,30 +56,33 @@ label > * {
 h1 {
   margin: 0;
 }
+
 h2 {
   margin: 0;
 }
+
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 li {
   list-style: none;
 }
+
 p {
   margin: 0;
 }
-
 
 /* Reset Design */
 button {
   border: none;
 }
+
 button:focus {
   outline: none;
 }
-
 
 /* Reset Font */
 a {

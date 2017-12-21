@@ -3,11 +3,11 @@ import controller from './actualityItem.controller';
 import './actualityItem.scss';
 
 const actualityItemComponent = {
-  bindings: {
-    actuality: '<',
-  },
-  template,
-  controller,
+    bindings: {
+        actuality: '<',
+    },
+    template,
+    controller,
 };
 
 export default actualityItemComponent;

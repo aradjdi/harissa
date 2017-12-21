@@ -1,21 +1,21 @@
 /** @ngInject */
 export default function contactUsDetailController($state, hoursSrv) {
-  // contacts state
-  const contactsState = 'app.contacts';
+    // contacts state
+    const contactsState = 'app.contacts';
 
-  // Private, utils
-  const setOpeningTime = (openingTime) => {
-    this.openingTime = openingTime;
-  };
+    // Private, utils
+    const setOpeningTime = (openingTime) => {
+        this.openingTime = openingTime;
+    };
 
-  // Binding datas
-  this.openingTime = [];
+    // Binding datas
+    this.openingTime = [];
 
-  // Binding actions
-  this.navigateToContacts = () => $state.go(contactsState);
+    // Binding actions
+    this.navigateToContacts = () => $state.go(contactsState);
 
-  // Binding process
-  this.$onInit = () => hoursSrv.getOpeningTime().then(setOpeningTime);
+    // Binding process
+    this.$onInit = () => hoursSrv.getOpeningTime().then(setOpeningTime);
 
-  return this;
+    return this;
 }

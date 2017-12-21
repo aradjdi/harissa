@@ -10,13 +10,13 @@ import runAnimation from './runs/runAnimation';
 import runStartState from './runs/runStartState';
 
 angular.module('main', [
-  Animations,
-  Components,
-  Pages,
-  Services,
-  Storages,
+    Animations,
+    Components,
+    Pages,
+    Services,
+    Storages,
 ])
-  .run(runAnimation)
-  .run(runStartState);
+    .run(runAnimation)
+    .run(runStartState);
 
 angular.bootstrap(document, ['main']);

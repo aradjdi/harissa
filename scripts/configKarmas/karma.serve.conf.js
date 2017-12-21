@@ -1,3 +1,3 @@
 module.exports = {
-  reporters: ['spec'],
+    reporters: ['spec'],
 };

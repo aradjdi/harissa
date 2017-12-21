@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'icons';
-  src:  url('#{$icomoon-font-path}/icons.eot?210fj3');
-  src:  url('#{$icomoon-font-path}/icons.eot?210fj3#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/icons.ttf?210fj3') format('truetype'),
-    url('#{$icomoon-font-path}/icons.woff?210fj3') format('woff'),
-    url('#{$icomoon-font-path}/icons.svg?210fj3#icons') format('svg');
+  src: url('#{$icomoon-font-path}/icons.eot?210fj3');
+  src: url('#{$icomoon-font-path}/icons.eot?210fj3#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/icons.ttf?210fj3') format('truetype'),
+  url('#{$icomoon-font-path}/icons.woff?210fj3') format('woff'),
+  url('#{$icomoon-font-path}/icons.svg?210fj3#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -31,46 +31,55 @@
     content: $icon-zenpdv-home;
   }
 }
+
 .icon-zenpdv-calls {
   &:before {
     content: $icon-zenpdv-calls;
   }
 }
+
 .icon-zenpdv-clock {
   &:before {
     content: $icon-zenpdv-clock;
   }
 }
+
 .icon-zenpdv-user {
   &:before {
     content: $icon-zenpdv-user;
   }
 }
+
 .icon-zenpdv-menu {
   &:before {
     content: $icon-zenpdv-menu;
   }
 }
+
 .icon-zenpdv-notification {
   &:before {
     content: $icon-zenpdv-notification;
   }
 }
+
 .icon-zenpdv-close {
   &:before {
     content: $icon-zenpdv-close;
   }
 }
+
 .icon-zenpdv-checkmark {
   &:before {
     content: $icon-zenpdv-checkmark;
   }
 }
+
 .icon-zenpdv-arrow-right {
   &:before {
     content: $icon-zenpdv-arrow-right;
   }
 }
+
 .icon-zenpdv-arrow-left {
   &:before {
     content: $icon-zenpdv-arrow-left;

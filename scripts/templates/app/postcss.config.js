@@ -1,7 +1,7 @@
 module.exports = {
-  plugins: {
-    autoprefixer: {
-      browsers: ['Safari 8']
+    plugins: {
+        autoprefixer: {
+            browsers: ['Safari 8']
+        },
     },
-  },
 };

@@ -7,7 +7,7 @@ const cordova = require('./_cordova');
 const errors = require('./_errors');
 
 Q()
-  .then(() => env.initNodeEnv())
-  .then(() => builds.buildDistTabletAndroid())
-  .then(() => cordova.runTablet('android'))
-  .catch(errors.onError);
+    .then(() => env.initNodeEnv())
+    .then(() => builds.buildDistTabletAndroid())
+    .then(() => cordova.runTablet('android'))
+    .catch(errors.onError);

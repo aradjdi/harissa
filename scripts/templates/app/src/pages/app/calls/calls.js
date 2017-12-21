@@ -5,8 +5,8 @@ import callItemModule from './_components/callItem/callItem';
 import callsComponent from './calls.component';
 
 const callsModule = angular
-  .module('main.pages.calls', [callItemModule])
-  .component('calls', callsComponent)
-  .name;
+    .module('main.pages.calls', [callItemModule])
+    .component('calls', callsComponent)
+    .name;
 
 export default callsModule;

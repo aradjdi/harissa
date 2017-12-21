@@ -54,7 +54,7 @@ public class BarcodePickerWithSearchBar extends BarcodePicker {
         Display display = activity.getWindowManager().getDefaultDisplay();
         int screenWidth = display.getWidth();
         int screenHeight = display.getHeight();
-        
+
         final Constraints oldConstraints;
         final Constraints newConstraints;
         if (screenHeight > screenWidth) {
@@ -64,7 +64,7 @@ public class BarcodePickerWithSearchBar extends BarcodePicker {
             oldConstraints = landscapeConstraints;
             newConstraints = newLandscapeConstraints;
         }
-        
+
         Animation anim = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
@@ -162,9 +162,9 @@ public class BarcodePickerWithSearchBar extends BarcodePicker {
 
     public interface SearchBarListener {
         /**
-         *  Called whenever a string was entered in the search bar and the button to search was pressed.
+         * Called whenever a string was entered in the search bar and the button to search was pressed.
          *
-         *  @param entry the text that has been entered by the user.
+         * @param entry the text that has been entered by the user.
          */
         void didEnter(String entry);
     }
@@ -183,7 +183,8 @@ public class BarcodePickerWithSearchBar extends BarcodePicker {
         private Integer mWidth = null;
         private Integer mHeight = null;
 
-        public Constraints() {}
+        public Constraints() {
+        }
 
         public Constraints(Rect margins) {
             if (margins != null) {
@@ -198,36 +199,54 @@ public class BarcodePickerWithSearchBar extends BarcodePicker {
             if (mLeftMargin == null && (mRightMargin == null || mWidth == null)) return 0;
             return mLeftMargin;
         }
-        public void setLeftMargin(Integer value) { mLeftMargin = value; }
+
+        public void setLeftMargin(Integer value) {
+            mLeftMargin = value;
+        }
 
         public Integer getTopMargin() {
             if (mTopMargin == null && (mBottomMargin == null || mHeight == null)) return 0;
             return mTopMargin;
         }
-        public void setTopMargin(Integer value) { mTopMargin = value; }
+
+        public void setTopMargin(Integer value) {
+            mTopMargin = value;
+        }
 
         public Integer getRightMargin() {
             if (mRightMargin == null && mLeftMargin == null) return 0;
             return mRightMargin;
         }
-        public void setRightMargin(Integer value) { mRightMargin = value; }
+
+        public void setRightMargin(Integer value) {
+            mRightMargin = value;
+        }
 
         public Integer getBottomMargin() {
             if (mBottomMargin == null && mTopMargin == null) return 0;
             return mBottomMargin;
         }
-        public void setBottomMargin(Integer value) { mBottomMargin = value; }
+
+        public void setBottomMargin(Integer value) {
+            mBottomMargin = value;
+        }
 
         public Integer getWidth() {
             if (mLeftMargin != null && mRightMargin != null) return null;
             return mWidth;
         }
-        public void setWidth(Integer value) { mWidth = value; }
+
+        public void setWidth(Integer value) {
+            mWidth = value;
+        }
 
         public Integer getHeight() {
             if (mTopMargin != null && mBottomMargin != null) return null;
             return mHeight;
         }
-        public void setHeight(Integer value) { mHeight = value; }
+
+        public void setHeight(Integer value) {
+            mHeight = value;
+        }
     }
 }

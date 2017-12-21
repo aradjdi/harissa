@@ -2,40 +2,40 @@ import * as localForage from 'localforage';
 import Q from 'q';
 
 export default class LocalForageStorage {
-  constructor(name) {
-    this.name = name;
-    this.storage = undefined;
-    this.initPromise = undefined;
-  }
-
-  init() {
-    if (!this.initPromise) {
-      this.initPromise = Q.defer();
-
-      this.storage = localForage.default.createInstance({ name: this.name });
-      this.initPromise.resolve(this.storage);
+    constructor(name) {
+        this.name = name;
+        this.storage = undefined;
+        this.initPromise = undefined;
     }
 
-    return this.initPromise.promise;
-  }
+    init() {
+        if (!this.initPromise) {
+            this.initPromise = Q.defer();
 
-  set(key, value) {
-    return this.storage.setItem(key, value);
-  }
+            this.storage = localForage.default.createInstance({name: this.name});
+            this.initPromise.resolve(this.storage);
+        }
 
-  get(key) {
-    return this.storage.getItem(key);
-  }
+        return this.initPromise.promise;
+    }
 
-  remove(key) {
-    return this.storage.removeItem(key);
-  }
+    set(key, value) {
+        return this.storage.setItem(key, value);
+    }
 
-  keys() {
-    return this.storage.keys();
-  }
+    get(key) {
+        return this.storage.getItem(key);
+    }
 
-  clean() {
-    return this.storage.clear();
-  }
+    remove(key) {
+        return this.storage.removeItem(key);
+    }
+
+    keys() {
+        return this.storage.keys();
+    }
+
+    clean() {
+        return this.storage.clear();
+    }
 }

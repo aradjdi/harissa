@@ -9,24 +9,24 @@ const cordova = require('./_cordova');
 const errors = require('./_errors');
 
 const releaseDists = () => Q()
-  .then(() => builds.releaseDist())
-  .then(() => builds.releaseDistSmartphoneIOS())
-  .then(() => builds.releaseDistSmartphoneAndroid())
-  .then(() => builds.releaseDistTabletIOS())
-  .then(() => builds.releaseDistTabletAndroid());
+    .then(() => builds.releaseDist())
+    .then(() => builds.releaseDistSmartphoneIOS())
+    .then(() => builds.releaseDistSmartphoneAndroid())
+    .then(() => builds.releaseDistTabletIOS())
+    .then(() => builds.releaseDistTabletAndroid());
 
 const packageProjects = () => Q()
-  .then(() => cordova.packageSmartphoneProjects())
-  .then(() => cordova.packageTabletProjects());
+    .then(() => cordova.packageSmartphoneProjects())
+    .then(() => cordova.packageTabletProjects());
 
 const uploadPackages = () => Q()
-  .then(() => deploy.uploadSmartphonePackages())
-  .then(() => deploy.uploadTabletPackages());
+    .then(() => deploy.uploadSmartphonePackages())
+    .then(() => deploy.uploadTabletPackages());
 
 Q()
-  .then(() => env.initNodeEnv())
-  .then(() => versions.upgradeVersions())
-  .then(() => releaseDists())
-  .then(() => packageProjects())
-  .then(() => uploadPackages())
-  .catch(errors.onError);
+    .then(() => env.initNodeEnv())
+    .then(() => versions.upgradeVersions())
+    .then(() => releaseDists())
+    .then(() => packageProjects())
+    .then(() => uploadPackages())
+    .catch(errors.onError);

@@ -3,9 +3,9 @@ import controller from './flashInfos.controller';
 import './flashInfos.scss';
 
 const flashInfosComponent = {
-  bindings: {},
-  template,
-  controller,
+    bindings: {},
+    template,
+    controller,
 };
 
 export default flashInfosComponent;

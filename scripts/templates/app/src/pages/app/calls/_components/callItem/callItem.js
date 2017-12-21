@@ -2,8 +2,8 @@
 import callItemComponent from './callItem.component';
 
 const callItemModule = angular
-  .module('callItem', [])
-  .component('callItem', callItemComponent)
-  .name;
+    .module('callItem', [])
+    .component('callItem', callItemComponent)
+    .name;
 
 export default callItemModule;

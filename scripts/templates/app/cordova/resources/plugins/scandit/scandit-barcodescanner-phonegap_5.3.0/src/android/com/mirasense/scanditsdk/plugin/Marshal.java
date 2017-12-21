@@ -58,7 +58,6 @@ public class Marshal {
     }
 
 
-
     public static PluginResult createFailResult(String message) {
         PluginResult result = new PluginResult(PluginResult.Status.ERROR, message);
         result.setKeepCallback(true);

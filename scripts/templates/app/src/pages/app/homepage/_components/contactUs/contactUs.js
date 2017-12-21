@@ -7,12 +7,12 @@ import contactUsDetailModule from './_components/contactUsDetail/contactUsDetail
 import contactUsComponent from './contactUs.component';
 
 const contactUsModule = angular
-  .module('contactUs', [
-    affluenceStatsModule,
-    callDelayModule,
-    contactUsDetailModule,
-  ])
-  .component('contactUs', contactUsComponent)
-  .name;
+    .module('contactUs', [
+        affluenceStatsModule,
+        callDelayModule,
+        contactUsDetailModule,
+    ])
+    .component('contactUs', contactUsComponent)
+    .name;
 
 export default contactUsModule;

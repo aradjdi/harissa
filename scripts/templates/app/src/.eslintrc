@@ -18,7 +18,10 @@
     "Scandit": true
   },
   "rules": {
-    "no-use-before-define": ["error", "nofunc"],
+    "no-use-before-define": [
+      "error",
+      "nofunc"
+    ],
     "no-control-regex": 0,
     "no-useless-escape": 0,
     "no-alert": 0,

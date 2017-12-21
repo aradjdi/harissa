@@ -1,10 +1,12 @@
 /** @ngInject */
 export default function callsController($timeout, callsSrv) {
-  this.calls = [];
+    this.calls = [];
 
-  this.setCalls = calls => $timeout(() => { this.calls = calls; }, 0);
+    this.setCalls = calls => $timeout(() => {
+        this.calls = calls;
+    }, 0);
 
-  this.$onInit = () => callsSrv.getCalls().then(this.setCalls);
+    this.$onInit = () => callsSrv.getCalls().then(this.setCalls);
 
-  return this;
+    return this;
 }

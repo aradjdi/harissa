@@ -17,62 +17,62 @@ const coverageConfig = require('./configWebpacks/webpack.coverage.config');
 const webConfig = require('./configWebpacks/webpack.web.config');
 
 const getTestConf = () => merge.mergeSimpleConfig(
-  karmaDefault,
-  karmaTest,
-  {
-    webpack: merge.mergeConfig(
-      defaultConfig, webConfig, assetsConfig,
-      babelConfig, eslintConfig, sourcemapConfig,
-    ),
-  },
+    karmaDefault,
+    karmaTest,
+    {
+        webpack: merge.mergeConfig(
+            defaultConfig, webConfig, assetsConfig,
+            babelConfig, eslintConfig, sourcemapConfig,
+        ),
+    },
 );
 const getServeConf = () => merge.mergeSimpleConfig(
-  karmaDefault,
-  karmaServe,
-  {
-    webpack: merge.mergeConfig(
-      defaultConfig, webConfig, assetsConfig,
-      babelConfig, eslintConfig, sourcemapConfig,
-    ),
-  },
+    karmaDefault,
+    karmaServe,
+    {
+        webpack: merge.mergeConfig(
+            defaultConfig, webConfig, assetsConfig,
+            babelConfig, eslintConfig, sourcemapConfig,
+        ),
+    },
 );
 const getCoverageConf = () => merge.mergeSimpleConfig(
-  karmaDefault,
-  karmaCoverage,
-  {
-    webpack: merge.mergeConfig(
-      coverageConfig,
-      defaultConfig, webConfig, assetsConfig,
-      babelConfig, eslintConfig, sourcemapConfig,
-    ),
-  },
+    karmaDefault,
+    karmaCoverage,
+    {
+        webpack: merge.mergeConfig(
+            coverageConfig,
+            defaultConfig, webConfig, assetsConfig,
+            babelConfig, eslintConfig, sourcemapConfig,
+        ),
+    },
 );
 
 const startKarma = (conf) => {
-  const deferred = Q.defer();
-  const server = new karma.Server(conf, (exitCode) => {
-    if (exitCode !== 0) deferred.reject(exitCode);
-    else deferred.resolve();
-  });
-  server.start();
-  return deferred.promise;
+    const deferred = Q.defer();
+    const server = new karma.Server(conf, (exitCode) => {
+        if (exitCode !== 0) deferred.reject(exitCode);
+        else deferred.resolve();
+    });
+    server.start();
+    return deferred.promise;
 };
 
 const testProject = () => Q()
-  .then(() => getTestConf())
-  .then(conf => startKarma(conf));
+    .then(() => getTestConf())
+    .then(conf => startKarma(conf));
 
 const serveProject = () => Q()
-  .then(() => getServeConf())
-  .then(conf => startKarma(conf));
+    .then(() => getServeConf())
+    .then(conf => startKarma(conf));
 
 const coverageProject = () => Q()
-  .then(() => getCoverageConf())
-  .then(conf => startKarma(conf));
+    .then(() => getCoverageConf())
+    .then(conf => startKarma(conf));
 
 
 module.exports = {
-  testProject,
-  serveProject,
-  coverageProject,
+    testProject,
+    serveProject,
+    coverageProject,
 };

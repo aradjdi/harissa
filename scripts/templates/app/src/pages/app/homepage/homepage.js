@@ -8,13 +8,13 @@ import welcomeHeaderModule from './_components/welcomeHeader/welcomeHeader';
 import homepageComponent from './homepage.component';
 
 const homepageModule = angular
-  .module('main.pages.app.homepage', [
-    actualitiesModule,
-    contactUsModule,
-    flashInfosModule,
-    welcomeHeaderModule,
-  ])
-  .component('homepage', homepageComponent)
-  .name;
+    .module('main.pages.app.homepage', [
+        actualitiesModule,
+        contactUsModule,
+        flashInfosModule,
+        welcomeHeaderModule,
+    ])
+    .component('homepage', homepageComponent)
+    .name;
 
 export default homepageModule;

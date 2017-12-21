@@ -6,6 +6,6 @@ const builds = require('./_builds');
 const errors = require('./_errors');
 
 Q()
-  .then(() => env.initNodeEnv())
-  .then(() => builds.serveDistVue())
-  .catch(errors.onError);
+    .then(() => env.initNodeEnv())
+    .then(() => builds.serveDistVue())
+    .catch(errors.onError);

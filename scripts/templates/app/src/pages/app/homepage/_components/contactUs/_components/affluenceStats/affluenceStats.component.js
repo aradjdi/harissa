@@ -3,9 +3,9 @@ import controller from './affluenceStats.controller';
 import './affluenceStats.scss';
 
 const affluenceStatsComponent = {
-  bindings: {},
-  template,
-  controller,
+    bindings: {},
+    template,
+    controller,
 };
 
 export default affluenceStatsComponent;

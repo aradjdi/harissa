@@ -11,46 +11,46 @@ let appName = 'HelloWorld';
 let appId = 'com.mousquetaires.helloworld';
 
 const getProjectInfos = () => inquirer.prompt([
-  {
-    type: 'input',
-    name: 'name',
-    message: 'Project name ?',
-    default: 'HelloWorld',
-  },
-  {
-    type: 'input',
-    name: 'id',
-    message: 'Project id ?',
-    default: 'com.mousquetaires.helloworld',
-  },
+    {
+        type: 'input',
+        name: 'name',
+        message: 'Project name ?',
+        default: 'HelloWorld',
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: 'Project id ?',
+        default: 'com.mousquetaires.helloworld',
+    },
 ]).then((appInfos) => {
-  appName = appInfos.name;
-  appId = appInfos.id;
+    appName = appInfos.name;
+    appId = appInfos.id;
 });
 
 const duplicateProjectTemplates = () => Q.all([
-  fs.copy(`${paths.templatesDir}/app`, `${paths.appDir}`),
-  fs.copy(`${paths.templatesDir}/conf`, `${paths.confDir}`),
+    fs.copy(`${paths.templatesDir}/app`, `${paths.appDir}`),
+    fs.copy(`${paths.templatesDir}/conf`, `${paths.confDir}`),
 ])
-  .then(() => replace({
-    regex: '<%name%>',
-    replacement: appName,
-    paths: [paths.currentDir],
-    recursive: true,
-    silent: true,
-  }))
-  .then(() => replace({
-    regex: '<%id%>',
-    replacement: appId,
-    paths: [paths.currentDir],
-    recursive: true,
-    silent: true,
-  }));
+    .then(() => replace({
+        regex: '<%name%>',
+        replacement: appName,
+        paths: [paths.currentDir],
+        recursive: true,
+        silent: true,
+    }))
+    .then(() => replace({
+        regex: '<%id%>',
+        replacement: appId,
+        paths: [paths.currentDir],
+        recursive: true,
+        silent: true,
+    }));
 
 const installDependencies = exec.executeCommand('npm install', paths.appDir);
 
 module.exports = {
-  getProjectInfos,
-  duplicateProjectTemplates,
-  installDependencies,
+    getProjectInfos,
+    duplicateProjectTemplates,
+    installDependencies,
 };
