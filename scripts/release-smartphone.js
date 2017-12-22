@@ -8,6 +8,11 @@ const deploy = require('./_deploy');
 const cordova = require('./_cordova');
 const errors = require('./_errors');
 
+const upgradeVersions = () => Q()
+    .then(() => versions.buildPackageVersion())
+    .then(() => versions.buildAppVersion())
+    .then(() => versions.buildBuildVersion());
+
 const releaseDists = () => Q()
     .then(() => builds.releaseDistSmartphoneIOS())
     .then(() => builds.releaseDistSmartphoneAndroid());
@@ -18,7 +23,7 @@ const uploadPackages = () => deploy.uploadSmartphonePackages();
 
 Q()
     .then(() => env.initNodeEnv())
-    .then(() => versions.upgradeVersions())
+    .then(() => upgradeVersions())
     .then(() => releaseDists())
     .then(() => packageProjects())
     // .then(() => uploadPackages())
