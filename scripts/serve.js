@@ -1,11 +1,12 @@
 const Q = require('q');
 
-const env = require('./_env');
+const questions = require('./_questions');
 
 const builds = require('./_builds');
 const errors = require('./_errors');
 
 Q()
-    .then(() => env.initNodeEnv())
+    .then(() => questions.askNodeEnv())
+    .then((nodeEnv) => { process.env.NODE_ENV = nodeEnv; })
     .then(() => builds.serveDist())
     .catch(errors.onError);
