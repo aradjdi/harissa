@@ -1,6 +1,6 @@
 const Q = require('q');
 
-const env = require('./_env');
+const questions = require('./_questions');
 const versions = require('./_versions');
 
 const builds = require('./_builds');
@@ -17,7 +17,8 @@ const packageProjects = () => cordova.packageSmartphoneProjects();
 const uploadPackages = () => deploy.uploadSmartphonePackages();
 
 Q()
-    .then(() => env.initNodeEnv())
+    .then(() => questions.askNodeEnv())
+    .then((nodeEnv) => { process.env.NODE_ENV = nodeEnv; })
     .then(() => versions.upgradeVersions())
     .then(() => releaseDists())
     .then(() => packageProjects())
