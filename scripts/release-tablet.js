@@ -8,6 +8,11 @@ const deploy = require('./_deploy');
 const cordova = require('./_cordova');
 const errors = require('./_errors');
 
+const upgradeVersions = () => Q()
+    .then(() => versions.buildPackageVersion())
+    .then(() => versions.buildAppVersion())
+    .then(() => versions.buildBuildVersion());
+
 const releaseDists = () => Q()
     .then(() => builds.releaseDistTabletIOS())
     .then(() => builds.releaseDistTabletAndroid());
@@ -19,7 +24,7 @@ const uploadPackages = () => deploy.uploadTabletPackages();
 Q()
     .then(() => questions.askNodeEnv())
     .then((nodeEnv) => { process.env.NODE_ENV = nodeEnv; })
-    .then(() => versions.upgradeVersions())
+    .then(() => upgradeVersions())
     .then(() => releaseDists())
     .then(() => packageProjects())
     .then(() => uploadPackages())
