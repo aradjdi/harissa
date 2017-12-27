@@ -13,8 +13,8 @@ const initProjects = (appPath, id, name, templatePath) => Q()
 
 const createApplications = () => {
     const templateDir = `${paths.templatesDir}/cordova`;
-    const appId = require(`${paths.appDir}/package.json`).name;
-    const appName = require(`${paths.appDir}/package.json`).displayName;
+    const appId = require(`${paths.appDir}/package.json`).id;
+    const appName = require(`${paths.appDir}/package.json`).name;
 
     return Q()
         .then(() => initProjects(`${paths.cordovaDir}/dev`, `${appId}.dev`, `${appName}Dev`, templateDir))
