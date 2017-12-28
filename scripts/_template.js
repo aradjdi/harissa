@@ -25,7 +25,7 @@ const duplicateProjectTemplates = (appName, appId) => Q.all([
         silent: true,
     }));
 
-const installDependencies = exec.executeCommand('npm install', paths.appDir);
+const installDependencies = () => exec.executeCommand('npm install', paths.appDir);
 
 module.exports = {
     duplicateProjectTemplates,
