@@ -3,6 +3,11 @@
 const program = require('commander');
 const timer = require('../scripts/_timer');
 
+const { init } = require('../scripts/init');
+const { run } = require('../scripts/run');
+const { serve } = require('../scripts/serve');
+const { release, build } = require('../scripts/release');
+
 const time = (scriptPath) => {
     timer.start();
 
@@ -17,42 +22,38 @@ program.version(require('../package').version);
 
 program
     .command('init')
-    .action(() => require('../scripts/init'));
+    .description('create a new harissa project!')
+    .action(init);
 
 program
-    .command('release')
-    .action(() => require('../scripts/release'));
+    .command('release [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action((device, options) => release(device, options.env));
 
 program
-    .command('release-smartphone')
-    .action(() => require('../scripts/release-smartphone'));
+    .command('build [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action((device, options) => build(device, options.env));
 
 program
-    .command('release-tablet')
-    .action(() => require('../scripts/release-tablet'));
-
-program
-    .command('run-smartphone-android')
-    .action(() => time('../scripts/run-smartphone-android'));
-
-program
-    .command('run-smartphone-ios')
-    .action(() => require('../scripts/run-smartphone-ios'));
-
-program
-    .command('run-tablet-android')
-    .action(() => require('../scripts/run-tablet-android'));
-
-program
-    .command('run-tablet-ios')
-    .action(() => require('../scripts/run-tablet-ios'));
+    .command('run [device] [os]')
+    .description('run on selected device and os')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action((device, os, options) => run(device, os, options.env));
 
 program
     .command('serve')
-    .action(() => require('../scripts/serve'));
+    .description('serve on local browser')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action(options => serve(options.env));
 
 program
     .command('serve-vue')
     .action(() => require('../scripts/serve-vue'));
+
+program
+    .command('');
 
 program.parse(process.argv);
