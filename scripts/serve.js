@@ -1,37 +1,31 @@
-const Q = require('q');
+const Q = require('q'); require('./_spy');
 
 const banner = require('./_banner');
 const questions = require('./_questions');
 const builds = require('./_builds');
 const errors = require('./_errors');
 
-const setEnv = env => Q().then(() => {
-    process.env.NODE_ENV = env;
-    return env;
-});
+const initNodeEnv = (env) => {
+    let promise;
+    if (!env) {
+        promise = Q().spy(() => questions.askNodeEnv(), 'questions', 'askNodeEnv');
+    } else {
+        promise = Q(env);
+    }
 
-const askEnv = () => Q()
-    .then(() => questions.askNodeEnv())
-    .then(env => setEnv(env))
-    .catch(errors.onError);
-
-const serveDist = () => Q()
-    .then(() => builds.serveDist())
-    .catch(errors.onError);
-
-const environment = env => (env ? setEnv.bind(this, env) : askEnv);
-
-const executeRunners = runners => runners.reduce((promise, runner) => promise.then(() => runner()), Q());
-
-const serve = (env) => {
-    banner
-        .show()
-        .then(() => {
-            const runners = [];
-            runners.push(environment(env));
-            runners.push(serveDist);
-            return executeRunners(runners);
-        });
+    return promise.then((nodeEnv) => { process.env.NODE_ENV = nodeEnv; });
 };
 
-module.exports = { serve };
+const buildAndServeDist = () => Q()
+    .spy(() => builds.serveDistVue(), 'build', 'serveDistVue');
+
+const serve = nodeEnv => Q()
+    .then(() => initNodeEnv(nodeEnv))
+    .then(() => buildAndServeDist())
+    .catch(errors.onError);
+
+module.exports = {
+    serve(nodeEnv) {
+        return banner.show().then(() => serve(nodeEnv));
+    }
+};

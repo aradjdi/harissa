@@ -1,7 +1,9 @@
 const fs = require('fs');
 
+const logs = require('./_logs');
+
 const onError = (error) => {
-    console.log(error);
+    logs.error('deploy', 'starting', error);
     return fs.writeFile('error.log', error, (err) => {
         if (err) {
             console.log(err);

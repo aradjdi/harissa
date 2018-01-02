@@ -1,4 +1,4 @@
-const Q = require('q');
+const Q = require('q'); require('./_spy');
 
 const banner = require('./_banner');
 const questions = require('./_questions');
@@ -30,24 +30,20 @@ const askOS = () => Q()
     .catch(errors.onError);
 
 const runSmartphoneAndroid = () => Q()
-    .then(() => builds.buildDistSmartphoneAndroid())
-    .then(() => cordova.runSmartphone('android'))
-    .catch(errors.onError);
+    .spy(() => builds.buildDistSmartphoneAndroid(), 'build', 'buildDistSmartphoneAndroid')
+    .spy(() => cordova.runSmartphone('android'), 'cordova', 'runSmartphone');
 
 const runSmartphoneIOS = () => Q()
-    .then(() => builds.buildDistSmartphoneIOS())
-    .then(() => cordova.runSmartphone('ios'))
-    .catch(errors.onError);
+    .spy(() => builds.buildDistSmartphoneIOS(), 'build', 'buildDistSmartphoneIOS')
+    .spy(() => cordova.runSmartphone('ios'), 'cordova', 'runSmartphone');
 
 const runTabletAndroid = () => Q()
-    .then(() => builds.buildDistTabletAndroid())
-    .then(() => cordova.runTablet('android'))
-    .catch(errors.onError);
+    .spy(() => builds.buildDistTabletAndroid(), 'build', 'buildDistTabletAndroid')
+    .spy(() => cordova.runTablet('android'), 'cordova', 'runTablet');
 
 const runTabletIOS = () => Q()
-    .then(() => builds.buildDistTabletIOS())
-    .then(() => cordova.runTablet('ios'))
-    .catch(errors.onError);
+    .spy(() => builds.buildDistTabletIOS(), 'build', 'buildDistTabletIOS')
+    .spy(() => cordova.runTablet('ios'), 'cordova', 'runTablet');
 
 const environment = env => (env ? setEnv.bind(this, env) : askEnv);
 
