@@ -1,23 +1,38 @@
 const childProcess = require('child-process-promise');
 
-const { exec } = childProcess;
+const logs = require('./_logs');
 
-const onExecFinish = (result, cmd) => {
-    if (result.stderr) {
-        console.error('********************* Warning ****************************');
-        console.error(`Executing : ${cmd}`);
-        console.error(`Result: ${result.stderr.toString()}`);
-        console.error('**********************************************************');
-    }
-    return result.stdout.toString();
+const { spawn } = childProcess;
+
+const executeCommand = (cmd, cwd) => {
+    const cmdArgs = cmd.split(' ');
+    const cmdName = cmdArgs.shift();
+    const promise = spawn(cmdName, cmdArgs, cwd ? { cwd } : {});
+
+    const spawnProcess = promise.childProcess;
+    logs.info(`-- -- spawn ${cmdName}`, `start pid ${spawnProcess.pid}`);
+    spawnProcess.stdout.on('data', data => logs.info(
+        `-- -- spawn ${cmdName}`,
+        `pid ${spawnProcess.pid}`,
+        data.toString()
+            .replace(/(\r\n|\n|\r)/gm, '')
+            .replace(/(\t)/gm, ' ')
+    ));
+    spawnProcess.stderr.on('data', data => logs.warning(
+        `-- -- spawn ${cmdName}`,
+        `pid ${spawnProcess.pid}`,
+        data.toString()
+            .replace(/(\r\n|\n|\r)/gm, '')
+            .replace(/(\t)/gm, ' ')
+    ));
+
+    return promise.then(() => {
+        logs.success(`-- -- spawn ${cmdName}`, `finish pid ${spawnProcess.pid}`);
+    }).catch((err) => {
+        logs.error(`-- -- spawn ${cmdName}`, `pid ${spawnProcess.pid} failed`, err);
+    });
 };
 
-const executeCommand = (cmd, srcDir) => {
-    const options = { maxBuffer: 1024 * 5000 };
-
-    if (srcDir) options.cwd = srcDir;
-
-    return exec(cmd, options).then(result => onExecFinish(result, cmd));
+module.exports = {
+    executeCommand
 };
-
-module.exports = { executeCommand };
