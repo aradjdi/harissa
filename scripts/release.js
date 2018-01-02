@@ -1,16 +1,14 @@
-const Q = require('q');
+const Q = require('q'); require('./_spy');
 
 const banner = require('./_banner');
 const questions = require('./_questions');
 const versions = require('./_versions');
-
 const builds = require('./_builds');
-const deploy = require('./_deploy');
 const cordova = require('./_cordova');
+const deploy = require('./_deploy');
 const errors = require('./_errors');
 
 const DEVICES = { SMARTPHONE: 'smartphone', TABLET: 'tablet' };
-
 const setEnv = env => Q().then(() => {
     process.env.NODE_ENV = env;
     return env;
@@ -27,40 +25,32 @@ const askDevice = () => Q()
     .catch(errors.onError);
 
 const upgradeVersions = () => Q()
-    .then(() => versions.buildPackageVersion())
-    .then(() => versions.buildAppVersion())
-    .then(() => versions.buildBuildVersion())
-    .catch(errors.onError);
+    .spy(() => versions.buildPackageVersion(), 'versions', 'buildPackageVersion')
+    .spy(() => versions.buildAppVersion(), 'versions', 'buildAppVersion')
+    .spy(() => versions.buildBuildVersion(), 'versions', 'buildBuildVersion');
 
 const releaseDists = () => Q()
-    .then(() => builds.releaseDist())
-    .catch(errors.onError);
+    .spy(() => builds.releaseDist(), 'builds', 'releaseDist');
 
 const releaseDistSmartphone = () => Q()
-    .then(() => builds.releaseDistSmartphoneIOS())
-    .then(() => builds.releaseDistSmartphoneAndroid())
-    .catch(errors.onError);
+    .spy(() => builds.releaseDistSmartphoneIOS(), 'builds', 'releaseDistSmartphoneIOS')
+    .spy(() => builds.releaseDistSmartphoneAndroid(), 'builds', 'releaseDistSmartphoneAndroid');
 
 const releaseDistTablet = () => Q()
-    .then(() => builds.releaseDistTabletIOS())
-    .then(() => builds.releaseDistTabletAndroid())
-    .catch(errors.onError);
+    .spy(() => builds.releaseDistTabletIOS(), 'builds', 'releaseDistTabletIOS')
+    .spy(() => builds.releaseDistTabletAndroid(), 'builds', 'releaseDistTabletAndroid');
 
 const packageSmartphoneProjects = () => Q()
-    .then(() => cordova.packageSmartphoneProjects())
-    .catch(errors.onError);
+    .spy(() => cordova.packageSmartphoneProjects(), 'cordova', 'packageSmartphoneProjects');
 
 const packageTabletProjects = () => Q()
-    .then(() => cordova.packageTabletProjects())
-    .catch(errors.onError);
+    .spy(() => cordova.packageTabletProjects(), 'cordova', 'packageTabletProjects');
 
 const uploadSmartphonePackages = () => Q()
-    .then(() => deploy.uploadSmartphonePackages())
-    .catch(errors.onError);
+    .spy(() => deploy.uploadSmartphonePackages(), 'deploy', 'uploadSmartphonePackages');
 
 const uploadTabletPackages = () => Q()
-    .then(() => deploy.uploadTabletPackages())
-    .catch(errors.onError);
+    .spy(() => deploy.uploadTabletPackages(), 'deploy', 'uploadTabletPackages');
 
 const environment = env => (env ? setEnv.bind(this, env) : askEnv);
 
