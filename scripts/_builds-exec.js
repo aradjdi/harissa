@@ -12,22 +12,19 @@ const commonConfig = [
 
 const build = configs => Q().then(() => merge.mergeConfig(
     ...configs,
-    require('./configWebpacks/webpack.vue.config'),
     ...commonConfig,
     require('./configWebpacks/webpack.logging.config')
 )).then(config => webpack.compile(config));
 
 const release = configs => Q().then(() => merge.mergeConfig(
     ...configs,
-    require('./configWebpacks/webpack.vue.config'),
-    ...commonConfig,
+    ...commonConfig
     // require('./configWebpacks/webpack.treeshaking.config'),
 )).then(config => webpack.compile(config));
 
 const serve = configs => Q().then(() => merge.mergeConfig(
     ...configs,
-    require('./configWebpacks/webpack.vue.config'),
-    ...commonConfig,
+    ...commonConfig
 )).then(config => webpack.serve(config));
 
 module.exports = {

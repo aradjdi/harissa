@@ -17,7 +17,7 @@ const initNodeEnv = (env) => {
 };
 
 const buildAndServeDist = () => Q()
-    .spy(() => builds.serveDistVue(), 'build', 'serveDistVue');
+    .spy(() => builds.serveDist(), 'build', 'serveDist');
 
 const serve = nodeEnv => Q()
     .then(() => initNodeEnv(nodeEnv))
