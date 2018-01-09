@@ -107,11 +107,15 @@ const build = (device, env) => {
     switch (device) {
         case DEVICES.SMARTPHONE:
             runners.push(environment(env));
+            runners.push(upgradeVersions);
+            runners.push(releaseDists);
             runners.push(releaseDistSmartphone);
             runners.push(packageSmartphoneProjects);
             break;
         case DEVICES.TABLET:
             runners.push(environment(env));
+            runners.push(upgradeVersions);
+            runners.push(releaseDists);
             runners.push(releaseDistTablet);
             runners.push(packageTabletProjects);
             break;
@@ -120,9 +124,7 @@ const build = (device, env) => {
                 .then(_device => build(_device, env).then(fn => fn()));
     }
 
-    return executeRunners(runners).then(() => {
-        console.log('build finished');
-    });
+    return executeRunners(runners);
 };
 
 module.exports = {
