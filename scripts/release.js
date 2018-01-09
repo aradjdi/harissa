@@ -9,6 +9,7 @@ const deploy = require('./_deploy');
 const errors = require('./_errors');
 
 const DEVICES = { SMARTPHONE: 'smartphone', TABLET: 'tablet' };
+
 const setEnv = env => Q().then(() => {
     process.env.NODE_ENV = env;
     return env;
@@ -65,7 +66,7 @@ const release = (device, env) => {
             runners.push(releaseDists);
             runners.push(releaseDistSmartphone);
             runners.push(packageSmartphoneProjects);
-            // runners.push(uploadSmartphonePackages);
+            runners.push(uploadSmartphonePackages);
             break;
         case DEVICES.TABLET:
             runners.push(environment(env));
@@ -73,7 +74,7 @@ const release = (device, env) => {
             runners.push(releaseDists);
             runners.push(releaseDistTablet);
             runners.push(packageTabletProjects);
-            // runners.push(uploadTabletPackages);
+            runners.push(uploadTabletPackages);
             break;
         default:
             return askDevice()
