@@ -83,6 +83,25 @@ const release = (device, env) => {
     return executeRunners(runners).then(() => process.exit());
 };
 
+const upload = (device, env) => {
+    const runners = [];
+    switch (device) {
+        case DEVICES.SMARTPHONE:
+            runners.push(environment(env));
+            runners.push(uploadSmartphonePackages);
+            break;
+        case DEVICES.TABLET:
+            runners.push(environment(env));
+            runners.push(uploadTabletPackages);
+            break;
+        default:
+            return askDevice()
+                .then(_device => upload(_device, env).then(fn => fn()));
+    }
+
+    return executeRunners(runners);
+};
+
 const build = (device, env) => {
     const runners = [];
     switch (device) {
@@ -112,5 +131,8 @@ module.exports = {
     },
     build(device, env) {
         banner.show().then(() => build(device, env));
+    },
+    upload(device, env) {
+        banner.show().then(() => upload(device, env));
     }
 };
