@@ -9,6 +9,7 @@ const deploy = require('./_deploy');
 const errors = require('./_errors');
 
 const DEVICES = { SMARTPHONE: 'smartphone', TABLET: 'tablet' };
+
 const setEnv = env => Q().then(() => {
     process.env.NODE_ENV = env;
     return env;
@@ -65,7 +66,7 @@ const release = (device, env) => {
             runners.push(releaseDists);
             runners.push(releaseDistSmartphone);
             runners.push(packageSmartphoneProjects);
-            // runners.push(uploadSmartphonePackages);
+            runners.push(uploadSmartphonePackages);
             break;
         case DEVICES.TABLET:
             runners.push(environment(env));
@@ -73,7 +74,7 @@ const release = (device, env) => {
             runners.push(releaseDists);
             runners.push(releaseDistTablet);
             runners.push(packageTabletProjects);
-            // runners.push(uploadTabletPackages);
+            runners.push(uploadTabletPackages);
             break;
         default:
             return askDevice()
@@ -83,16 +84,39 @@ const release = (device, env) => {
     return executeRunners(runners).then(() => process.exit());
 };
 
+const upload = (device, env) => {
+    const runners = [];
+    switch (device) {
+        case DEVICES.SMARTPHONE:
+            runners.push(environment(env));
+            runners.push(uploadSmartphonePackages);
+            break;
+        case DEVICES.TABLET:
+            runners.push(environment(env));
+            runners.push(uploadTabletPackages);
+            break;
+        default:
+            return askDevice()
+                .then(_device => upload(_device, env).then(fn => fn()));
+    }
+
+    return executeRunners(runners);
+};
+
 const build = (device, env) => {
     const runners = [];
     switch (device) {
         case DEVICES.SMARTPHONE:
             runners.push(environment(env));
+            runners.push(upgradeVersions);
+            runners.push(releaseDists);
             runners.push(releaseDistSmartphone);
             runners.push(packageSmartphoneProjects);
             break;
         case DEVICES.TABLET:
             runners.push(environment(env));
+            runners.push(upgradeVersions);
+            runners.push(releaseDists);
             runners.push(releaseDistTablet);
             runners.push(packageTabletProjects);
             break;
@@ -101,9 +125,7 @@ const build = (device, env) => {
                 .then(_device => build(_device, env).then(fn => fn()));
     }
 
-    return executeRunners(runners).then(() => {
-        console.log('build finished');
-    });
+    return executeRunners(runners);
 };
 
 module.exports = {
@@ -112,5 +134,8 @@ module.exports = {
     },
     build(device, env) {
         banner.show().then(() => build(device, env));
+    },
+    upload(device, env) {
+        banner.show().then(() => upload(device, env));
     }
 };

@@ -6,7 +6,7 @@ const timer = require('../scripts/_timer');
 const { init } = require('../scripts/init');
 const { run } = require('../scripts/run');
 const { serve } = require('../scripts/serve');
-const { release, build } = require('../scripts/release');
+const { release, build, upload } = require('../scripts/release');
 
 const time = (scriptPath) => {
     timer.start();
@@ -36,6 +36,12 @@ program
     .description('release and deploy for target devices')
     .option('-e, --env <type>', 'Specify target environment <type>')
     .action((device, options) => build(device, options.env));
+
+program
+    .command('upload [device]')
+    .description('upload to appaloosa')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action((device, options) => upload(device, options.env));
 
 program
     .command('run [device] [os]')
