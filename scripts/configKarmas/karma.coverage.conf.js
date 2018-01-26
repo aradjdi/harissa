@@ -6,7 +6,7 @@ module.exports = {
     reporters: ['coverage-istanbul'],
 
     coverageIstanbulReporter: {
-        dir: `${paths.releaseDir}/tests-result`,
+        dir: `${paths.appDir}/tests-result`,
         fixWebpackSourcePaths: true,
         reports: ['html', 'lcovonly'],
         'report-config': {

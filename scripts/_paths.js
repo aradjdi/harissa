@@ -8,9 +8,7 @@ const confDir = path.join(currentDir, '../conf');
 const appDir = currentDir;
 
 const distDir = path.join(appDir, 'dist');
-const releaseDir = path.join(appDir, 'release');
 const srcDir = path.join(appDir, 'src');
-const testDir = path.join(appDir, 'test');
 const cordovaDir = path.join(appDir, 'cordova');
 const storeDir = path.join(cordovaDir, 'store');
 
@@ -23,9 +21,7 @@ module.exports = {
     appDir,
 
     distDir,
-    releaseDir,
     srcDir,
-    testDir,
     cordovaDir,
     storeDir,
 };

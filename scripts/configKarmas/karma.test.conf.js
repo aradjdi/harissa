@@ -6,6 +6,6 @@ module.exports = {
     reporters: ['html'],
 
     htmlReporter: {
-        outputDir: `${paths.releaseDir}/tests-result/units-html-reports`,
+        outputDir: `${paths.appDir}/tests-result/units-html-reports`,
     },
 };

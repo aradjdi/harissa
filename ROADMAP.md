@@ -8,7 +8,6 @@
 # 1.1.0
 - Proposer un choix de templates lors de `harissa init`
 - Utiliser des repos GIT pour les templates
-- Faire la tache changelog juste apres la montée de version
 - Ajouter le tag et le push sur GIT lors d'une release
 
 # 1.2.0

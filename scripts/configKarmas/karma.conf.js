@@ -1,15 +1,15 @@
 const paths = require('../_paths');
 
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 module.exports = {
     frameworks: ['jasmine'],
-    browsers: ['PhantomJS'],
-
-    phantomjsLauncher: {exitOnResourceError: true},
+    browsers: ['Chrome'],
 
     files: [
-        `${paths.testDir}/test.js`,
+        `${paths.appDir}/src/index.spec.js`,
     ],
     preprocessors: {
-        '**/*test.js': ['webpack', 'sourcemap'],
+        '**/*index.spec.js': ['webpack', 'sourcemap'],
     },
 };

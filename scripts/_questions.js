@@ -53,18 +53,11 @@ const askVersionName = () => inquirer.prompt([{
     message: 'Version ?',
 }]).then(values => values.versionName);
 
-const askChanges = () => inquirer.prompt([{
-    type: 'input',
-    name: 'changes',
-    message: 'Changes ?',
-}]).then(values => values.changes);
-
 module.exports = {
     askProjectInfos,
     askNodeEnv,
     askVersionType,
     askVersionName,
     askDevice,
-    askChanges,
     askOS
 };

@@ -2,6 +2,7 @@ const Q = require('q'); require('./_spy');
 
 const banner = require('./_banner');
 const questions = require('./_questions');
+const tests = require('./_tests');
 const builds = require('./_builds');
 const cordova = require('./_cordova');
 const errors = require('./_errors');
@@ -28,6 +29,9 @@ const askOS = () => Q()
     .then(() => questions.askOS())
     .then(os => os)
     .catch(errors.onError);
+
+const runTests = () => Q()
+    .spy(() => tests.runTests(), 'tests', 'runTests');
 
 const runSmartphoneAndroid = () => Q()
     .spy(() => builds.buildDistSmartphoneAndroid(), 'build', 'buildDistSmartphoneAndroid')
@@ -75,7 +79,7 @@ const checkTabletOS = (os) => {
 
 const executeRunners = runners => runners.reduce((promise, runner) => promise.then(() => runner()), Q());
 
-const run = (device, os, env) => {
+const run = (device, os, env, skipTest) => {
     // console.log(device);
     // console.log(os);
 
@@ -84,10 +88,12 @@ const run = (device, os, env) => {
     switch (device) {
         case DEVICES.SMARTPHONE:
             runners.push(environment(env));
+            if (!skipTest) runners.push(runTests);
             runners.push(checkSmartphoneOS(os));
             break;
         case DEVICES.TABLET:
             runners.push(environment(env));
+            if (!skipTest) runners.push(runTests);
             runners.push(checkTabletOS(os));
             break;
         default:
@@ -99,7 +105,7 @@ const run = (device, os, env) => {
 };
 
 module.exports = {
-    run(device, os, env) {
-        banner.show().then(() => run(device, os, env));
+    run(device, os, env, skipTest) {
+        banner.show().then(() => run(device, os, env, skipTest));
     }
 };

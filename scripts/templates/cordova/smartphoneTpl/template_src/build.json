@@ -23,7 +23,8 @@
     "release": {
       "codeSignIdentity": "iPhone Developer",
       "developmentTeam": "8674RATCDK",
-      "packageType": "enterprise",
+      "packageType": "ad-hoc",
+      "automaticProvisioning": "true",
       "buildFlag": [
         "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
         "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
