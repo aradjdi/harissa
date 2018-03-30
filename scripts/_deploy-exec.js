@@ -11,6 +11,6 @@ module.exports = {
             throw new Error('All arguments are mandatory');
         }
 
-        uploadPackage(filepath, storeToken, groups, changes);
+        return uploadPackage(filepath, storeToken, groups, changes);
     }
 };
