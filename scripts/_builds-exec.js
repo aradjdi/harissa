@@ -18,7 +18,8 @@ const build = configs => Q().then(() => merge.mergeConfig(
 
 const release = configs => Q().then(() => merge.mergeConfig(
     ...configs,
-    ...commonConfig
+    ...commonConfig,
+    require('./configWebpacks/webpack.logging.config')
     // require('./configWebpacks/webpack.treeshaking.config'),
 )).then(config => webpack.compile(config));
 
