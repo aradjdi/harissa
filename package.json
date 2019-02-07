@@ -1,5 +1,5 @@
 {
-  "name": "stime-harissa",
+  "name": "@stime/harissa",
   "version": "1.0.0",
   "description": "CLI that help front team for projects",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://10.108.35.139/aradjdi/stime-harissa.git"
+    "url": "http://nexus-stime.mousquetaires.com/aradjdi/@stime/harissa.git"
   },
   "keywords": [
     "javascript"
@@ -19,7 +19,7 @@
     "harissa": "bin/index.js"
   },
   "publishConfig": {
-    "registry": "http://10.108.35.137/repository/npm-snapshots/"
+    "registry": "http://nexus-stime.mousquetaires.com/repository/npm-releases/"
   },
   "dependencies": {
     "appaloosa-client": "^0.1.1",
