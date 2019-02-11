@@ -1,59 +1,112 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const timer = require('../scripts/_timer');
 
-const { init } = require('../scripts/init');
-const { run } = require('../scripts/run');
-const { serve } = require('../scripts/serve');
-const { release, build, upload } = require('../scripts/release');
+const banner = require('./_banner');
+const params = require('./_params');
 
-const time = (scriptPath) => {
-    timer.start();
-
-    require(scriptPath)
-        .init()
-        .then(() => console.log('cordova finish'))
-        .then(() => timer.end())
-        .then(duration => console.log(`BUILD SUCCESSFUL in ${duration}s`));
-};
+const init = require('../scripts/init');
+const serve = require('../scripts/serve');
+const build = require('../scripts/release');
+const release = require('../scripts/release');
+const upload = require('../scripts/upload');
+const run = require('../scripts/run');
 
 program.version(require('../package').version);
 
+// harissa init
+// harissa init -n HelloWorld -i com.mousquetaires.helloworld
+// harissa init --project-name HelloWorld --project-id com.mousquetaires.helloworld
 program
     .command('init')
     .description('create a new harissa project!')
-    .action(init);
+    .option('-n, --project-name <type>', 'Specify project name')
+    .option('-i, --project-id <type>', 'Specify project id')
+    .action(async (...initParams) => {
+        // await banner.show();
+        return init(
+            await params.init(...initParams)
+        );
+    });
 
-program
-    .command('release [device]')
-    .description('release and deploy for target devices')
-    .option('-e, --env <type>', 'Specify target environment <type>')
-    .action((device, options) => release(device, options.env));
-
-program
-    .command('build [device]')
-    .description('release and deploy for target devices')
-    .option('-e, --env <type>', 'Specify target environment <type>')
-    .action((device, options) => build(device, options.env));
-
-program
-    .command('upload [device]')
-    .description('upload to appaloosa')
-    .option('-e, --env <type>', 'Specify target environment <type>')
-    .action((device, options) => upload(device, options.env));
-
-program
-    .command('run [device] [os]')
-    .description('run on selected device and os')
-    .option('-e, --env <type>', 'Specify target environment <type>')
-    .action((device, os, options) => run(device, os, options.env));
-
+// harissa sev
+// harissa sev -e dev
+// harissa sev --env dev
 program
     .command('serve')
     .description('serve on local browser')
     .option('-e, --env <type>', 'Specify target environment <type>')
-    .action(options => serve(options.env));
+    .action(async (...serveParams) => {
+        // await banner.show();
+        return serve(
+            await params.serve(...serveParams)
+        );
+    });
+
+// harissa build
+// harissa build smartphone
+// harissa build smartphone -e dev -v patch
+// harissa build smartphone --env dev --build-version patch
+program
+    .command('build [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-v, --build-version <type>', 'Specify new version')
+    .action(async (...buildParams) => {
+        // await banner.show();
+        return build(
+            await params.build(...buildParams)
+        );
+    });
+
+// harissa run
+// harissa run smartphone
+// harissa run smartphone android
+// harissa run smartphone android -e dev
+// harissa run smartphone android --env dev
+program
+    .command('run [device] [os]')
+    .description('run on selected device and os')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action(async (...runParams) => {
+        // await banner.show();
+        return run(
+            await params.run(...runParams)
+        );
+    });
+
+// harissa release
+// harissa release smartphone
+// harissa release smartphone -e dev -c "my change log" -v patch
+// harissa release smartphone --env dev --changes "my change log" --release-version patch
+program
+    .command('release [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-c, --changes <type>', 'Specify change log')
+    .option('-v, --release-version <type>', 'Specify new version')
+    .action(async (...releaseParams) => {
+        // await banner.show();
+        return release(
+            await params.release(...releaseParams)
+        );
+    });
+
+// harissa upload
+// harissa upload smartphone
+// harissa upload smartphone -e dev -c "my change log"
+// harissa upload smartphone --env dev --changes "my change log"
+program
+    .command('upload [device]')
+    .description('upload to appaloosa')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-c, --changes <type>', 'Specify change log')
+    .action(async (...uploadParams) => {
+        // await banner.show();
+        return upload(
+            await params.upload(...uploadParams)
+        );
+    });
 
 program
     .command('serve-vue')

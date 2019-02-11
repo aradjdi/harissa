@@ -3,7 +3,6 @@ const Q = require('q'); require('./_spy');
 const versions = require('./_versions');
 const builds = require('./_builds');
 const cordova = require('./_cordova');
-const deploy = require('./_deploy');
 const errors = require('./_errors');
 
 const initNodeEnv = env => process.env.NODE_ENV = env;
@@ -30,24 +29,18 @@ const packageSmartphoneProjects = () => Q()
 const packageTabletProjects = () => Q()
     .spy(() => cordova.packageTabletProjects(), 'cordova', 'packageTabletProjects');
 
-const uploadSmartphonePackages = changes => Q()
-    .spy(() => deploy.uploadSmartphonePackages(changes), 'deploy', 'uploadSmartphonePackages');
-
-const uploadTabletPackages = changes => Q()
-    .spy(() => deploy.uploadTabletPackages(changes), 'deploy', 'uploadTabletPackages');
-
-const releaseApplication = (device, changes) => {
+const buildApplication = device => {
     switch (device) {
-        case 'smartphone': return releaseDistSmartphone().then(() => packageSmartphoneProjects()).then(() => uploadSmartphonePackages(changes));
-        case 'tablet':     return releaseDistTablet().then(() => packageTabletProjects()).then(() => uploadTabletPackages(changes));
+        case 'smartphone': return releaseDistSmartphone().then(() => packageSmartphoneProjects());
+        case 'tablet':     return releaseDistTablet().then(() => packageTabletProjects());
     }
 };
 
-const release = ({ device, env, version, changes }) => Q()
+const build = ({ device, env, version }) => Q()
     .then(() => initNodeEnv(env))
     .then(() => upgradeVersions(version))
     .then(() => releaseDists())
-    .then(() => releaseApplication(device, changes))
+    .then(() => buildApplication(device))
     .catch(errors.onError);
 
-module.exports = release;
+module.exports = build;

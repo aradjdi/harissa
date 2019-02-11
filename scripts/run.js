@@ -1,105 +1,40 @@
 const Q = require('q'); require('./_spy');
 
-const banner = require('./_banner');
-const questions = require('./_questions');
 const builds = require('./_builds');
 const cordova = require('./_cordova');
 const errors = require('./_errors');
 
-const DEVICES = { SMARTPHONE: 'smartphone', TABLET: 'tablet' };
-const OS = { ANDROID: 'android', IOS: 'ios' };
+const initNodeEnv = env => process.env.NODE_ENV = env;
 
-const setEnv = env => Q().then(() => {
-    process.env.NODE_ENV = env;
-    return env;
-});
-
-const askEnv = () => Q()
-    .then(() => questions.askNodeEnv())
-    .then(env => setEnv(env))
-    .catch(errors.onError);
-
-const askDevice = () => Q()
-    .then(() => questions.askDevice())
-    .then(device => device)
-    .catch(errors.onError);
-
-const askOS = () => Q()
-    .then(() => questions.askOS())
-    .then(os => os)
-    .catch(errors.onError);
-
-const runSmartphoneAndroid = () => Q()
-    .spy(() => builds.buildDistSmartphoneAndroid(), 'build', 'buildDistSmartphoneAndroid')
-    .spy(() => cordova.runSmartphone('android'), 'cordova', 'runSmartphone');
-
-const runSmartphoneIOS = () => Q()
-    .spy(() => builds.buildDistSmartphoneIOS(), 'build', 'buildDistSmartphoneIOS')
-    .spy(() => cordova.runSmartphone('ios'), 'cordova', 'runSmartphone');
-
-const runTabletAndroid = () => Q()
-    .spy(() => builds.buildDistTabletAndroid(), 'build', 'buildDistTabletAndroid')
-    .spy(() => cordova.runTablet('android'), 'cordova', 'runTablet');
-
-const runTabletIOS = () => Q()
-    .spy(() => builds.buildDistTabletIOS(), 'build', 'buildDistTabletIOS')
-    .spy(() => cordova.runTablet('ios'), 'cordova', 'runTablet');
-
-const environment = env => (env ? setEnv.bind(this, env) : askEnv);
-
-const checkSmartphoneOS = (os) => {
+const buildSmartphoneApplication = os => {
     switch (os) {
-        case OS.ANDROID:
-            return runSmartphoneAndroid;
-        case OS.IOS:
-            return runSmartphoneIOS;
-        default:
-            return () => askOS()
-                .then(_os => checkSmartphoneOS(_os))
-                .then(fn => fn());
+        case 'android': return builds.buildDistSmartphoneAndroid();
+        case 'ios':     return builds.buildDistSmartphoneIOS();
     }
-};
+}
 
-const checkTabletOS = (os) => {
+const buildTabletApplication = os => {
     switch (os) {
-        case OS.ANDROID:
-            return runTabletAndroid;
-        case OS.IOS:
-            return runTabletIOS;
-        default:
-            return () => askOS()
-                .then(_os => checkTabletOS(_os))
-                .then(fn => fn());
+        case 'android': return builds.buildDistTabletAndroid();
+        case 'ios':     return builds.buildDistTabletIOS();
     }
-};
+}
 
-const executeRunners = runners => runners.reduce((promise, runner) => promise.then(() => runner()), Q());
-
-const run = (device, os, env) => {
-    // console.log(device);
-    // console.log(os);
-
-    const runners = [];
-
+const runApplication =  (device, os) => {
     switch (device) {
-        case DEVICES.SMARTPHONE:
-            runners.push(environment(env));
-            runners.push(checkSmartphoneOS(os));
-            break;
-        case DEVICES.TABLET:
-            runners.push(environment(env));
-            runners.push(checkTabletOS(os));
-            break;
-        default:
-            return askDevice()
-                .then(_device => run(_device, os, env).then(fn => fn()));
-    }
+        case 'smartphone': return Q()
+            .spy(() => buildSmartphoneApplication(os), 'build', 'buildDistSmartphone')
+            .spy(() => cordova.runSmartphone(os), 'cordova', 'runSmartphone');
 
-    return executeRunners(runners).then(() => process.exit());
-};
-
-module.exports = {
-    run(device, os, env) {
-        banner.show().then(() => run(device, os, env));
+        case 'tablet': return Q()
+            .spy(() => buildTabletApplication(os), 'build', 'buildDistTablet')
+            .spy(() => cordova.runTablet(os), 'cordova', 'runTablet');
     }
 };
+
+const run = ({ device, os, env }) => Q()
+    .then(() => initNodeEnv(env))
+    .then(() => runApplication(device, os))
+    .catch(errors.onError);
+
+module.exports = run;

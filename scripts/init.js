@@ -1,30 +1,23 @@
 const Q = require('q'); require('./_spy');
 
-const banner = require('./_banner');
-const questions = require('./_questions');
 const template = require('./_template');
 const cordova = require('./_cordova');
 const errors = require('./_errors');
 
-const getProjectsInfos = () => Q()
-    .spy(() => questions.askProjectInfos(), 'questions', 'askProjectInfos');
+const duplicateTemplate = (name, id) => Q()
+    .spy(() => template.duplicateProjectTemplates(name, id), 'template', 'duplicateProjectTemplates');
 
-const createProjects = infos => Q()
-    .spy(() => template.duplicateProjectTemplates(infos.name, infos.id), 'template', 'duplicateProjectTemplates')
-    .spy(() => cordova.createSmartphoneProjects(infos.id, infos.name), 'cordova', 'createSmartphoneProjects')
-    .spy(() => cordova.createTabletProjects(infos.id, infos.name), 'cordova', 'createTabletProjects');
+const createProjects = (name, id) => Q()
+    .spy(() => cordova.createSmartphoneProjects(id, name), 'cordova', 'createSmartphoneProjects')
+    .spy(() => cordova.createTabletProjects(id, name), 'cordova', 'createTabletProjects');
 
 const installDependencies = () => Q()
     .spy(() => template.installDependencies(), 'template', 'installDependencies');
 
-const init = () => Q()
-    .then(() => getProjectsInfos())
-    .then(appInfos => createProjects(appInfos))
+const init = ({ name, id }) => Q()
+    .then(() => duplicateTemplate(name, id))
+    .then(() => createProjects(name, id))
     .then(() => installDependencies())
     .catch(errors.onError);
 
-module.exports = {
-    init() {
-        banner.show().then(init);
-    }
-};
+module.exports = init;
