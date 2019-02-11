@@ -43,22 +43,6 @@ program
         );
     });
 
-// harissa build
-// harissa build smartphone
-// harissa build smartphone -e dev -v patch
-// harissa build smartphone --env dev --build-version patch
-program
-    .command('build [device]')
-    .description('release and deploy for target devices')
-    .option('-e, --env <type>', 'Specify target environment <type>')
-    .option('-v, --build-version <type>', 'Specify new version')
-    .action(async (...buildParams) => {
-        // await banner.show();
-        return build(
-            await params.build(...buildParams)
-        );
-    });
-
 // harissa run
 // harissa run smartphone
 // harissa run smartphone android
@@ -72,6 +56,22 @@ program
         // await banner.show();
         return run(
             await params.run(...runParams)
+        );
+    });
+
+// harissa build
+// harissa build smartphone
+// harissa build smartphone -e dev -v patch
+// harissa build smartphone --env dev --build-version patch
+program
+    .command('build [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-v, --build-version <type>', 'Specify new version')
+    .action(async (...buildParams) => {
+        // await banner.show();
+        return build(
+            await params.build(...buildParams)
         );
     });
 
