@@ -77,13 +77,12 @@ program
 
 // harissa release
 // harissa release smartphone
-// harissa release smartphone -e dev -c "my change log" -v patch
-// harissa release smartphone --env dev --changes "my change log" --release-version patch
+// harissa release smartphone -e dev
+// harissa release smartphone --env dev
 program
     .command('release [device]')
     .description('release and deploy for target devices')
     .option('-e, --env <type>', 'Specify target environment <type>')
-    .option('-v, --release-version <type>', 'Specify new version')
     .action(async (...releaseParams) => {
         // await banner.show();
         return release(

@@ -11,22 +11,21 @@ const serve = async ({ env }) => ({
     env: env || await questions.askNodeEnv()
 });
 
-const build = async (device, { env, buildVersion }) => ({
-    device: device        || await questions.askDevice(),
-    env: env              || await questions.askNodeEnv(),
-    version: buildVersion || await questions.askVersion()
-});
-
 const run = async (device, os, { env }) => ({
     device: device || await questions.askDevice(),
     os: os         || await questions.askOS(),
     env: env       || await questions.askNodeEnv()
 });
 
-const release = async (device, { env, releaseVersion }) => ({
+const build = async (device, { env, buildVersion }) => ({
+    device: device        || await questions.askDevice(),
+    env: env              || await questions.askNodeEnv(),
+    version: buildVersion || await questions.askVersion()
+});
+
+const release = async (device, { env }) => ({
     device: device          || await questions.askDevice(),
-    env: env                || await questions.askNodeEnv(),
-    version: releaseVersion || await questions.askVersion()
+    env: env                || await questions.askNodeEnv()
 });
 
 const upload = async (device, { env, changes }) => ({
