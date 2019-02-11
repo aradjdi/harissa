@@ -20,13 +20,13 @@ const uploadSmartphonePackages = changes => Q()
     .then(() => deployExec.uploadPackage(
         `${getCordovaDir()}/smartphone/platforms/ios/build/device/${getSmartphoneAppName()}.ipa`, getAppaloosaToken(), getAppaloosaGroups(), changes))
     .then(() => deployExec.uploadPackage(
-        `${getCordovaDir()}/smartphone/platforms/android/app/build/outputs/apk/release/android-release.apk`, getAppaloosaToken(), getAppaloosaGroups(), changes));
+        `${getCordovaDir()}/smartphone/platforms/android/app/build/outputs/apk/release/app-release.apk`, getAppaloosaToken(), getAppaloosaGroups(), changes));
 
 const uploadTabletPackages = changes => Q()
     .then(() => deployExec.uploadPackage(
         `${getCordovaDir()}/tablet/platforms/ios/build/device/${getTabletAppName()}.ipa`, getAppaloosaToken(), getAppaloosaGroups(), changes))
     .then(() => deployExec.uploadPackage(
-        `${getCordovaDir()}/tablet/platforms/android/app/build/outputs/apk/android-debug.apk`, getAppaloosaToken(), getAppaloosaGroups(), changes));
+        `${getCordovaDir()}/tablet/platforms/android/app/build/outputs/apk/release/app-release.apk`, getAppaloosaToken(), getAppaloosaGroups(), changes));
 
 module.exports = {
     uploadSmartphonePackages,
