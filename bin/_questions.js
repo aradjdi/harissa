@@ -15,6 +15,20 @@ const askProjectInfos = () => inquirer.prompt([
     }
 ]);
 
+const askProjectName = () => inquirer.prompt([{
+    type: 'input',
+    name: 'name',
+    message: 'Project name ?',
+    default: 'HelloWorld',
+}]).then(values => values.name);
+
+const askProjectId = () => inquirer.prompt([{
+    type: 'input',
+    name: 'id',
+    message: 'Project id ?',
+    default: 'com.mousquetaires.helloworld',
+}]).then(values => values.id);
+
 const askNodeEnv = () => inquirer.prompt([{
     type: 'list',
     name: 'nodeEnv',
@@ -53,6 +67,10 @@ const askVersionName = () => inquirer.prompt([{
     message: 'Version ?',
 }]).then(values => values.versionName);
 
+const askVersion = () => askVersionType().then(
+    version => version === 'other' ? askVersionName() : version
+)
+
 const askChanges = () => inquirer.prompt([{
     type: 'input',
     name: 'changes',
@@ -61,9 +79,12 @@ const askChanges = () => inquirer.prompt([{
 
 module.exports = {
     askProjectInfos,
+    askProjectName,
+    askProjectId,
     askNodeEnv,
     askVersionType,
     askVersionName,
+    askVersion,
     askDevice,
     askChanges,
     askOS

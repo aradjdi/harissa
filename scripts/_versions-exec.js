@@ -4,7 +4,6 @@ const fs = require('fs-extra');
 const exec = require('./_exec');
 const parse = require('./_parse');
 const paths = require('./_paths');
-const questions = require('./_questions');
 
 const changeAppVersion = (filepath, version) => fs.readFile(filepath)
     .then(configXml => parse.parseXmlToJson(configXml))
@@ -52,15 +51,8 @@ const getBuildVersion = () => {
         .replace(/-|:|T|Z/g, '')
         .substr(2, 10));
 };
-const getPackageVersion = () => questions.askVersionType().then((version) => {
-    if (version === 'other') {
-        version = undefined;
-    }
-    return version || questions.askVersionName();
-});
 
 module.exports = {
-    getPackageVersion,
     getAppVersion,
     getBuildVersion,
     setPackageVersion,
