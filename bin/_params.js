@@ -23,11 +23,10 @@ const run = async (device, os, { env }) => ({
     env: env       || await questions.askNodeEnv()
 });
 
-const release = async (device, { env, releaseVersion, changes }) => ({
+const release = async (device, { env, releaseVersion }) => ({
     device: device          || await questions.askDevice(),
     env: env                || await questions.askNodeEnv(),
-    version: releaseVersion || await questions.askVersion(),
-    changes: changes        || await questions.askChanges()
+    version: releaseVersion || await questions.askVersion()
 });
 
 const upload = async (device, { env, changes }) => ({

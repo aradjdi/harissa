@@ -83,7 +83,6 @@ program
     .command('release [device]')
     .description('release and deploy for target devices')
     .option('-e, --env <type>', 'Specify target environment <type>')
-    .option('-c, --changes <type>', 'Specify change log')
     .option('-v, --release-version <type>', 'Specify new version')
     .action(async (...releaseParams) => {
         // await banner.show();
