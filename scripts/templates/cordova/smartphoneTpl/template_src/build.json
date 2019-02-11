@@ -13,8 +13,9 @@
       "codeSignIdentity": "iPhone Developer",
       "developmentTeam": "8674RATCDK",
       "packageType": "development",
-      "automaticProvisioning": "true",
+      "automaticProvisioning": true,
       "buildFlag": [
+        "-UseModernBuildSystem=NO",
         "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
         "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
         "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
@@ -24,7 +25,9 @@
       "codeSignIdentity": "iPhone Developer",
       "developmentTeam": "8674RATCDK",
       "packageType": "enterprise",
+      "automaticProvisioning": true,
       "buildFlag": [
+        "-UseModernBuildSystem=NO",
         "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
         "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
         "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
