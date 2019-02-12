@@ -8,8 +8,8 @@ const duplicateTemplate = (name, id) => Q()
     .spy(() => template.duplicateProjectTemplates(name, id), 'template', 'duplicateProjectTemplates');
 
 const createProjects = (name, id) => Q()
-    .spy(() => cordova.createSmartphoneProjects(id, name), 'cordova', 'createSmartphoneProjects')
-    .spy(() => cordova.createTabletProjects(id, name), 'cordova', 'createTabletProjects');
+    .spy(() => cordova.createProjects(id, name, 'smartphone'), 'cordova', 'createProjects')
+    .spy(() => cordova.createProjects(id, name, 'tablet'), 'cordova', 'createProjects');
 
 const installDependencies = () => Q()
     .spy(() => template.installDependencies(), 'template', 'installDependencies');
