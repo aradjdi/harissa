@@ -20,20 +20,22 @@ const buildTabletApplication = os => {
     }
 }
 
-const runApplication =  (device, os) => {
+const buildApplication =  (device, os) => {
     switch (device) {
         case 'smartphone': return Q()
-            .spy(() => buildSmartphoneApplication(os), 'build', 'buildDistSmartphone')
-            .spy(() => cordova.runSmartphone(os), 'cordova', 'runSmartphone');
+            .spy(() => buildSmartphoneApplication(os), 'build', 'buildDistSmartphone');
 
         case 'tablet': return Q()
-            .spy(() => buildTabletApplication(os), 'build', 'buildDistTablet')
-            .spy(() => cordova.runTablet(os), 'cordova', 'runTablet');
+            .spy(() => buildTabletApplication(os), 'build', 'buildDistTablet');
     }
 };
 
+const runApplication = (device, os) => Q()
+    .spy(() => cordova.runProject(device, os), 'cordova', 'runProject');
+
 const run = ({ device, os, env }) => Q()
     .then(() => initNodeEnv(env))
+    .then(() => buildApplication(device, os))
     .then(() => runApplication(device, os))
     .catch(errors.onError);
 

@@ -10,23 +10,13 @@ const upgradeVersions = () => Q()
     .spy(() => versions.buildAppVersion(), 'versions', 'buildAppVersion')
     .spy(() => versions.buildBuildVersion(), 'versions', 'buildBuildVersion');
 
-const packageSmartphoneProjects = () => Q()
-    .spy(() => cordova.packageSmartphoneProjects(), 'cordova', 'packageSmartphoneProjects');
-
-const packageTabletProjects = () => Q()
-    .spy(() => cordova.packageTabletProjects(), 'cordova', 'packageTabletProjects');
-
-const releaseApplication = device => {
-    switch (device) {
-        case 'smartphone': return packageSmartphoneProjects();
-        case 'tablet':     return packageTabletProjects();
-    }
-};
+const packageProject = device => Q()
+    .spy(() => cordova.packageProject(device), 'cordova', 'packageProject');
 
 const release = ({ device, env }) => Q()
     .then(() => initNodeEnv(env))
     .then(() => upgradeVersions())
-    .then(() => releaseApplication(device))
+    .then(() => packageProject(device))
     .catch(errors.onError);
 
 module.exports = release;
