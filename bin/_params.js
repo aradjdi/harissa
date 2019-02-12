@@ -2,9 +2,10 @@
 
 const questions = require('./_questions');
 
-const init = async ({ projectName, projectId }) => ({
+const init = async ({ projectName, projectId, technicalEnvironment }) => ({
     name: projectName || await questions.askProjectName(),
-    id: projectId     || await questions.askProjectId()
+    id: projectId     || await questions.askProjectId(),
+    techEnv: technicalEnvironment || await questions.askTechnicalEnvironment()
 });
 
 const serve = async ({ env }) => ({

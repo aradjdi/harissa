@@ -1,19 +1,9 @@
 const inquirer = require('inquirer');
 
-const askProjectInfos = () => inquirer.prompt([
-    {
-        type: 'input',
-        name: 'name',
-        message: 'Project name ?',
-        default: 'HelloWorld',
-    },
-    {
-        type: 'input',
-        name: 'id',
-        message: 'Project id ?',
-        default: 'com.mousquetaires.helloworld',
-    }
-]);
+const FRAMEWORKS_SUPPORTED = {
+    cordova:    'cordova',
+    capacitor:  'capacitor',
+}
 
 const askProjectName = () => inquirer.prompt([{
     type: 'input',
@@ -21,6 +11,17 @@ const askProjectName = () => inquirer.prompt([{
     message: 'Project name ?',
     default: 'HelloWorld',
 }]).then(values => values.name);
+
+const askTechnicalEnvironment = () => inquirer.prompt({
+    type: 'list',
+    name: 'techEnv',
+    message: 'Web container',
+    choices: [
+        FRAMEWORKS_SUPPORTED.cordova,
+        FRAMEWORKS_SUPPORTED.capacitor
+    ],
+    default: FRAMEWORKS_SUPPORTED.capacitor
+}).then(values => values.techEnv);
 
 const askProjectId = () => inquirer.prompt([{
     type: 'input',
@@ -78,7 +79,8 @@ const askChanges = () => inquirer.prompt([{
 }]).then(values => values.changes);
 
 module.exports = {
-    askProjectInfos,
+    FRAMEWORKS_SUPPORTED,
+    askTechnicalEnvironment,
     askProjectName,
     askProjectId,
     askNodeEnv,

@@ -22,6 +22,7 @@ program
     .description('create a new harissa project!')
     .option('-n, --project-name <type>', 'Specify project name')
     .option('-i, --project-id <type>', 'Specify project id')
+    .option('-e, --technical-environment <type>', 'Choose technical environment')
     .action(async (...initParams) => {
         // await banner.show();
         return init(
