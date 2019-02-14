@@ -4,6 +4,10 @@ const FRAMEWORKS_SUPPORTED = {
     cordova:    'cordova',
     capacitor:  'capacitor',
 }
+const DEVICES_SUPPORTED = {
+    android: 'android',
+    ios: 'ios',
+}
 
 const askProjectName = () => inquirer.prompt([{
     type: 'input',
@@ -50,8 +54,8 @@ const askOS = () => inquirer.prompt([{
     type: 'list',
     name: 'os',
     message: 'OS target?',
-    choices: ['android', 'ios'],
-    default: 'android',
+    choices: [DEVICES_SUPPORTED.android, DEVICES_SUPPORTED.ios],
+    default: DEVICES_SUPPORTED.android,
 }]).then(values => values.os);
 
 const askVersionType = () => inquirer.prompt([{
@@ -80,6 +84,7 @@ const askChanges = () => inquirer.prompt([{
 
 module.exports = {
     FRAMEWORKS_SUPPORTED,
+    DEVICES_SUPPORTED,
     askTechnicalEnvironment,
     askProjectName,
     askProjectId,

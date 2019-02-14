@@ -20,7 +20,7 @@ const buildTabletApplication = os => {
     }
 }
 
-const buildApplication =  (device, os) => {
+const buildApplication = (device, os) => {
     switch (device) {
         case 'smartphone': return Q()
             .spy(() => buildSmartphoneApplication(os), 'build', 'buildDistSmartphone');

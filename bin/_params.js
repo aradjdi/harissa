@@ -18,10 +18,11 @@ const run = async (device, os, { env }) => ({
     env: env       || await questions.askNodeEnv()
 });
 
-const build = async (device, { env, buildVersion }) => ({
+const build = async (device, { env, buildVersion, technicalEnvironment }) => ({
     device: device        || await questions.askDevice(),
     env: env              || await questions.askNodeEnv(),
-    version: buildVersion || await questions.askVersion()
+    version: buildVersion || await questions.askVersion(),
+    techEnv: technicalEnvironment || await questions.askTechnicalEnvironment()
 });
 
 const release = async (device, { env }) => ({

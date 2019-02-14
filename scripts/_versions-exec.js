@@ -1,5 +1,5 @@
 const Q = require('q');
-const fs = require('fs-extra');
+const fs = require('./_file_system');
 
 const exec = require('./_exec');
 const parse = require('./_parse');
@@ -16,14 +16,16 @@ const changeAppVersion = (filepath, version) => fs.readFile(filepath)
 const changeBuildVersion = (filepath, version) => fs.readFile(filepath)
     .then(configXml => parse.parseXmlToJson(configXml))
     .then((config) => {
-        config.widget.$['ios-CFBundleVersion'] = version;
-        config.widget.$['android-versionCode'] = version;
+        config.widget.$[ 'ios-CFBundleVersion' ] = version;
+        config.widget.$[ 'android-versionCode' ] = version;
         return config;
     })
     .then(config => parse.parseJsonToXml(config))
     .then(configXml => fs.writeFile(filepath, configXml));
-const changePackageVersion = (filepath, version) => 
-    exec.executeCommand(`npm version ${version} --no-git-tag-version`, filepath);
+const changePackageVersion = (filepath, version) =>
+    fs.existsSync(filepath) ?
+        exec.executeCommand(`npm version ${version} --no-git-tag-version`, filepath) :
+        Promise.resolve();
 
 const setAppVersion = version => Q.all([
     changeAppVersion(`${paths.cordovaDir}/${process.env.NODE_ENV}/smartphone/config.xml`, version),
