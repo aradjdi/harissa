@@ -35,7 +35,36 @@ const buildProject = (device) => Q()
         }
     });
 
+const runAndroid = (id) => Q()
+    .spy(() => buildAndroid(), 'harissa rebuild', 'runAndroid')
+    .spy(() => exec.executeCommand('./gradlew installDebug', path.currentDir + '/android'), 'gradlew install', 'runAndroid')
+    .spy(() => exec.executeCommand(`adb shell am kill ${id}`, path.currentDir + '/android'), 'adb kill', 'runAndroid')
+    .spy(() =>
+        exec.executeCommand(
+            `adb shell cmd package resolve-activity --brief -c android.intent.category.LAUNCHER ${id} | tail -1`,
+            path.currentDir + '/android'
+        ),
+        'adb getActivity', 'runAndroid')
+    .spy(([ arg ]) =>
+        exec.executeCommand(
+            `adb shell cmd activity start-activity ${arg}`,
+            path.currentDir + '/android'
+        ),
+        'run activity', 'runAndroid');
+
+const runProject = (device, id) => {
+    switch (device) {
+        case DEVICES.android:
+            return runAndroid(id);
+        case DEVICES.ios:
+            return;
+        default:
+            return;
+    }
+}
+
 module.exports = {
     createProject,
     buildProject,
+    runProject,
 }

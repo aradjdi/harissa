@@ -12,10 +12,12 @@ const serve = async ({ env }) => ({
     env: env || await questions.askNodeEnv()
 });
 
-const run = async (device, os, { env }) => ({
+const run = async (device, os, { env, technicalEnvironment, projectId }) => ({
     device: device || await questions.askDevice(),
     os: os         || await questions.askOS(),
-    env: env       || await questions.askNodeEnv()
+    env: env       || await questions.askNodeEnv(),
+    techEnv: technicalEnvironment || await questions.askTechnicalEnvironment(),
+    id: projectId     || await questions.askProjectId(),
 });
 
 const build = async (device, { env, buildVersion, technicalEnvironment }) => ({

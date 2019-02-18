@@ -70,6 +70,8 @@ program
     .command('run [device] [os]')
     .description('run on selected device and os')
     .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-t, --technical-environment <type>', 'Choose technical environment')
+    .option('-i, --project-id <type>', 'Specify project id')
     .action(async (...runParams) => {
         // await banner.show();
         return run(
