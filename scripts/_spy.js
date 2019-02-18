@@ -12,9 +12,9 @@ function spy(action, file, caller) {
     }
 
     return self
-        .then(() => logs.info(`-- ${file}`, `start ${caller}`))
+        .tap(() => logs.info(`-- ${file}`, `start ${caller}`))
         .then(action)
-        .then(result => logs.success(`-- ${file}`, `finish ${caller}`) || result)
+        .tap(() => logs.success(`-- ${file}`, `finish ${caller}`))
         .catch((err) => {
             logs.error(`-- ${file}`, `${caller} failed`, err);
             throw err;
