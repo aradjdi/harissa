@@ -1,5 +1,5 @@
 {
-  "name": "stime-harissa",
+  "name": "@stime/harissa",
   "version": "1.0.0",
   "description": "CLI that help front team for projects",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://10.108.35.139/aradjdi/stime-harissa.git"
+    "url": "http://nexus-stime.mousquetaires.com/aradjdi/@stime/harissa.git"
   },
   "keywords": [
     "javascript"
@@ -19,9 +19,10 @@
     "harissa": "bin/index.js"
   },
   "publishConfig": {
-    "registry": "http://10.108.35.137/repository/npm-snapshots/"
+    "registry": "http://nexus-stime.mousquetaires.com/repository/npm-releases/"
   },
   "dependencies": {
+    "appaloosa-client": "^0.1.1",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-plugin-transform-runtime": "6.23.0",
@@ -32,15 +33,18 @@
     "child-process-promise": "2.2.1",
     "clean-webpack-plugin": "0.1.16",
     "commander": "2.11.0",
+    "cordova": "8.1.2",
     "css-loader": "0.28.7",
     "eslint": "4.7.2",
     "eslint-config-airbnb-base": "12.0.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-import": "2.7.0",
+    "figlet": "^1.2.0",
     "file-loader": "0.11.2",
     "fs-extra": "4.0.2",
     "html-loader": "0.5.1",
     "html-webpack-plugin": "2.30.1",
+    "image-to-ascii": "^3.0.11",
     "inquirer": "3.3.0",
     "istanbul-instrumenter-loader": "3.0.0",
     "jasmine-core": "2.8.0",

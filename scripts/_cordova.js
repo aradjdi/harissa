@@ -1,53 +1,22 @@
 const Q = require('q');
 
-const exec = require('./_exec');
 const paths = require('./_paths');
+const cordovaExec = require('./_cordova-exec');
 
-const initProject = (appPath, id, name, templatePath) => Q()
-    .then(() => exec.executeCommand(`cordova create ${appPath} ${id} ${name} --template ${templatePath}`))
-    .then(() => exec.executeCommand('cordova prepare', appPath));
-
-const initProjects = (appPath, id, name, templatePath) => Q()
-    .then(() => initProject(`${appPath}/smartphone`, `${id}.smartphone`, name, `${templatePath}/smartphoneTpl`))
-    .then(() => initProject(`${appPath}/tablet`, `${id}.tablet`, name, `${templatePath}/tabletTpl`));
-
-const createApplications = () => {
-    const templateDir = `${paths.templatesDir}/cordova`;
-    const appId = require(`${paths.appDir}/package.json`).name;
-    const appName = require(`${paths.appDir}/package.json`).displayName;
-
+const createProjects = (id, name, device) => {
+    const templateDir = `${paths.templatesDir}/cordova/smartphoneTpl`;
     return Q()
-        .then(() => initProjects(`${paths.cordovaDir}/dev`, `${appId}.dev`, `${appName}Dev`, templateDir))
-        .then(() => initProjects(`${paths.cordovaDir}/preprod`, `${appId}.preprod`, `${appName}Preprod`, templateDir))
-        .then(() => initProjects(`${paths.cordovaDir}/prod`, `${appId}`, `${appName}`, templateDir));
+        .then(() => cordovaExec.createProject(`${paths.cordovaDir}/dev/${device}`, `${id}.dev.${device}`, `${name}Dev`, templateDir))
+        .then(() => cordovaExec.createProject(`${paths.cordovaDir}/preprod/${device}`, `${id}.preprod.${device}`, `${name}Preprod`, templateDir))
+        .then(() => cordovaExec.createProject(`${paths.cordovaDir}/prod/${device}`, `${id}.${device}`, name, templateDir));
 };
 
-const packageCmd = 'cordova build android ios --device';
-const packageSmartphoneProjects = () => exec.executeCommand(
-    packageCmd,
-    `${paths.cordovaDir}/${process.env.NODE_ENV}/smartphone`
-);
-const packageTabletProjects = () => exec.executeCommand(
-    packageCmd,
-    `${paths.cordovaDir}/${process.env.NODE_ENV}/tablet`
-);
+const packageProject = device => cordovaExec.packageProject(`${paths.cordovaDir}/${process.env.NODE_ENV}/${device}`);
 
-const runSmartphone = (platform) => {
-    console.log('cordova start');
-    return exec.executeCommand(
-        `cordova run ${platform}`,
-        `${paths.cordovaDir}/${process.env.NODE_ENV}/smartphone`
-    );
-};
-const runTablet = platform => exec.executeCommand(
-    `cordova run ${platform}`,
-    `${paths.cordovaDir}/${process.env.NODE_ENV}/tablet`
-);
+const runProject = (device, platform) => cordovaExec.runProject(platform, `${paths.cordovaDir}/${process.env.NODE_ENV}/${device}`);
 
 module.exports = {
-    createApplications,
-    packageSmartphoneProjects,
-    packageTabletProjects,
-    runSmartphone,
-    runTablet,
+    createProjects,
+    packageProject,
+    runProject
 };

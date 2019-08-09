@@ -1,37 +1,15 @@
-const Q = require('q');
-const inquirer = require('inquirer');
+const versionsExec = require('./_versions-exec');
 
-const exec = require('./_exec');
-const paths = require('./_paths');
+const buildPackageVersion = version => versionsExec.setPackageVersion(version);
 
-const initVersion = () => inquirer.prompt([{
-    type: 'list',
-    name: 'versionType',
-    message: 'Version Type ?',
-    choices: ['patch', 'minor', 'major', 'other'],
-    default: 'patch',
-}]).then((values) => {
-    const { versionType } = values;
+const buildAppVersion = () => versionsExec.getAppVersion()
+    .then(version => versionsExec.setAppVersion(version));
 
-    if (versionType !== 'other') {
-        return values;
-    }
+const buildBuildVersion = () => versionsExec.getBuildVersion()
+    .then(version => versionsExec.setBuildVersion(version));
 
-    return inquirer.prompt([
-        { type: 'input', name: 'versionType', message: 'Version ?' },
-    ]);
-}).then(values => values.versionType);
-
-const upgradeVersions = () => Q()
-    .then(() => initVersion())
-    .then((version) => {
-        const versionCmd = `npm version ${version} --no-git-tag-version`;
-
-        return Q.all([
-            exec.executeCommand(versionCmd, paths.srcDir),
-            exec.executeCommand(versionCmd, `${paths.cordovaDir}/${process.env.NODE_ENV}/smartphone`),
-            exec.executeCommand(versionCmd, `${paths.cordovaDir}/${process.env.NODE_ENV}/tablet`),
-        ]);
-    });
-
-module.exports = { upgradeVersions };
+module.exports = {
+    buildPackageVersion,
+    buildAppVersion,
+    buildBuildVersion,
+};

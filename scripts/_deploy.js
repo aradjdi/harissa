@@ -1,31 +1,36 @@
 const Q = require('q');
 
-const exec = require('./_exec');
 const paths = require('./_paths');
+const deployExec = require('./_deploy-exec');
 
-const storeToken = 'g58kzdxrvdtlhnumiv3wd93z95hq6khm';
+const APPALOOSA_TOKENS = {
+    dev: 'g58kzdxrvdtlhnumiv3wd93z95hq6khm',
+    preprod: 'g58kzdxrvdtlhnumiv3wd93z95hq6khm',
+    prod: 'ihdmighsgdvftx29xpiclqikaufstx5f'
+};
 
+const getAppaloosaToken = () => APPALOOSA_TOKENS[process.env.NODE_ENV];
 const getCordovaDir = () => `${paths.cordovaDir}/${process.env.NODE_ENV}`;
-const getSmartphoneAppNeme = () => require(`${getCordovaDir()}/smartphone/package.json`).displayName;
-const getTabletAppNeme = () => require(`${getCordovaDir()}/tablet/package.json`).displayName;
 
-const uploadPackage = filepath => Q()
-    .then(() => console.log(`upload ${filepath}`))
-    .then(() => exec.executeCommand(`ruby ${paths.rootDir}/appaloosa-client.rb ${storeToken} ${filepath}`))
-    .catch(() => uploadPackage(filepath))
-    .catch((error) => {
-        console.log('deployReleases error', error);
-    });
+const getAppaloosaGroups = () => require(`${paths.confDir}/${process.env.NODE_ENV}/appaloosa.conf.json`).APPALOOSA_GROUPS;
 
-const uploadSmartphonePackages = () => Q()
-    .then(() => uploadPackage(`${getCordovaDir()}/smartphone/platforms/ios/build/device/${getSmartphoneAppNeme()}.ipa`))
-    .then(() => uploadPackage(`${getCordovaDir()}/smartphone/platforms/android/build/outputs/apk/android-debug.apk`));
-
-const uploadTabletPackages = () => Q()
-    .then(() => uploadPackage(`${getCordovaDir()}/tablet/platforms/ios/build/device/${getTabletAppNeme()}.ipa`))
-    .then(() => uploadPackage(`${getCordovaDir()}/tablet/platforms/android/build/outputs/apk/android-debug.apk`));
+const uploadPackages = (device, changes) => {
+    const appName = require(`${getCordovaDir()}/${device}/package.json`).displayName;
+    return Q()
+        .then(() => deployExec.uploadPackage(
+            `${getCordovaDir()}/${device}/platforms/ios/build/device/${appName}.ipa`,
+            getAppaloosaToken(),
+            getAppaloosaGroups(),
+            changes
+        ))
+        .then(() => deployExec.uploadPackage(
+            `${getCordovaDir()}/${device}/platforms/android/app/build/outputs/apk/release/app-release.apk`,
+            getAppaloosaToken(),
+            getAppaloosaGroups(),
+            changes
+        ));
+}
 
 module.exports = {
-    uploadSmartphonePackages,
-    uploadTabletPackages,
+    uploadPackages
 };

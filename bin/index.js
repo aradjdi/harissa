@@ -1,58 +1,116 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const timer = require('../scripts/_timer');
 
-const time = (scriptPath) => {
-    timer.start();
+const banner = require('./_banner');
+const params = require('./_params');
 
-    require(scriptPath)
-        .init()
-        .then(() => console.log('cordova finish'))
-        .then(() => timer.end())
-        .then(duration => console.log(`BUILD SUCCESSFUL in ${duration}s`));
-};
+const init = require('../scripts/init');
+const serve = require('../scripts/serve');
+const build = require('../scripts/build');
+const release = require('../scripts/release');
+const upload = require('../scripts/upload');
+const run = require('../scripts/run');
 
 program.version(require('../package').version);
 
+// harissa init
+// harissa init -n HelloWorld -i com.mousquetaires.helloworld
+// harissa init --project-name HelloWorld --project-id com.mousquetaires.helloworld
 program
     .command('init')
-    .action(() => require('../scripts/init'));
+    .description('create a new harissa project!')
+    .option('-n, --project-name <type>', 'Specify project name')
+    .option('-i, --project-id <type>', 'Specify project id')
+    .action(async (...initParams) => {
+        // await banner.show();
+        return init(
+            await params.init(...initParams)
+        );
+    });
 
-program
-    .command('release')
-    .action(() => require('../scripts/release'));
-
-program
-    .command('release-smartphone')
-    .action(() => require('../scripts/release-smartphone'));
-
-program
-    .command('release-tablet')
-    .action(() => require('../scripts/release-tablet'));
-
-program
-    .command('run-smartphone-android')
-    .action(() => time('../scripts/run-smartphone-android'));
-
-program
-    .command('run-smartphone-ios')
-    .action(() => require('../scripts/run-smartphone-ios'));
-
-program
-    .command('run-tablet-android')
-    .action(() => require('../scripts/run-tablet-android'));
-
-program
-    .command('run-tablet-ios')
-    .action(() => require('../scripts/run-tablet-ios'));
-
+// harissa sev
+// harissa sev -e dev
+// harissa sev --env dev
 program
     .command('serve')
-    .action(() => require('../scripts/serve'));
+    .description('serve on local browser')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action(async (...serveParams) => {
+        // await banner.show();
+        return serve(
+            await params.serve(...serveParams)
+        );
+    });
+
+// harissa run
+// harissa run smartphone
+// harissa run smartphone android
+// harissa run smartphone android -e dev
+// harissa run smartphone android --env dev
+program
+    .command('run [device] [os]')
+    .description('run on selected device and os')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action(async (...runParams) => {
+        // await banner.show();
+        return run(
+            await params.run(...runParams)
+        );
+    });
+
+// harissa build
+// harissa build smartphone
+// harissa build smartphone -e dev -v patch
+// harissa build smartphone --env dev --build-version patch
+program
+    .command('build [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-v, --build-version <type>', 'Specify new version')
+    .action(async (...buildParams) => {
+        // await banner.show();
+        return build(
+            await params.build(...buildParams)
+        );
+    });
+
+// harissa release
+// harissa release smartphone
+// harissa release smartphone -e dev
+// harissa release smartphone --env dev
+program
+    .command('release [device]')
+    .description('release and deploy for target devices')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .action(async (...releaseParams) => {
+        // await banner.show();
+        return release(
+            await params.release(...releaseParams)
+        );
+    });
+
+// harissa upload
+// harissa upload smartphone
+// harissa upload smartphone -e dev -c "my change log"
+// harissa upload smartphone --env dev --changes "my change log"
+program
+    .command('upload [device]')
+    .description('upload to appaloosa')
+    .option('-e, --env <type>', 'Specify target environment <type>')
+    .option('-c, --changes <type>', 'Specify change log')
+    .action(async (...uploadParams) => {
+        // await banner.show();
+        return upload(
+            await params.upload(...uploadParams)
+        );
+    });
 
 program
     .command('serve-vue')
     .action(() => require('../scripts/serve-vue'));
+
+program
+    .command('');
 
 program.parse(process.argv);

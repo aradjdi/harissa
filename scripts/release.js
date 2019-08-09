@@ -1,32 +1,22 @@
-const Q = require('q');
+const Q = require('q'); require('./_spy');
 
-const env = require('./_env');
 const versions = require('./_versions');
-
-const builds = require('./_builds');
-const deploy = require('./_deploy');
 const cordova = require('./_cordova');
 const errors = require('./_errors');
 
-const releaseDists = () => Q()
-    .then(() => builds.releaseDist())
-    .then(() => builds.releaseDistSmartphoneIOS())
-    .then(() => builds.releaseDistSmartphoneAndroid())
-    .then(() => builds.releaseDistTabletIOS())
-    .then(() => builds.releaseDistTabletAndroid());
+const initNodeEnv = env => process.env.NODE_ENV = env;
 
-const packageProjects = () => Q()
-    .then(() => cordova.packageSmartphoneProjects())
-    .then(() => cordova.packageTabletProjects());
+const upgradeVersions = () => Q()
+    .spy(() => versions.buildAppVersion(), 'versions', 'buildAppVersion')
+    .spy(() => versions.buildBuildVersion(), 'versions', 'buildBuildVersion');
 
-const uploadPackages = () => Q()
-    .then(() => deploy.uploadSmartphonePackages())
-    .then(() => deploy.uploadTabletPackages());
+const packageProject = device => Q()
+    .spy(() => cordova.packageProject(device), 'cordova', 'packageProject');
 
-Q()
-    .then(() => env.initNodeEnv())
-    .then(() => versions.upgradeVersions())
-    .then(() => releaseDists())
-    .then(() => packageProjects())
-    .then(() => uploadPackages())
+const release = ({ device, env }) => Q()
+    .then(() => initNodeEnv(env))
+    .then(() => upgradeVersions())
+    .then(() => packageProject(device))
     .catch(errors.onError);
+
+module.exports = release;

@@ -1,4 +1,7 @@
 {
   "APPALOOSA_STORE_ID": 8829,
-  "APPALOOSA_STORE_TOKEN": "ihdmighsgdvftx29xpiclqikaufstx5f"
+  "APPALOOSA_STORE_TOKEN": "ihdmighsgdvftx29xpiclqikaufstx5f",
+  "APPALOOSA_GROUPS": [
+    "Enter Here Groups"
+  ]
 }
