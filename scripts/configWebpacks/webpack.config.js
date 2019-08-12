@@ -11,5 +11,5 @@ module.exports = {
             '@': paths.srcDir,
             vue: 'vue/dist/vue.js',
         },
-    },
+    }
 };
