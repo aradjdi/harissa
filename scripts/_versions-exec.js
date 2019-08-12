@@ -23,7 +23,7 @@ const changeBuildVersion = (filepath, version) => fs.readFile(filepath)
     .then(config => parse.parseJsonToXml(config))
     .then(configXml => fs.writeFile(filepath, configXml));
 const changePackageVersion = (filepath, version) => 
-    exec.executeCommand(`npm version ${version} --no-git-tag-version`, filepath);
+    exec.executeCommand(`npm version ${version} --no-git-tag-version --allow-same-version`, filepath);
 
 const setAppVersion = version => Q.all([
     changeAppVersion(`${paths.cordovaDir}/${process.env.NODE_ENV}/smartphone/config.xml`, version),
