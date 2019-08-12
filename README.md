@@ -1,4 +1,4 @@
-#HARISSA cli
+# HARISSA cli
 
 ## Installation
 
@@ -28,19 +28,30 @@ $ brew install graphicsmagick
 $ choco install graphicsmagick
 ```
 
-Then, you can install this package:
+- dev dependencies
+> npm install
 
+- add simlink
+> npm link
+
+## Get started
+### Usage
 ```sh
-$ npm i --save image-to-ascii
+# Init a project
+$ harissa init --project-name <projectName> --project-id <projectId>
+
+# Run & Watch for change on browser
+$ harissa serve --env <dev|preprod|prod>
+
+# Run on device
+$ harissa run <smartphone|tablet> <android|ios> --env <dev|preprod|prod>
+
+# Build Cordova project
+$ harissa build <smartphone|tablet> --env <dev|preprod|prod> --build-version <patch|minor|major|versionNumber>
+
+# Release IPA and APK files
+$ harissa release <smartphone|tablet> --env <dev|preprod|prod>
+
+# Upload to Appaloosa
+$ harissa upload <smartphone|tablet> --env <dev|preprod|prod> --changes <"my change log">
 ```
-
-TODO
-
-    export NODE_ENV=dev
-    mkdir <project dir>
-    mkdir app
-    cd app
-    harissa init
-    harissa release
-
-
