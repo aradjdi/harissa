@@ -53,24 +53,6 @@ const askOS = () => inquirer.prompt([{
     default: 'android',
 }]).then(values => values.os);
 
-const askVersionType = () => inquirer.prompt([{
-    type: 'list',
-    name: 'versionType',
-    message: 'Version Type ?',
-    choices: ['patch', 'minor', 'major', 'other'],
-    default: 'patch',
-}]).then(values => values.versionType);
-
-const askVersionName = () => inquirer.prompt([{
-    type: 'input',
-    name: 'versionName',
-    message: 'Version ?',
-}]).then(values => values.versionName);
-
-const askVersion = () => askVersionType().then(
-    version => version === 'other' ? askVersionName() : version
-)
-
 const askChanges = () => inquirer.prompt([{
     type: 'input',
     name: 'changes',
@@ -82,9 +64,6 @@ module.exports = {
     askProjectName,
     askProjectId,
     askNodeEnv,
-    askVersionType,
-    askVersionName,
-    askVersion,
     askDevice,
     askChanges,
     askOS

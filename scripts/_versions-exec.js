@@ -51,8 +51,12 @@ const getBuildVersion = () => {
         .replace(/-|:|T|Z/g, '')
         .substr(2, 10));
 };
+const getPackageVersion = () => {
+    return Q(require(`${paths.confDir}/${process.env.NODE_ENV}/app.conf.json`).VERSION);
+};
 
 module.exports = {
+    getPackageVersion,
     getAppVersion,
     getBuildVersion,
     setPackageVersion,

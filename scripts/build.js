@@ -6,8 +6,8 @@ const errors = require('./_errors');
 
 const initNodeEnv = env => process.env.NODE_ENV = env;
 
-const upgradeVersions = version => Q()
-    .spy(() => versions.buildPackageVersion(version), 'versions', 'buildPackageVersion');
+const upgradeVersions = () => Q()
+    .spy(() => versions.buildPackageVersion(), 'versions', 'buildPackageVersion');
 
 const releaseDists = () => Q()
     .spy(() => builds.releaseDist(), 'builds', 'releaseDist');
@@ -27,9 +27,9 @@ const buildApplication = device => {
     }
 };
 
-const build = ({ device, env, version }) => Q()
+const build = ({ device, env }) => Q()
     .then(() => initNodeEnv(env))
-    .then(() => upgradeVersions(version))
+    .then(() => upgradeVersions())
     .then(() => releaseDists())
     .then(() => buildApplication(device))
     .catch(errors.onError);
