@@ -19,8 +19,7 @@ const run = async (device, os, { env }) => ({
 
 const build = async (device, { env, buildVersion }) => ({
     device: device        || await questions.askDevice(),
-    env: env              || await questions.askNodeEnv(),
-    version: buildVersion || await questions.askVersion()
+    env: env              || await questions.askNodeEnv()
 });
 
 const release = async (device, { env }) => ({

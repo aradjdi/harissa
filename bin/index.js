@@ -61,13 +61,12 @@ program
 
 // harissa build
 // harissa build smartphone
-// harissa build smartphone -e dev -v patch
-// harissa build smartphone --env dev --build-version patch
+// harissa build smartphone -e dev
+// harissa build smartphone --env dev
 program
     .command('build [device]')
     .description('release and deploy for target devices')
     .option('-e, --env <type>', 'Specify target environment <type>')
-    .option('-v, --build-version <type>', 'Specify new version')
     .action(async (...buildParams) => {
         // await banner.show();
         return build(
