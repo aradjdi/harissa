@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const readline = require('readline');
 
 const infoFormat = chalk.reset.blue;
 const successFormat = chalk.reset.green;
@@ -12,8 +13,7 @@ const info = (title, message, option = '') => {
     if (title && message) {
         message = `${title} - ${message} - ${option}`;
         message = infoFormat(message);
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.cursorTo(process.stdout, 0);
         process.stdout.write(message.substr(0, maxSize));
     }
 };
@@ -21,8 +21,7 @@ const success = (title, message, option = '') => {
     message = `${message}`.trim();
     if (title && message) {
         message = successFormat(`${title} - ${message} - ${option}`);
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.cursorTo(process.stdout, 0);
         process.stdout.write(message);
         process.stdout.write('\n');
     }
@@ -31,8 +30,7 @@ const warning = (title, message, option = '') => {
     message = `${message}`.trim();
     if (title && message) {
         message = warningFormat(`${title} - ${message} - ${option}`);
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.cursorTo(process.stdout, 0);
         process.stdout.write(message);
         process.stdout.write('\n');
     }
@@ -41,8 +39,7 @@ const error = (title, message, option = '') => {
     message = `${message}`.trim();
     if (title && message) {
         message = errorFormat(`${title} - ${message} - ${option}`);
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.cursorTo(process.stdout, 0);
         process.stdout.write(message);
         process.stdout.write('\n');
     }
