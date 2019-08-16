@@ -98,6 +98,7 @@ program
     .description('upload to appaloosa')
     .option('-e, --env <type>', 'Specify target environment <type>')
     .option('-c, --changes <type>', 'Specify change log')
+    .option('-p, --proxy <type>', 'Specify proxy')
     .action(async (...uploadParams) => {
         // await banner.show();
         return upload(
