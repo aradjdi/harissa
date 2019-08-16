@@ -27,10 +27,11 @@ const release = async (device, { env }) => ({
     env: env                || await questions.askNodeEnv()
 });
 
-const upload = async (device, { env, changes }) => ({
+const upload = async (device, { env, changes, proxy }) => ({
     device: device   || await questions.askDevice(),
     env: env         || await questions.askNodeEnv(),
-    changes: changes || await questions.askChanges()
+    changes: changes || await questions.askChanges(),
+    proxy
 })
 
 module.exports = {
