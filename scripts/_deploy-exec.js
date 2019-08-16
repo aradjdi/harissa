@@ -1,7 +1,7 @@
 const Q = require('q');
 require('./_spy');
 
-const appaloosa = require('appaloosa-client');
+const appaloosa = require('./_appaloosa-client');
 
 const uploadPackage = (filepath, storeToken, groups, changes) => Q()
     .spy(() => appaloosa.upload(storeToken, filepath, groups, changes), 'appaloosa', 'upload');
