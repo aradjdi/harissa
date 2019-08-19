@@ -82,7 +82,11 @@ const handleUpdate = (update) => {
                         notification: JSON.parse(notif)
                     }).then(resolve).catch(reject);
 
-                });
+                }).catch(err => handleUpdate({
+                    filename,
+                    token,
+                    notification
+                }).then(resolve).catch(reject));
             }, 2000);
 
 
