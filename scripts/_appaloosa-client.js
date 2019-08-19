@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://www.appaloosa-store.com';
-let PROXY;
+const PROXY = process.env.http_proxy ? `http://${process.env.http_proxy}` : null;
 
 const onError = (err) => {
     console.log(err);
@@ -115,8 +115,7 @@ const publish = (notification, token, groups, changelog) => {
     });
 };
 
-const upload = (token, filepath, groups, changes, proxy) => {
-    PROXY = proxy;
+const upload = (token, filepath, groups, changes) => {
     return getUploadForm(token)
         .then(uploadFile.bind(this, filepath))
         .then(metadata => notifyAppaloosa(metadata.filename, token, metadata.key))
