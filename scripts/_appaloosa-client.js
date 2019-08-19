@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://www.appaloosa-store.com';
-const PROXY = process.env.http_proxy ? `http://${process.env.http_proxy}` : null;
+const PROXY = process.env.http_proxy || null;
 
 const onError = (err) => {
     console.log(err);
